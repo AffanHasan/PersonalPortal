@@ -11,10 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.personalPortal.model.FBookUser;
 import org.personalPortal.model.LoggedInUser;
+import org.personalPortal.model.PersonalPortalDBCollections;
 import org.personalPortal.model.PortalUser;
+import org.personalPortal.services.DocumentCRUDService;
 
 import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 
 /**
@@ -26,6 +31,9 @@ public class ContactsBook extends HttpServlet {
 	
 	@Inject @LoggedInUser
 	private PortalUser loggedInUser;
+	
+	@Inject
+	DocumentCRUDService documentCRUDService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -70,23 +78,29 @@ public class ContactsBook extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(request.getParameter("action") != null)
+		if(request.getParameter("action") != null && this.loggedInUser != null)
 		switch (request.getParameter("action")) {
 		case "getContactsGroupList":
 			
 			//TODO : check if the contacts book for this user exist or not if not then create one
-			
-			//TODO : load the user contacts book from the data base and check if it contains any contact group
+			if(this.documentCRUDService.findOneById(PersonalPortalDBCollections.contactsBooks.name(), 
+					DBObject.class, this.loggedInUser.getId()) == null){//If contacts book do not exist
+				DBObject contactsBook = new BasicDBObject();//Create a new contacts book document
+				contactsBook.put("_id", this.loggedInUser.getId());
+				this.documentCRUDService.persist(contactsBook, PersonalPortalDBCollections.contactsBooks.name());
+				//Writing the response
+				response.setContentType("application/json");
+				PrintWriter responseWriter = response.getWriter();
+				responseWriter.println("[]");
+				responseWriter.close();
+			}else{
+				//TODO : load the user contacts book from the data base and check if it contains any contact group
+			}
 			
 			//TODO : If no contact group is present there then return an empty list
 			
 			//TODO : If groups exist then return a json list of group names
 			
-			response.setContentType("application/json");
-			PrintWriter responseWriter = response.getWriter();
-			BasicDBList modules = (BasicDBList) this.loggedInUser.get("modules");
-			responseWriter.println(modules.toString());
-			responseWriter.close();
 			break;
 
 		default:
