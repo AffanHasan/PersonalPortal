@@ -2738,9 +2738,6 @@ $$.ListMixin = {"": "Object;",
     this.set$length(receiver, $.$add$ns(t1, 1));
     this.$indexSet(receiver, t1, element);
   },
-  clear$0: function(receiver) {
-    this.set$length(receiver, 0);
-  },
   removeLast$0: function(receiver) {
     var result;
     if ($.$eq(this.get$length(receiver), 0))
@@ -3304,9 +3301,6 @@ $$._ChildrenElementList = {"": "ListBase;_element,_childElements",
   get$iterator: function(_) {
     return $.get$iterator$ax(this.toList$0(this));
   },
-  clear$0: function(_) {
-    this._element.textContent = "";
-  },
   removeLast$0: function(_) {
     var t1, result, t2;
     t1 = this._element;
@@ -3659,10 +3653,7 @@ $$.renderBasicUI_closure = {"": "Closure;",
     jsonList = $.parse(responseText, null);
     if (typeof jsonList !== "string" && (typeof jsonList !== "object" || jsonList === null || jsonList.constructor !== Array && !$.getInterceptor(jsonList).$isJavaScriptIndexingBehavior))
       return this.call$1$bailout(1, jsonList);
-    t1 = $.getInterceptor(jsonList);
-    $.Primitives_printString($.JSString_methods.$add("The jsonList :", t1.toString$0(jsonList)));
-    $.Primitives_printString($.JSString_methods.$add("The jsonList :", $.JSBool_methods.toString$0(t1.get$isEmpty(jsonList))));
-    if (t1.get$isEmpty(jsonList)) {
+    if ($.get$isEmpty$asx(jsonList)) {
       t1 = document.querySelector("#data_container");
       t1.appendText$1;
       $.insertAdjacentText$2$x(t1, "beforeend", "Contacts book is empty");
@@ -3679,9 +3670,7 @@ $$.renderBasicUI_closure = {"": "Closure;",
   },
   call$1$bailout: function(state0, jsonList) {
     var t1, i, groupName, group, t2;
-    t1 = $.getInterceptor(jsonList);
-    $.Primitives_printString($.JSString_methods.$add("The jsonList :", t1.toString$0(jsonList)));
-    $.Primitives_printString($.JSString_methods.$add("The jsonList :", $.toString$0(t1.get$isEmpty(jsonList))));
+    t1 = $.getInterceptor$asx(jsonList);
     if (t1.get$isEmpty(jsonList) === true) {
       t1 = document.querySelector("#data_container");
       t1.appendText$1;
@@ -6083,8 +6072,7 @@ $._Lists_getRange$bailout = function(state0, a, start, end, accumulator) {
 };
 
 $.renderBasicUI = function() {
-  var t1 = $.get$children$x(document.querySelector("#data_container"));
-  t1.clear$0(t1);
+  document.querySelector("#data_container");
   $.HttpRequest_getString($.JSString_methods.$add($.baseURL, "getContactsGroupList"), null, null).then$1(new $.renderBasicUI_closure());
 };
 
@@ -6132,7 +6120,6 @@ $.JSNumber_methods = $.JSNumber.prototype;
 $.JSString_methods = $.JSString.prototype;
 $.C_CloseToken = new $.CloseToken();
 $.NodeList_methods = $.NodeList.prototype;
-$.JSBool_methods = $.JSBool.prototype;
 $.JSInt_methods = $.JSInt.prototype;
 $.JSArray_methods = $.JSArray.prototype;
 $.EventStreamProvider_progress = new $.EventStreamProvider("progress");
@@ -6229,6 +6216,9 @@ $.get$hashCode$ = function(receiver) {
 };
 $.get$id$x = function(receiver) {
   return $.getInterceptor$x(receiver).get$id(receiver);
+};
+$.get$isEmpty$asx = function(receiver) {
+  return $.getInterceptor$asx(receiver).get$isEmpty(receiver);
 };
 $.get$iterator$ax = function(receiver) {
   return $.getInterceptor$ax(receiver).get$iterator(receiver);

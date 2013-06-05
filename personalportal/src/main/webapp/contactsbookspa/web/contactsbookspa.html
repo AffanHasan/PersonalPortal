@@ -12,10 +12,10 @@
   <body>
     <div id="control_panel"></div>
     <div id="data_container">
-      <template id="collapsable_contacts_grouping" >
-      </template>
-      <template id="contacts_search" >
-      </template>
+      <!-- Template for contacts groups collapsible sections -->
+      <template id="collapsable_contacts_grouping" instantiate="if showCCG"></template>
+      <!-- Template for contacts search -->
+      <template id="contacts_search" instantiate="if showCS"></template>
     </div>
     <script type="application/dart" src="contactsbookspa.dart"></script>
     <script src="packages/browser/dart.js"></script>

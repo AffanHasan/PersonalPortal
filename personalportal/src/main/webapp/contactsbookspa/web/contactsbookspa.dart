@@ -27,7 +27,7 @@ void loadDataContainerInitially(){
 
 void renderBasicUI(){
   DivElement data_container = query("#data_container");
-  data_container.children.clear();
+  //data_container.children.clear(); commented because this was creating problems with template instantiation
   HttpRequest.getString(baseURL + "getContactsGroupList").then(
       (String responseText){
         DetailsElement group = new DetailsElement();

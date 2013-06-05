@@ -81,20 +81,26 @@ public class ContactsBook extends HttpServlet {
 		if(request.getParameter("action") != null && this.loggedInUser != null)
 		switch (request.getParameter("action")) {
 		case "getContactsGroupList":
-			
-			//TODO : check if the contacts book for this user exist or not if not then create one
-			if(this.documentCRUDService.findOneById(PersonalPortalDBCollections.contactsBooks.name(), 
-					DBObject.class, this.loggedInUser.getId()) == null){//If contacts book do not exist
-				DBObject contactsBook = new BasicDBObject();//Create a new contacts book document
+			DBObject contactsBook = this.documentCRUDService.findOneById(PersonalPortalDBCollections.contactsBooks.name(), 
+					BasicDBObject.class, this.loggedInUser.getId());
+			//Checking if the contacts book for this user exist or not
+			if(contactsBook == null){//If contacts book do not exist
+				contactsBook = new BasicDBObject();//Create a new contacts book document
 				contactsBook.put("_id", this.loggedInUser.getId());
-				this.documentCRUDService.persist(contactsBook, PersonalPortalDBCollections.contactsBooks.name());
+				this.documentCRUDService.persist(contactsBook, PersonalPortalDBCollections.contactsBooks.name());//Persist the empty contacts book
 				//Writing the response
 				response.setContentType("application/json");
 				PrintWriter responseWriter = response.getWriter();
-				responseWriter.println("[]");
+				responseWriter.println("[]");//Return am empty list of contacts groups
 				responseWriter.close();
-			}else{
-				//TODO : load the user contacts book from the data base and check if it contains any contact group
+			}else {//If contacts book document for this user exists
+				//Return the contacts groups list in any
+				System.out.println("contactsBook.keySet() : " + ((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));
+				//Writing the response
+				response.setContentType("application/json");
+				PrintWriter responseWriter = response.getWriter();
+				responseWriter.println(((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));//Return a list of contacts groups
+				responseWriter.close();
 			}
 			
 			//TODO : If no contact group is present there then return an empty list
