@@ -17,9 +17,6 @@ $$.ListIterable = {"": "IterableBase;",
   get$iterator: function(_) {
     return $.ListIterator$(this);
   },
-  get$isEmpty: function(_) {
-    return $.$eq(this.get$length(this), 0);
-  },
   toList$1$growable: function(_, growable) {
     var result, i, t1;
     if (growable) {
@@ -174,10 +171,6 @@ $$.MappedIterable = {"": "IterableBase;_iterable,_f",
     var t1 = this._iterable;
     return t1.get$length(t1);
   },
-  get$isEmpty: function(_) {
-    var t1 = this._iterable;
-    return t1.get$isEmpty(t1);
-  },
   elementAt$1: function(_, index) {
     var t1 = this._iterable;
     return this._f$1(t1.elementAt$1(t1, index));
@@ -294,9 +287,6 @@ $$.HashMapKeyIterable = {"": "IterableBase;_map",
   get$length: function(_) {
     return this._map._liblib0$_length;
   },
-  get$isEmpty: function(_) {
-    return this._map._liblib0$_length === 0;
-  },
   get$iterator: function(_) {
     var t1 = this._map;
     return $.HashMapKeyIterator$(t1, t1._computeKeys$0());
@@ -337,9 +327,6 @@ $$.LinkedHashMapCell = {"": "Object;_key<,_value@,_next@,_previous"};
 $$.LinkedHashMapKeyIterable = {"": "IterableBase;_map",
   get$length: function(_) {
     return this._map._liblib0$_length;
-  },
-  get$isEmpty: function(_) {
-    return this._map._liblib0$_length === 0;
   },
   get$iterator: function(_) {
     var t1 = this._map;
@@ -1300,9 +1287,6 @@ $$.JSArray = {"": "List/Interceptor;",
       $.throwExpression($.UnsupportedError$("set range"));
     $.IterableMixinWorkaround_setRangeList(receiver, start, end, iterable, skipCount);
   },
-  get$isEmpty: function(receiver) {
-    return receiver.length === 0;
-  },
   toString$0: function(receiver) {
     var result = $.StringBuffer$("");
     $.ToString__emitValue(receiver, result, $.List_List($));
@@ -1540,9 +1524,6 @@ $$.JSString = {"": "String/Interceptor;",
   substring$1: function($receiver, startIndex) {
     return this.substring$2($receiver, startIndex, null);
   },
-  get$isEmpty: function(receiver) {
-    return receiver.length === 0;
-  },
   toString$0: function(receiver) {
     return receiver;
   },
@@ -1568,36 +1549,6 @@ $$.JSString = {"": "String/Interceptor;",
     return receiver[index];
   },
   $isString: true
-};
-
-$$._convertJsonToDart_closure = {"": "Closure;",
-  call$2: function(key, value) {
-    return value;
-  }
-};
-
-$$._convertJsonToDart_walk = {"": "Closure;revive_0",
-  call$1: function(e) {
-    var list, t1, i, keys, map, key, proto;
-    if (e == null || typeof e != "object")
-      return e;
-    if (Object.getPrototypeOf(e) === Array.prototype) {
-      list = e;
-      for (t1 = this.revive_0, i = 0; i < list.length; ++i)
-        list[i] = t1.call$2(i, this.call$1(list[i]));
-      return list;
-    }
-    keys = Object.keys(e);
-    map = $.makeLiteralMap([]);
-    for (t1 = this.revive_0, i = 0; i < keys.length; ++i) {
-      key = keys[i];
-      map.$indexSet(map, key, t1.call$2(key, this.call$1(e[key])));
-    }
-    proto = e.__proto__;
-    if (typeof proto !== "undefined" && proto !== Object.prototype)
-      map.$indexSet(map, "__proto__", t1.call$2("__proto__", this.call$1(proto)));
-    return map;
-  }
 };
 
 $$.JSSyntaxRegExp = {"": "Object;_pattern,_isMultiLine,_isCaseSensitive,_nativeRegExp",
@@ -2011,14 +1962,6 @@ $$.Stream = {"": "Object;",
     this.listen$4$cancelOnError$onDone$onError(new $.Stream_length_closure(t1), true, new $.Stream_length_closure0(t1, future), future.get$_setError());
     return future;
   },
-  get$isEmpty: function(_) {
-    var t1, future;
-    t1 = {};
-    future = $._FutureImpl$();
-    t1.subscription_0 = null;
-    t1.subscription_0 = this.listen$4$cancelOnError$onDone$onError(new $.Stream_isEmpty_closure(t1, future), true, new $.Stream_isEmpty_closure0(future), future.get$_setError());
-    return future;
-  },
   elementAt$1: function(_, index) {
     var t1, t2, future;
     t1 = {};
@@ -2043,19 +1986,6 @@ $$.Stream_length_closure = {"": "Closure;box_0",
 $$.Stream_length_closure0 = {"": "Closure;box_0,future_1",
   call$0: function() {
     this.future_1._setValue$1(this.box_0.count_0);
-  }
-};
-
-$$.Stream_isEmpty_closure = {"": "Closure;box_0,future_1",
-  call$1: function(_) {
-    this.box_0.subscription_0.cancel$0();
-    this.future_1._setValue$1(false);
-  }
-};
-
-$$.Stream_isEmpty_closure0 = {"": "Closure;future_2",
-  call$0: function() {
-    this.future_2._setValue$1(true);
   }
 };
 
@@ -2121,22 +2051,24 @@ $$._BaseStreamSubscription = {"": "Object;",
   _BaseStreamSubscription$3: function(_onData, _onError, _onDone) {
     if (this._onError == null)
       this._onError = $._nullErrorHandler$closure;
+    if (this._onDone == null)
+      this._onDone = $._nullDoneHandler$closure;
   }
 };
 
-$$._ForwardingStreamSubscription = {"": "_BaseStreamSubscription;_stream,_cancelOnError<,_subscription@,_liblib1$_onData,_onError,_onDone",
+$$._ForwardingStreamSubscription = {"": "_BaseStreamSubscription;_stream,_cancelOnError<,_liblib1$_subscription@,_liblib1$_onData,_onError,_onDone",
   cancel$0: function() {
-    var t1 = this._subscription;
+    var t1 = this._liblib1$_subscription;
     if (t1 != null) {
       t1.cancel$0();
-      this._subscription = null;
+      this._liblib1$_subscription = null;
     }
   },
   _sendError$1: function(error) {
     this._onError$1(error);
     if (this._cancelOnError) {
-      this._subscription.cancel$0();
-      this._subscription = null;
+      this._liblib1$_subscription.cancel$0();
+      this._liblib1$_subscription = null;
     }
   },
   _handleData$1: function(data) {
@@ -2148,19 +2080,19 @@ $$._ForwardingStreamSubscription = {"": "_BaseStreamSubscription;_stream,_cancel
   _handleError$1: function(error) {
     this._onError$1(error);
     if (this._cancelOnError) {
-      this._subscription.cancel$0();
-      this._subscription = null;
+      this._liblib1$_subscription.cancel$0();
+      this._liblib1$_subscription = null;
     }
   },
   get$_handleError: function() {
     return new $.BoundClosure$1(this, "_handleError$1");
   },
   _handleDone$0: function() {
-    this._subscription = null;
-    var t1 = this._subscription;
+    this._liblib1$_subscription = null;
+    var t1 = this._liblib1$_subscription;
     if (t1 != null) {
       t1.cancel$0();
-      this._subscription = null;
+      this._liblib1$_subscription = null;
     }
     this._onDone$0();
   },
@@ -2171,7 +2103,7 @@ $$._ForwardingStreamSubscription = {"": "_BaseStreamSubscription;_stream,_cancel
     var t1, t2;
     t1 = this.get$_handleData();
     t2 = this.get$_handleError();
-    this._subscription = this._stream._source.listen$3$onDone$onError(t1, this.get$_handleDone(), t2);
+    this._liblib1$_subscription = this._stream._source.listen$3$onDone$onError(t1, this.get$_handleDone(), t2);
   }
 };
 
@@ -2191,8 +2123,8 @@ $$._WhereStream = {"": "_ForwardingStream;_test,_source",
       t1 = sink;
       t1._onError$1($._asyncError(e, s));
       if (t1.get$_cancelOnError()) {
-        t1.get$_subscription().cancel$0();
-        t1.set$_subscription(null);
+        t1.get$_liblib1$_subscription().cancel$0();
+        t1.set$_liblib1$_subscription(null);
       }
       return;
     }
@@ -2218,8 +2150,8 @@ $$._MapStream = {"": "_ForwardingStream;_transform,_source",
       t1 = sink;
       t1._onError$1($._asyncError(e, s));
       if (t1.get$_cancelOnError()) {
-        t1.get$_subscription().cancel$0();
-        t1.set$_subscription(null);
+        t1.get$_liblib1$_subscription().cancel$0();
+        t1.set$_liblib1$_subscription(null);
       }
       return;
     }
@@ -2268,9 +2200,6 @@ $$.Timer_run_closure = {"": "Closure;",
 $$.HashMap = {"": "Object;_liblib0$_length,_strings,_nums,_rest,_keys",
   get$length: function(_) {
     return this._liblib0$_length;
-  },
-  get$isEmpty: function(_) {
-    return this._liblib0$_length === 0;
   },
   get$keys: function() {
     return $.HashMapKeyIterable$(this);
@@ -2511,9 +2440,6 @@ $$.IterableBase = {"": "Object;",
       ++count;
     return count;
   },
-  get$isEmpty: function(_) {
-    return this.get$iterator(this).moveNext$0() !== true;
-  },
   elementAt$1: function(_, index) {
     var t1, remaining, element;
     if (typeof index !== "number")
@@ -2636,9 +2562,6 @@ $$.LinkedHashMap = {"": "Object;_liblib0$_length,_strings,_nums,_rest,_first,_la
   get$length: function(_) {
     return this._liblib0$_length;
   },
-  get$isEmpty: function(_) {
-    return this._liblib0$_length === 0;
-  },
   toString$0: function(_) {
     var result = $.StringBuffer$("");
     $.ToString__emitPair(this, result, $.List_List($));
@@ -2698,9 +2621,6 @@ $$.ListMixin = {"": "Object;",
         throw $.wrapException($.ConcurrentModificationError$(receiver));
     }
   },
-  get$isEmpty: function(receiver) {
-    return $.$eq(this.get$length(receiver), 0);
-  },
   get$last: function(receiver) {
     if ($.$eq(this.get$length(receiver), 0))
       throw $.wrapException($.StateError$("No elements"));
@@ -2729,12 +2649,6 @@ $$.ListMixin = {"": "Object;",
   },
   add$1: function(receiver, element) {
     var t1 = this.get$length(receiver);
-    if (typeof t1 !== "number")
-      return this.add$1$bailout(1, element, receiver, t1);
-    this.set$length(receiver, t1 + 1);
-    this.$indexSet(receiver, t1, element);
-  },
-  add$1$bailout: function(state0, element, receiver, t1) {
     this.set$length(receiver, $.$add$ns(t1, 1));
     this.$indexSet(receiver, t1, element);
   },
@@ -2814,9 +2728,6 @@ $$.ListMixin = {"": "Object;",
 $$.ListQueue = {"": "IterableBase;_table,_head,_tail,_modificationCount",
   get$iterator: function(_) {
     return $._ListQueueIterator$(this);
-  },
-  get$isEmpty: function(_) {
-    return this._head === this._tail;
   },
   get$length: function(_) {
     return $.$and$n($.$sub$n(this._tail, this._head), this._table.length - 1);
@@ -3229,9 +3140,6 @@ $$.StringBuffer = {"": "Object;_contents",
   get$length: function(_) {
     return this._contents.length;
   },
-  get$isEmpty: function(_) {
-    return this.get$length(this) === 0;
-  },
   write$1: function(obj) {
     if (typeof obj !== "string")
       return this.write$1$bailout(1, obj);
@@ -3273,9 +3181,6 @@ $$.StringBuffer = {"": "Object;_contents",
 };
 
 $$._ChildrenElementList = {"": "ListBase;_element,_childElements",
-  get$isEmpty: function(_) {
-    return this._element.firstElementChild == null;
-  },
   get$length: function(_) {
     return this._childElements.length;
   },
@@ -3319,50 +3224,6 @@ $$._ChildrenElementList = {"": "ListBase;_element,_childElements",
 $$.Interceptor_ListMixin = {"": "Interceptor+ListMixin;", $isList: true, $asList: function() { return [$.Node]; }, $isIterable: true, $asIterable: function() { return [$.Node]; }};
 
 $$.Interceptor_ListMixin_ImmutableListMixin = {"": "Interceptor_ListMixin+ImmutableListMixin;", $isList: true, $asList: function() { return [$.Node]; }, $isIterable: true, $asIterable: function() { return [$.Node]; }};
-
-$$.HttpRequest_getString_closure = {"": "Closure;",
-  call$1: function(xhr) {
-    return $.get$responseText$x(xhr);
-  }
-};
-
-$$.HttpRequest_request_closure = {"": "Closure;xhr_0",
-  call$2: function(header, value) {
-    this.xhr_0.setRequestHeader(header, value);
-  }
-};
-
-$$.HttpRequest_request_closure0 = {"": "Closure;completer_1,xhr_2",
-  call$1: function(e) {
-    var t1, t2, t3;
-    t1 = this.xhr_2;
-    t2 = t1.status;
-    t3 = $.getInterceptor$n(t2);
-    t2 = t3.$ge(t2, 200) && t3.$lt(t2, 300) || t2 === 0 || t2 === 304;
-    t3 = this.completer_1;
-    if (t2) {
-      if (t3._isComplete)
-        $.throwExpression($.StateError$("Future already completed"));
-      t3._isComplete = true;
-      t3._setFutureValue$1(t1);
-    } else {
-      if (t3._isComplete)
-        $.throwExpression($.StateError$("Future already completed"));
-      t3._isComplete = true;
-      t3._setFutureError$1(e);
-    }
-  }
-};
-
-$$.HttpRequest_request_closure1 = {"": "Closure;completer_3",
-  call$1: function(e) {
-    var t1 = this.completer_3;
-    if (t1._isComplete)
-      $.throwExpression($.StateError$("Future already completed"));
-    t1._isComplete = true;
-    t1._setFutureError$1(e);
-  }
-};
 
 $$._ChildNodeListLazy = {"": "ListBase;_this",
   add$1: function(_, value) {
@@ -3517,6 +3378,8 @@ $$.ImmutableListMixin = {"": "Object;",
   $asIterable: null
 };
 
+$$._DOMWindowCrossFrame = {"": "Object;_window"};
+
 $$.FixedSizeListIterator = {"": "Object;_array,_length,_position,_current",
   moveNext$0: function() {
     var t1, nextPosition;
@@ -3646,45 +3509,53 @@ $$.DomName = {"": "Object;name"};
 
 $$.ReceivePort = {"": "Object;"};
 
-$$.renderBasicUI_closure = {"": "Closure;",
-  call$1: function(responseText) {
-    var jsonList, t1, i, groupName, group;
-    document.createElement("details");
-    jsonList = $.parse(responseText, null);
-    if (typeof jsonList !== "string" && (typeof jsonList !== "object" || jsonList === null || jsonList.constructor !== Array && !$.getInterceptor(jsonList).$isJavaScriptIndexingBehavior))
-      return this.call$1$bailout(1, jsonList);
-    if ($.get$isEmpty$asx(jsonList)) {
-      t1 = document.querySelector("#data_container");
-      t1.appendText$1;
-      $.insertAdjacentText$2$x(t1, "beforeend", "Contacts book is empty");
-    } else
-      for (i = 0; i < jsonList.length; ++i) {
-        groupName = $.toString$0(jsonList[i]);
-        group = document.createElement("details");
-        t1 = "<summary>" + $.S(groupName) + "</summary>";
-        group.appendHtml$1;
-        $.insertAdjacentHtml$2$x(group, "beforeend", t1);
-        t1 = $.get$children$x(document.querySelector("#data_container"));
-        t1.add$1(t1, group);
-      }
-  },
-  call$1$bailout: function(state0, jsonList) {
-    var t1, i, groupName, group, t2;
-    t1 = $.getInterceptor$asx(jsonList);
-    if (t1.get$isEmpty(jsonList) === true) {
-      t1 = document.querySelector("#data_container");
-      t1.appendText$1;
-      $.insertAdjacentText$2$x(t1, "beforeend", "Contacts book is empty");
-    } else
-      for (i = 0; $.JSNumber_methods.$lt(i, t1.get$length(jsonList)); ++i) {
-        groupName = $.toString$0(t1.$index(jsonList, i));
-        group = document.createElement("details");
-        t2 = "<summary>" + $.S(groupName) + "</summary>";
-        group.appendHtml$1;
-        $.insertAdjacentHtml$2$x(group, "beforeend", t2);
-        t2 = $.get$children$x(document.querySelector("#data_container"));
-        t2.add$1(t2, group);
-      }
+$$.init_autogenerated_closure = {"": "Closure;",
+  call$1: function($$event) {
+    var t1 = document.querySelector("#overlay_shield").style;
+    t1.set$display;
+    $.setProperty$3$x(t1, "display", "inline", "");
+    t1 = document.querySelector("#general_dialog").style;
+    t1.set$display;
+    $.setProperty$3$x(t1, "display", "inline", "");
+    switch ("addContact") {
+      case "addContact":
+        t1 = document.querySelector("#general_dialog_header_content");
+        t1.appendHtml$1;
+        $.insertAdjacentHtml$2$x(t1, "beforeend", "<h1>ADD CONTACT</h1>");
+        break;
+    }
+  }
+};
+
+$$.init_autogenerated_closure0 = {"": "Closure;",
+  call$1: function($$event) {
+    var t1 = document.querySelector("#overlay_shield").style;
+    t1.set$display;
+    $.setProperty$3$x(t1, "display", "inline", "");
+    t1 = document.querySelector("#general_dialog").style;
+    t1.set$display;
+    $.setProperty$3$x(t1, "display", "inline", "");
+    switch ("addContactGroup") {
+      case "addContact":
+        t1 = document.querySelector("#general_dialog_header_content");
+        t1.appendHtml$1;
+        $.insertAdjacentHtml$2$x(t1, "beforeend", "<h1>ADD CONTACT</h1>");
+        break;
+    }
+  }
+};
+
+$$.init_autogenerated_closure1 = {"": "Closure;",
+  call$1: function($$event) {
+    $.closeGeneralDialog();
+  }
+};
+
+$$.init_autogenerated_closure2 = {"": "Closure;",
+  call$1: function($$event) {
+    var request = new XMLHttpRequest();
+    $.HttpRequest_methods.open$2(request, "POST", $.JSString_methods.$add($.baseURL, "addSingleContact"));
+    request.send("document : {favoriteNumber:44,valueOfPi:3.141592,chocolate:true,horrorScope:virgo,favoriteThings:[raindrops,whiskers,mittens]}");
   }
 };
 
@@ -3693,7 +3564,21 @@ $$.TemplateItem = {"": "Object;",
   }
 };
 
+$$.Listener = {"": "TemplateItem;eventStream,_subscription,listener",
+  insert$0: function(_) {
+    var t1 = this.eventStream;
+    this._subscription = $._EventStreamSubscription$(t1._target, t1._eventType, this.listener, t1._useCapture);
+  },
+  remove$0: function(_) {
+    this._subscription.cancel$0();
+    this._subscription = null;
+  }
+};
+
 $$.Template = {"": "TemplateItem;node,children>,nodes>",
+  listen$2: function(stream, listener) {
+    this.children.push($.Listener$(stream, new $.Template_listen_closure(listener)));
+  },
   add$1: function(_, n) {
     return this.nodes.push(n);
   },
@@ -3721,6 +3606,13 @@ $$.Template = {"": "TemplateItem;node,children>,nodes>",
       $.remove$0$ax(t1[i]);
     }
     $.JSArray_methods.set$length(t1, 0);
+  }
+};
+
+$$.Template_listen_closure = {"": "Closure;listener_0",
+  call$1: function(e) {
+    this.listener_0.call$1(e);
+    $.dispatch();
   }
 };
 
@@ -3771,7 +3663,21 @@ $$.ContentElement = {"": "Element;"};
 
 $$.CssFontFaceLoadEvent = {"": "Event;"};
 
-$$.CssStyleDeclaration = {"": "Interceptor;length="};
+$$.CssStyleDeclaration = {"": "Interceptor;length=",
+  setProperty$3: function(receiver, propertyName, value, priority) {
+    var exception;
+    try {
+      if (priority == null)
+        priority = "";
+      receiver.setProperty(propertyName, value, priority);
+      if (!!receiver.setAttribute)
+        receiver.setAttribute(propertyName, value);
+    } catch (exception) {
+      $.unwrapException(exception);
+    }
+
+  }
+};
 
 $$.CustomElementConstructor = {"": "Interceptor;"};
 
@@ -3799,6 +3705,9 @@ $$.Document = {"": "Node;",
     if (!t1)
       return receiver.webkitRegister($name, $.convertDartToNative_Dictionary(options));
     return receiver.webkitRegister($name);
+  },
+  get$onClick: function(receiver) {
+    return $.EventStreamProvider_click.forTarget$1(receiver);
   }
 };
 
@@ -3835,12 +3744,6 @@ $$.Element = {"": "Node;$$dom_children:children=,id=,innerHtml:innerHTML}",
   get$children: function(receiver) {
     return $._ChildrenElementList$_wrap(receiver);
   },
-  insertAdjacentText$2: function(receiver, where, text) {
-    if (!!receiver.insertAdjacentText)
-      receiver.insertAdjacentText(where, text);
-    else
-      this._insertAdjacentNode$2(receiver, where, document.createTextNode(text));
-  },
   insertAdjacentHtml$2: function(receiver, where, text) {
     var fragment;
     if (!!receiver.insertAdjacentHtml)
@@ -3876,6 +3779,9 @@ $$.Element = {"": "Node;$$dom_children:children=,id=,innerHtml:innerHTML}",
       default:
         throw $.wrapException($.ArgumentError$("Invalid position " + where));
     }
+  },
+  get$onClick: function(receiver) {
+    return $.EventStreamProvider_click.forTarget$1(receiver);
   },
   $isElement: true,
   $asElement: null
@@ -3963,15 +3869,15 @@ $$.HtmlFormControlsCollection = {"": "HtmlCollection;"};
 
 $$.HtmlOptionsCollection = {"": "HtmlCollection;"};
 
-$$.HttpRequest = {"": "EventTarget;responseText=",
+$$.HttpRequest = {"": "EventTarget;",
   $$dom_addEventListener$3: function(receiver, type, listener, useCapture) {
     return receiver.addEventListener(type, $.convertDartClosureToJS(listener, 1), useCapture);
   },
   open$5$async$password$user: function(receiver, method, url, async, password, user) {
     return receiver.open(method, url, async, user, password);
   },
-  open$3$async: function($receiver, method, url, async) {
-    return $receiver.open(method, url, async);
+  open$2: function($receiver, method, url) {
+    return $receiver.open(method, url);
   },
   $$dom_removeEventListener$3: function(receiver, type, listener, useCapture) {
     return receiver.removeEventListener(type, $.convertDartClosureToJS(listener, 1), useCapture);
@@ -4242,6 +4148,9 @@ $$.Window = {"": "EventTarget;",
   },
   toString$0: function(receiver) {
     return receiver.toString();
+  },
+  get$onClick: function(receiver) {
+    return $.EventStreamProvider_click.forTarget$1(receiver);
   }
 };
 
@@ -4412,9 +4321,6 @@ $$.SvgElement = {"": "Element;",
     t1.set$innerHtml(container, "<svg version=\"1.1\">" + $.S(svg) + "</svg>");
     this.set$children(receiver, $.get$children$x($.$index$asx(t1.get$children(container), 0)));
   },
-  insertAdjacentText$2: function(receiver, where, text) {
-    throw $.wrapException($.UnsupportedError$("Cannot invoke insertAdjacentText on SVG."));
-  },
   insertAdjacentHtml$2: function(receiver, where, text) {
     throw $.wrapException($.UnsupportedError$("Cannot invoke insertAdjacentHtml on SVG."));
   },
@@ -4519,9 +4425,6 @@ $$.Uint8ClampedList = {"": "Uint8List;",
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
   },
-  get$isEmpty: function(receiver) {
-    return receiver.length === 0;
-  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -4612,9 +4515,6 @@ $$.Uint8List = {"": "TypedData;",
   },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
-  },
-  get$isEmpty: function(receiver) {
-    return receiver.length === 0;
   },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
@@ -5391,11 +5291,6 @@ $.throwCyclicInit = function(staticName) {
   throw $.wrapException($.RuntimeError$("Cyclic initialization for static " + $.S(staticName)));
 };
 
-$._convertJsonToDart = function(json, reviver) {
-  var revive = reviver == null ? new $._convertJsonToDart_closure() : reviver;
-  return revive.call$2("", new $._convertJsonToDart_walk(revive).call$1(json));
-};
-
 $.typeNameInChrome = function(obj) {
   return $.typeNameInWebKitCommon(obj.constructor.name);
 };
@@ -5944,38 +5839,6 @@ $.Element_Element$tag = function(tag) {
   return document.createElement(tag);
 };
 
-$.HttpRequest_getString = function(url, onProgress, withCredentials) {
-  return $.HttpRequest_request(url, null, null, onProgress, null, null, null, withCredentials).then$1(new $.HttpRequest_getString_closure());
-};
-
-$.HttpRequest_request = function(url, method, mimeType, onProgress, requestHeaders, responseType, sendData, withCredentials) {
-  var completer, xhr, t1;
-  completer = $._AsyncCompleter$();
-  xhr = new XMLHttpRequest();
-  $.open$3$async$x(xhr, method == null ? "GET" : method, url, true);
-  if (withCredentials != null)
-    xhr.withCredentials = withCredentials;
-  if (responseType != null)
-    xhr.responseType = responseType;
-  if (mimeType != null)
-    xhr.overrideMimeType(mimeType);
-  if (requestHeaders != null)
-    $.JSNull_methods.forEach$1(requestHeaders, new $.HttpRequest_request_closure(xhr));
-  if (onProgress != null) {
-    t1 = $.EventStreamProvider_progress.forTarget$1(xhr);
-    $._EventStreamSubscription$(t1._target, t1._eventType, onProgress, t1._useCapture);
-  }
-  t1 = $.EventStreamProvider_load.forTarget$1(xhr);
-  $._EventStreamSubscription$(t1._target, t1._eventType, new $.HttpRequest_request_closure0(completer, xhr), t1._useCapture);
-  t1 = $.EventStreamProvider_error.forTarget$1(xhr);
-  $._EventStreamSubscription$(t1._target, t1._eventType, new $.HttpRequest_request_closure1(completer), t1._useCapture);
-  if (sendData != null)
-    xhr.send(sendData);
-  else
-    xhr.send();
-  return completer.future;
-};
-
 $._ChildNodeListLazy$ = function(_this) {
   return new $._ChildNodeListLazy(_this);
 };
@@ -6017,23 +5880,6 @@ $._Isolate_port = function() {
   return $.lazyPort;
 };
 
-$.parse = function(json, reviver) {
-  var parsed, e, t1, exception;
-  t1 = json;
-  if (typeof t1 !== "string")
-    throw $.wrapException($.ArgumentError$(json));
-  parsed = null;
-  try {
-    parsed = JSON.parse(json);
-  } catch (exception) {
-    t1 = $.unwrapException(exception);
-    e = t1;
-    throw $.wrapException($.FormatException$(String(e)));
-  }
-
-  return $._convertJsonToDart(parsed, reviver);
-};
-
 $._Lists_getRange = function(a, start, end, accumulator) {
   var i;
   if (start !== (start | 0))
@@ -6071,25 +5917,79 @@ $._Lists_getRange$bailout = function(state0, a, start, end, accumulator) {
   return accumulator;
 };
 
-$.renderBasicUI = function() {
-  document.querySelector("#data_container");
-  $.HttpRequest_getString($.JSString_methods.$add($.baseURL, "getContactsGroupList"), null, null).then$1(new $.renderBasicUI_closure());
+$.closeGeneralDialog = function() {
+  var t1 = document.querySelector("#overlay_shield").style;
+  t1.set$display;
+  $.setProperty$3$x(t1, "display", "none", "");
+  t1 = document.querySelector("#general_dialog").style;
+  t1.set$display;
+  $.setProperty$3$x(t1, "display", "none", "");
+  $.set$innerHtml$x(document.querySelector("#general_dialog_header_content"), "");
+  $.set$innerHtml$x(document.querySelector("#general_dialog_body"), "");
+  $.set$innerHtml$x(document.querySelector("#general_dialog_footer"), "");
 };
 
-$.main = function() {
-  var t1, __t;
-  $.useObservers = false;
-  $.renderBasicUI();
-  t1 = document.querySelector("#control_panel");
-  t1.appendHtml$1;
-  $.insertAdjacentHtml$2$x(t1, "beforeend", "<h1>Contacts Book</h1>");
-  __t = $.Template$(document.body);
+$.init_autogenerated = function() {
+  var __root, __t, t1;
+  __root = document.body;
+  __t = $.Template$(__root);
+  __root.get$nodes;
+  t1 = $._ChildNodeListLazy$(__root)._this.childNodes;
+  if (3 >= t1.length)
+    throw $.ioore(3);
+  __t.listen$2($.get$onClick$x($.$index$asx($.get$nodes$x(t1[3]), 1)), new $.init_autogenerated_closure());
+  __root.get$nodes;
+  t1 = $._ChildNodeListLazy$(__root)._this.childNodes;
+  if (3 >= t1.length)
+    throw $.ioore(3);
+  __t.listen$2($.get$onClick$x($.$index$asx($.get$nodes$x(t1[3]), 3)), new $.init_autogenerated_closure0());
+  __root.get$nodes;
+  t1 = $._ChildNodeListLazy$(__root)._this.childNodes;
+  if (9 >= t1.length)
+    throw $.ioore(9);
+  __t.listen$2($.get$onClick$x($.$index$asx($.get$nodes$x($.$index$asx($.get$nodes$x(t1[9]), 1)), 3)), new $.init_autogenerated_closure1());
+  __root.get$nodes;
+  t1 = $._ChildNodeListLazy$(__root)._this.childNodes;
+  if (9 >= t1.length)
+    throw $.ioore(9);
+  __t.listen$2($.get$onClick$x($.$index$asx($.get$nodes$x($.$index$asx($.get$nodes$x(t1[9]), 5)), 1)), new $.init_autogenerated_closure2());
   __t.create$0();
   __t.insert$0(__t);
 };
 
+$.main = function() {
+  $.useObservers = false;
+  var t1 = document.querySelector("#application_header");
+  t1.appendHtml$1;
+  $.insertAdjacentHtml$2$x(t1, "beforeend", "<h1>Contacts Book</h1>");
+  $.init_autogenerated();
+};
+
+$.Listener$ = function(eventStream, listener) {
+  return new $.Listener(eventStream, null, listener);
+};
+
 $.Template$ = function(node) {
   return new $.Template(node, [], []);
+};
+
+$.dispatch = function() {
+  var total, t1, dirty;
+  if ($._watchers == null)
+    return;
+  total = 0;
+  do {
+    for (t1 = $.JSNull_methods.get$iterator($._watchers), dirty = false; t1.moveNext$0() === true;)
+      if (t1.get$current().compareAndNotify$0() === true)
+        dirty = true;
+    if (dirty) {
+      ++total;
+      t1 = total < 10;
+    } else
+      t1 = false;
+  } while (t1);
+  if (total === 10)
+    $.Primitives_printString("Possible loop in watchers propagation, stopped dispatch.");
 };
 
 $.IsolateNatives__processWorkerMessage$closure = new $.Closure$_processWorkerMessage($.IsolateNatives__processWorkerMessage, "IsolateNatives__processWorkerMessage$closure");
@@ -6114,15 +6014,15 @@ Isolate.makeConstantList = function(list) {
   return list;
 };
 $.List_empty = Isolate.makeConstantList([]);
-$.EventStreamProvider_load = new $.EventStreamProvider("load");
-$.EventStreamProvider_error = new $.EventStreamProvider("error");
+$.HttpRequest_methods = $.HttpRequest.prototype;
+$.Uint8ClampedList_methods = $.Uint8ClampedList.prototype;
 $.JSNumber_methods = $.JSNumber.prototype;
 $.JSString_methods = $.JSString.prototype;
 $.C_CloseToken = new $.CloseToken();
 $.NodeList_methods = $.NodeList.prototype;
+$.EventStreamProvider_click = new $.EventStreamProvider("click");
 $.JSInt_methods = $.JSInt.prototype;
 $.JSArray_methods = $.JSArray.prototype;
-$.EventStreamProvider_progress = new $.EventStreamProvider("progress");
 $.Duration_0 = new $.Duration(0);
 $.JSNull_methods = $.JSNull.prototype;
 $.Expando__keyCount = 0;
@@ -6136,6 +6036,7 @@ $.leafTags = null;
 $._callbacksAreEnqueued = false;
 $.baseURL = "http://localhost:8080/personalportal/ContactsBook?action=";
 $.useObservers = false;
+$._watchers = null;
 $.$$dom_addEventListener$3$x = function(receiver, a0, a1, a2) {
   return $.getInterceptor$x(receiver).$$dom_addEventListener$3(receiver, a0, a1, a2);
 };
@@ -6217,9 +6118,6 @@ $.get$hashCode$ = function(receiver) {
 $.get$id$x = function(receiver) {
   return $.getInterceptor$x(receiver).get$id(receiver);
 };
-$.get$isEmpty$asx = function(receiver) {
-  return $.getInterceptor$asx(receiver).get$isEmpty(receiver);
-};
 $.get$iterator$ax = function(receiver) {
   return $.getInterceptor$ax(receiver).get$iterator(receiver);
 };
@@ -6229,20 +6127,14 @@ $.get$length$asx = function(receiver) {
 $.get$nodes$x = function(receiver) {
   return $.getInterceptor$x(receiver).get$nodes(receiver);
 };
-$.get$responseText$x = function(receiver) {
-  return $.getInterceptor$x(receiver).get$responseText(receiver);
+$.get$onClick$x = function(receiver) {
+  return $.getInterceptor$x(receiver).get$onClick(receiver);
 };
 $.insert$0$ax = function(receiver) {
   return $.getInterceptor$ax(receiver).insert$0(receiver);
 };
 $.insertAdjacentHtml$2$x = function(receiver, a0, a1) {
   return $.getInterceptor$x(receiver).insertAdjacentHtml$2(receiver, a0, a1);
-};
-$.insertAdjacentText$2$x = function(receiver, a0, a1) {
-  return $.getInterceptor$x(receiver).insertAdjacentText$2(receiver, a0, a1);
-};
-$.open$3$async$x = function(receiver, a0, a1, a2) {
-  return $.getInterceptor$x(receiver).open$3$async(receiver, a0, a1, a2);
 };
 $.register$2$x = function(receiver, a0, a1) {
   return $.getInterceptor$x(receiver).register$2(receiver, a0, a1);
@@ -6261,6 +6153,9 @@ $.send$2$x = function(receiver, a0, a1) {
 };
 $.set$innerHtml$x = function(receiver, value) {
   return $.getInterceptor$x(receiver).set$innerHtml(receiver, value);
+};
+$.setProperty$3$x = function(receiver, a0, a1, a2) {
+  return $.getInterceptor$x(receiver).setProperty$3(receiver, a0, a1, a2);
 };
 $.sublist$1$ax = function(receiver, a0) {
   return $.getInterceptor$ax(receiver).sublist$1(receiver, a0);

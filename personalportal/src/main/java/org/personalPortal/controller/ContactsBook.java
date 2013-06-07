@@ -1,6 +1,8 @@
 package org.personalPortal.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.inject.Inject;
@@ -11,16 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.personalPortal.model.FBookUser;
 import org.personalPortal.model.LoggedInUser;
 import org.personalPortal.model.PersonalPortalDBCollections;
 import org.personalPortal.model.PortalUser;
 import org.personalPortal.services.DocumentCRUDService;
 
-import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import com.mongodb.util.JSON;
 
 /**
  * Servlet implementation class ContactsBook
@@ -95,7 +94,7 @@ public class ContactsBook extends HttpServlet {
 				responseWriter.close();
 			}else {//If contacts book document for this user exists
 				//Return the contacts groups list in any
-				System.out.println("contactsBook.keySet() : " + ((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));
+//				System.out.println("contactsBook.keySet() : " + ((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));
 				//Writing the response
 				response.setContentType("application/json");
 				PrintWriter responseWriter = response.getWriter();
@@ -118,7 +117,26 @@ public class ContactsBook extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		if(request.getParameter("action") != null && this.loggedInUser != null)
+		switch (request.getParameter("action")) {
+		case "addSingleContact":
+			String zAPIInputStringP = "";
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+			                request.getInputStream()));
+			String line = in.readLine();
+			while (line != null) {
+			    zAPIInputStringP += line;
+			    line = in.readLine();
+			}
+			
+			System.out.println(zAPIInputStringP);
+			
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	/**

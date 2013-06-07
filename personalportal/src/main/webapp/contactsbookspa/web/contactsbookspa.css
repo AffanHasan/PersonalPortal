@@ -1,31 +1,33 @@
-body {
-  background-color: #F8F8F8;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.2em;
-  margin: 15px;
+#overlay_shield {
+  display : none;
+  opacity: 0.2; filter: alpha(opacity = 50); top: 456px;
+  background: #000; height: 900px; width: 100%; position: fixed;
+  top: 0px; z-index: 0; left: 0px; padding-top: 150px;
 }
 
-h1, p {
-  color: #333;
+h1{
+  color: black;
+  display: inline;
 }
 
-#sample_container_id {
-  width: 100%;
-  height: 400px;
-  position: relative;
-  border: 1px solid #ccc;
-  background-color: #fff;
+#general_dialog {
+  display : none;
+  position: fixed; top: 3%;  left: 1%;  right: 2%;  width: 97%;
+  height: 580px;  padding: 0px 0px;  background-color: white;
+  z-index: 1;  overflow: auto;  text-align: center;
 }
 
-#click_counter {
-  font-size: 24pt;
-  text-align: center;
-  margin-top: 140px;
+#general_dialog_header{
+  display: block;
+  background-color: black;
+  color: white;
 }
 
-#click_counter button {
-  font-size: 24pt;
-  margin-bottom: 20px;
+#close_general_dialog_btn{
+  float: right;
+}
+
+#general_dialog_header_content{
+ display: inline;
+ float: left; 
 }
