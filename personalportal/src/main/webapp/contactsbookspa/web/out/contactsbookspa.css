@@ -31,7 +31,9 @@ h1 {
   background-color: #fff;
   z-index: 1;
   overflow: auto;
-  text-align: center;
+}
+#general_dialog_body {
+  height: 100%;
 }
 #general_dialog_header {
   display: block;
@@ -44,5 +46,6 @@ h1 {
 #general_dialog_header_content {
   display: inline;
   float: left;
+  width: 97%;
 }
 

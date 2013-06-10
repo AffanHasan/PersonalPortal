@@ -3,4 +3,5 @@ description: A sample WebUI application
 dependencies:
   browser: any
   js: any
+  json_object: any
   web_ui: any

@@ -101,13 +101,7 @@ public class ContactsBook extends HttpServlet {
 				responseWriter.println(((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));//Return a list of contacts groups
 				responseWriter.close();
 			}
-			
-			//TODO : If no contact group is present there then return an empty list
-			
-			//TODO : If groups exist then return a json list of group names
-			
 			break;
-
 		default:
 			break;
 		}
@@ -129,7 +123,6 @@ public class ContactsBook extends HttpServlet {
 			    zAPIInputStringP += line;
 			    line = in.readLine();
 			}
-			
 			System.out.println(zAPIInputStringP);
 			
 			break;

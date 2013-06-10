@@ -11,24 +11,24 @@
   </head>
   <body>
     <div id="application_header"></div>
-    <div id="control_panel">
-      <button id="add_contact_btn" title="Add Contact" on-click="launchGeneralDialog('addContact')">✢</button>
-      <button id="add_contact_group_btn" title="Add Group" on-click="launchGeneralDialog('addContactGroup')">❂</button>
-    </div>
-    <div id="data_container">
+    <section id="control_panel"></section>
+    <section id="data_container">
       <!-- Template for contacts groups collapsible sections -->
-      <template id="collapsable_contacts_grouping" instantiate="if showCCG"></template>
+      <template id="collapsable_contacts_grouping" iterate="keys in contactsBook.keys" instantiate="showCCG">
+        <div>keys</div>
+      </template>
       <!-- Template for contacts search -->
       <template id="contacts_search" instantiate="if showCS"></template>
-    </div>
+    </section>
     <!-- A general full screen dialog used for various tasks such as add/edit a contact or to create a group etc -->
     <div id="general_dialog">
-      <div id="general_dialog_header">
+      <section id="general_dialog_header">
         <div id="general_dialog_header_content"></div> 
         <button id="close_general_dialog_btn" on-click="closeGeneralDialog()">❌</button>
-      </div>
-      <div id="general_dialog_body"></div>
-      <footer id="general_dialog_footer"> <button on-click="submitGeneralDialog('addSingleContact')">Save</button> </footer>
+      </section>
+      <section id="general_dialog_body">
+      </section>
+      <section id="general_dialog_footer"></section>
     </div>
     <!-- Protective shield used when a dialog is invoked it's visibility is initially display : none-->
     <div id="overlay_shield"></div>

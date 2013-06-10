@@ -14,7 +14,11 @@ h1{
   display : none;
   position: fixed; top: 3%;  left: 1%;  right: 2%;  width: 97%;
   height: 580px;  padding: 0px 0px;  background-color: white;
-  z-index: 1;  overflow: auto;  text-align: center;
+  z-index: 1;  overflow: auto;
+}
+
+#general_dialog_body{
+  height: 100%;
 }
 
 #general_dialog_header{
@@ -29,5 +33,6 @@ h1{
 
 #general_dialog_header_content{
  display: inline;
- float: left; 
+ float: left;
+ width: 97% 
 }

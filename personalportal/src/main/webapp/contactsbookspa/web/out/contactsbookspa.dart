@@ -10,10 +10,18 @@ import 'package:web_ui/observe/observable.dart' as __observe;
 import 'dart:html';
 import 'dart:json' as json;
 import 'package:web_ui/web_ui.dart';
+import 'package:json_object/json_object.dart';
 
 
 // Original code
 
+
+/**
+ * Holds the contacts book state
+ */
+JsonObject contactsBook = new JsonObject();
+ButtonElement addContactBtn = new ButtonElement();
+ButtonElement addGroupBtn = new ButtonElement();
 
 String baseURL = "http://localhost:8080/personalportal/ContactsBook?action=";
 bool showCCG = true;//Initially on application start up collapsable_contacts_grouping will be rendered
@@ -31,7 +39,7 @@ void main() {
   renderBasicUIOnFirstLoad();
   
   //TODO : Load initial data container
-  //loadDataContainerOnFirstLoad();
+  loadDataContainerOnFirstLoad();
 }
 
 /**
@@ -47,14 +55,14 @@ void renderBasicUIOnFirstLoad(){
  */
 void loadDataContainerOnFirstLoad(){
   DivElement data_container = query("#data_container");
-  //data_container.children.clear(); commented because this was creating problems with template instantiation
   HttpRequest.getString(baseURL + "getContactsGroupList").then(
       (String responseText){
         DetailsElement group = new DetailsElement();
         String groupName;
         List<String> jsonList = json.parse(responseText);//Server returns json list of contacts groups
-        if(jsonList.isEmpty)//If no contacts in this book
-          query("#data_container").appendText("Contacts book is empty");
+        if(jsonList.isEmpty){//If no contacts in this book
+          //query("#data_container").appendText("Contacts book is empty");
+        }
         else
           for(int i = 0; i < jsonList.length; i++ ){
             groupName = jsonList[i].toString();
@@ -70,19 +78,33 @@ void loadDataContainerOnFirstLoad(){
  * To render the controls panel on application start up 
  */
 void renderControlsPanelOnFirstLoad(){
+  addContactBtn.text = "+";
+  addContactBtn.title = "Add Contact";
+  addContactBtn.id = "add_contact_btn";
+  addContactBtn.onClick.listen(
+      (Event e){
+        launchGeneralDialog();
+        populateGeneralDialogForAddContact();
+      }
+  );
+  query("#control_panel").append(addContactBtn);
+  addGroupBtn.text = "⊞";
+  addGroupBtn.title = "Add Group";
+  addGroupBtn.id = "add_contacts_group";
+  addGroupBtn.onClick.listen(
+      (Event e){
+        window.alert("Under construction");
+      }
+  );
+  query("#control_panel").append(addGroupBtn);
 }
 
 /**
  * To launch the general dialog use this function and pass the type of action as string parameter
  */
-void launchGeneralDialog(String action){
+void launchGeneralDialog(){
   query("#overlay_shield").style.display = "inline";
   query("#general_dialog").style.display = "inline";
-  switch(action){
-    case "addContact":
-      populateGeneralDialogForAddContact();
-      break;
-  }
 }
 
 void closeGeneralDialog(){
@@ -98,26 +120,144 @@ void closeGeneralDialog(){
  */
 void populateGeneralDialogForAddContact(){
   query("#general_dialog_header_content").appendHtml("<h1>ADD CONTACT</h1>");
-}
-
-void submitGeneralDialog(String action){
-  HttpRequest request = new HttpRequest();
-  request.open("POST", baseURL + action);
-  request.send("document : {favoriteNumber:44,valueOfPi:3.141592,chocolate:true,horrorScope:virgo,favoriteThings:[raindrops,whiskers,mittens]}");
+  HtmlElement bodySection = query("#general_dialog_body");
+  SelectElement groupSelection = new SelectElement();
+  groupSelection.id="add_contact_group_selection";
+  groupSelection.children.add(new OptionElement("uncategorized", "uncategorized", true, true));
+  bodySection.appendHtml("<label for='add_contact_group_selection'>Group: </label>");
+  bodySection.append(groupSelection);//Add Group selection combo to pop up body section
+  
+  DivElement nameCommentDiv = new DivElement();//Create new div to hold name & comments
+  nameCommentDiv.id="name_comment_div";
+  TextInputElement namefield = new TextInputElement();
+  namefield.id="contact_name";
+  namefield.placeholder = "";
+  nameCommentDiv.appendHtml("<label for='contact_name'>Name: </label>");
+  nameCommentDiv.append(namefield);//append name input & it's label
+  TextAreaElement contactCommentsTextArea = new TextAreaElement();//Create a comment text area
+  contactCommentsTextArea.id="contact_comments";
+  contactCommentsTextArea.placeholder = "";
+  nameCommentDiv.appendHtml("<label for='contact_comments'>Your Comments: </label>");
+  nameCommentDiv.append(contactCommentsTextArea);//append name input & it's label
+  
+  DivElement phonesDiv = new DivElement();//Create new div to hold cell phones & land lines
+  phonesDiv.id="phones_div";
+  FieldSetElement phonesFieldSet = new FieldSetElement();
+  LegendElement phonesFiledSetLegend = new LegendElement();
+  ButtonElement addCellPhoneBtn = new ButtonElement();//Add cell phone button
+  addCellPhoneBtn.id="add_cell_phone_btn";
+  addCellPhoneBtn.text="📶";
+  addCellPhoneBtn.title="Add cell phone";
+  addCellPhoneBtn.onClick.listen(
+      (Event e){
+        LIElement cellPhoneLE = new LIElement();//Create a list element
+        cellPhoneLE.appendHtml("<label>Comments: </label>");
+        InputElement comment = new InputElement();
+        comment.name="cell_comment";
+        cellPhoneLE.append(comment);
+        cellPhoneLE.appendHtml("<label>   Network: </label>");
+        InputElement network = new InputElement(type: "tel");
+        network.name="cell_network";
+        cellPhoneLE.append(network);
+        cellPhoneLE.appendHtml("<label>   Number: </label>");
+        InputElement number = new InputElement(type: "tel");
+        number.name="cell_number";
+        cellPhoneLE.append(number);
+        query("#cell_phones_list").append(cellPhoneLE);//Appending this li to the unordered cell phones list
+      }
+  );
+  ButtonElement addLandLineBtn = new ButtonElement();//Add cell phone button
+  addLandLineBtn.id="add_land_line_btn";
+  addLandLineBtn.text="☎";
+  addLandLineBtn.title="Add land line";
+  addLandLineBtn.onClick.listen(
+      (Event e){
+        LIElement landLineLE = new LIElement();//Create a list element
+        landLineLE.appendHtml("<label>Comments: </label>");
+        InputElement comment = new InputElement();
+        comment.name="land_line_comment";
+        landLineLE.append(comment);
+        landLineLE.appendHtml("<label>   Country: </label>");
+        InputElement country = new InputElement(type: "tel");
+        country.name="line_country";
+        landLineLE.append(country);
+        landLineLE.appendHtml("<label>   City/Area code: </label>");
+        InputElement areaCode = new InputElement(type: "tel");
+        areaCode.name="area_code";
+        landLineLE.append(areaCode);
+        landLineLE.appendHtml("<label>   Number: </label>");
+        InputElement number = new InputElement(type: "tel");
+        number.name="line_number";
+        landLineLE.append(number);
+        query("#land_lines_list").append(landLineLE);//Appending this li to the unordered cell phones list
+      }
+  );
+  phonesFiledSetLegend.append(addCellPhoneBtn);//Append land line button to legend
+  phonesFiledSetLegend.append(addLandLineBtn);//Append cell phone button to legend
+  phonesFieldSet.append(phonesFiledSetLegend);//Append legend to field set
+  phonesFieldSet.appendHtml("<ul id='cell_phones_list'></ul>");//Append un ordered list of cell phones to field set
+  phonesFieldSet.appendHtml("</br><ul id='land_lines_list'></ul>");//Append un ordered list of land lines to field set
+  phonesDiv.append(phonesFieldSet);//Append field set to the phones_div
+  
+  bodySection.append(nameCommentDiv);//append the name & comment div to body section
+  bodySection.append(phonesDiv);//append the phones div to body section
+  
+  HtmlElement dialogFooter = query("#general_dialog_footer");//Footer of the general dialog
+  ButtonElement addContactSaveBtn = new ButtonElement();//Save button for add contact dialog
+  addContactSaveBtn.id="add_contact_save_btn";
+  addContactSaveBtn.text="Save";
+  addContactSaveBtn.onClick.listen(//Add contact save operation
+      (Event e){
+        JsonObject contact = new JsonObject();
+        InputElement fieldInput = query("#contact_name");
+        contact.name = fieldInput.value;
+        fieldInput = query("#contact_comments");
+        contact.comments = fieldInput.value;
+        List<LIElement> cellPhonesList = query("#cell_phones_list").children;
+        if(!cellPhonesList.isEmpty){
+          contact.cellPhoneList = new List<JsonObject>();
+          JsonObject cellPhone;
+          InputElement cellInput;
+          for(LIElement cell in cellPhonesList){
+            cellPhone = new JsonObject();
+            cellInput = cell.children[1];
+            cellPhone.comment = cellInput.value;
+            cellInput = cell.children[3];
+            cellPhone.network = cellInput.value;
+            cellInput = cell.children[5];
+            cellPhone.number = cellInput.value;
+            contact.cellPhoneList.add(cellPhone); 
+          }
+        }
+        //Getting group name
+        SelectElement groupInput = query("#add_contact_group_selection");
+        JsonObject requestData = new JsonObject();
+        requestData[groupInput.value] = contact;
+        print(json.stringify(requestData));
+        //Sending the post request to the server
+        HttpRequest request = new HttpRequest();
+        request.open("POST", baseURL + "addSingleContact", async: true);
+        request.send(json.stringify(requestData));
+        closeGeneralDialog();
+      }
+  );
+  dialogFooter.append(addContactSaveBtn);
 }
 // Additional generated code
 void init_autogenerated() {
   var __root = autogenerated.document.body;
-  var __e0, __e1, __e2, __e3;
+  final __html0 = new autogenerated.Element.html('<div>keys</div>');
+  var __e0, __e1;
   var __t = new autogenerated.Template(__root);
-  __e0 = __root.nodes[3].nodes[1];
-  __t.listen(__e0.onClick, ($event) { launchGeneralDialog('addContact'); });
-  __e1 = __root.nodes[3].nodes[3];
-  __t.listen(__e1.onClick, ($event) { launchGeneralDialog('addContactGroup'); });
-  __e2 = __root.nodes[9].nodes[1].nodes[3];
-  __t.listen(__e2.onClick, ($event) { closeGeneralDialog(); });
-  __e3 = __root.nodes[9].nodes[5].nodes[1];
-  __t.listen(__e3.onClick, ($event) { submitGeneralDialog('addSingleContact'); });
+  __e0 = __root.nodes[5].nodes[3];
+  __t.loop(__e0, () => contactsBook.keys, ($list, $index, __t) {
+    var keys = $list[$index];
+  __t.addAll([new autogenerated.Text('\n        '),
+      __html0.clone(true),
+      new autogenerated.Text('\n      ')]);
+  });
+  __e1 = __root.nodes[9].nodes[1].nodes[3];
+  __t.listen(__e1.onClick, ($event) { closeGeneralDialog(); });
   __t.create();
   __t.insert();
 }
