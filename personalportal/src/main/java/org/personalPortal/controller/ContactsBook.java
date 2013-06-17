@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
@@ -20,6 +23,7 @@ import org.personalPortal.services.DocumentCRUDService;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 
 /**
  * Servlet implementation class ContactsBook
@@ -76,7 +80,6 @@ public class ContactsBook extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		if(request.getParameter("action") != null && this.loggedInUser != null)
 		switch (request.getParameter("action")) {
 		case "getContactsGroupList":
@@ -93,14 +96,26 @@ public class ContactsBook extends HttpServlet {
 				responseWriter.println("[]");//Return am empty list of contacts groups
 				responseWriter.close();
 			}else {//If contacts book document for this user exists
-				//Return the contacts groups list in any
-//				System.out.println("contactsBook.keySet() : " + ((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));
 				//Writing the response
 				response.setContentType("application/json");
 				PrintWriter responseWriter = response.getWriter();
 				responseWriter.println(((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));//Return a list of contacts groups
 				responseWriter.close();
 			}
+			break;
+		case "getCBLocaleWiseData"://Get locale wise data for contacts book
+			ResourceBundle bundle = ResourceBundle.getBundle("org.personalPortal.model.contacts_book", 
+					loggedInUser.getUserLocale());
+			Map<String, String> responseObject = new LinkedHashMap<String, String>();
+			for(String key : bundle.keySet()){
+				responseObject.put(key, bundle.getString(key));
+			}
+			//Writing the response
+			response.setContentType("application/json");
+			PrintWriter responseWriter = response.getWriter();
+			responseWriter = response.getWriter();
+			responseWriter.println(JSON.serialize(responseObject));
+			responseWriter.close();
 			break;
 		default:
 			break;

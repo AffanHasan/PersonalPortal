@@ -1,7 +1,9 @@
 import 'dart:html';
 import 'dart:json' as json;
+import 'package:lib/cb_locale_data.dart' as cb_locale_data;
 import 'package:web_ui/web_ui.dart';
 import "package:json_object/json_object.dart";
+import "package:pp_commons/pp_common_ui.dart" as pp_comm_ui;
 
 /**
  * Holds the contacts book state
@@ -13,6 +15,8 @@ ButtonElement addGroupBtn = new ButtonElement();
 String baseURL = "http://localhost:8080/personalportal/ContactsBook?action=";
 bool showCCG = true;//Initially on application start up collapsable_contacts_grouping will be rendered
 bool showCS = false;//contacts_search will be enabled only when user starts typing in the text bar
+
+
 
 /**
  * Learn about the Web UI package by visiting
@@ -33,7 +37,7 @@ void main() {
  * To render the basic user interface div on application start up
  */
 void renderBasicUIOnFirstLoad(){
-  query("#application_header").appendHtml("<h1>Contacts Book</h1>");
+  query("#application_header").appendHtml("<h1>" + cb_locale_data.getPropertyValue("contactsBook") +"</h1>");
   renderControlsPanelOnFirstLoad();
 }
 
@@ -66,7 +70,7 @@ void loadDataContainerOnFirstLoad(){
  */
 void renderControlsPanelOnFirstLoad(){
   addContactBtn.text = "+";
-  addContactBtn.title = "Add Contact";
+  addContactBtn.title = cb_locale_data.getPropertyValue("addContact");
   addContactBtn.id = "add_contact_btn";
   addContactBtn.onClick.listen(
       (Event e){
@@ -76,7 +80,7 @@ void renderControlsPanelOnFirstLoad(){
   );
   query("#control_panel").append(addContactBtn);
   addGroupBtn.text = "⊞";
-  addGroupBtn.title = "Add Group";
+  addGroupBtn.title = cb_locale_data.getPropertyValue("addGroup");
   addGroupBtn.id = "add_contacts_group";
   addGroupBtn.onClick.listen(
       (Event e){
@@ -106,7 +110,7 @@ void closeGeneralDialog(){
  * To populate the general dialog with add contact UI
  */
 void populateGeneralDialogForAddContact(){
-  query("#general_dialog_header_content").appendHtml("<h1>ADD CONTACT</h1>");
+  query("#general_dialog_header_content").appendHtml("<h1>" + cb_locale_data.getPropertyValue("addContact").toUpperCase() +"</h1>");
   HtmlElement bodySection = query("#general_dialog_body");
   SelectElement groupSelection = new SelectElement();
   groupSelection.id="add_contact_group_selection";
@@ -119,12 +123,12 @@ void populateGeneralDialogForAddContact(){
   TextInputElement namefield = new TextInputElement();
   namefield.id="contact_name";
   namefield.placeholder = "";
-  nameCommentDiv.appendHtml("<label for='contact_name'>Name: </label>");
+  //nameCommentDiv.appendHtml("<label for='contact_name'>"+pp_comm_ui.getPropertyValue("name")+": </label>");
   nameCommentDiv.append(namefield);//append name input & it's label
   TextAreaElement contactCommentsTextArea = new TextAreaElement();//Create a comment text area
   contactCommentsTextArea.id="contact_comments";
   contactCommentsTextArea.placeholder = "";
-  nameCommentDiv.appendHtml("<label for='contact_comments'>Your Comments: </label>");
+  nameCommentDiv.appendHtml("<label for='contact_comments'>"+cb_locale_data.getPropertyValue("comments")+": </label>");
   nameCommentDiv.append(contactCommentsTextArea);//append name input & it's label
   
   DivElement phonesDiv = new DivElement();//Create new div to hold cell phones & land lines
@@ -134,19 +138,19 @@ void populateGeneralDialogForAddContact(){
   ButtonElement addCellPhoneBtn = new ButtonElement();//Add cell phone button
   addCellPhoneBtn.id="add_cell_phone_btn";
   addCellPhoneBtn.text="📶";
-  addCellPhoneBtn.title="Add cell phone";
+  addCellPhoneBtn.title=cb_locale_data.getPropertyValue("addCell");
   addCellPhoneBtn.onClick.listen(
       (Event e){
         LIElement cellPhoneLE = new LIElement();//Create a list element
-        cellPhoneLE.appendHtml("<label>Comments: </label>");
+        cellPhoneLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
         InputElement comment = new InputElement();
         comment.name="cell_comment";
         cellPhoneLE.append(comment);
-        cellPhoneLE.appendHtml("<label>   Network: </label>");
+        cellPhoneLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("network")+": </label>");
         InputElement network = new InputElement(type: "tel");
         network.name="cell_network";
         cellPhoneLE.append(network);
-        cellPhoneLE.appendHtml("<label>   Number: </label>");
+        cellPhoneLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("number")+": </label>");
         InputElement number = new InputElement(type: "tel");
         number.name="cell_number";
         cellPhoneLE.append(number);
@@ -156,23 +160,23 @@ void populateGeneralDialogForAddContact(){
   ButtonElement addLandLineBtn = new ButtonElement();//Add cell phone button
   addLandLineBtn.id="add_land_line_btn";
   addLandLineBtn.text="☎";
-  addLandLineBtn.title="Add land line";
+  addLandLineBtn.title=cb_locale_data.getPropertyValue("addLandLine");
   addLandLineBtn.onClick.listen(
       (Event e){
         LIElement landLineLE = new LIElement();//Create a list element
-        landLineLE.appendHtml("<label>Comments: </label>");
+        landLineLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
         InputElement comment = new InputElement();
         comment.name="land_line_comment";
         landLineLE.append(comment);
-        landLineLE.appendHtml("<label>   Country: </label>");
+        landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("comments")+": </label>");
         InputElement country = new InputElement(type: "tel");
         country.name="line_country";
         landLineLE.append(country);
-        landLineLE.appendHtml("<label>   City/Area code: </label>");
+        landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("country")+": </label>");
         InputElement areaCode = new InputElement(type: "tel");
         areaCode.name="area_code";
         landLineLE.append(areaCode);
-        landLineLE.appendHtml("<label>   Number: </label>");
+        landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("number")+": </label>");
         InputElement number = new InputElement(type: "tel");
         number.name="line_number";
         landLineLE.append(number);
