@@ -3,7 +3,7 @@ library comm_ui_data;
 import 'dart:html';
 import 'dart:json' as json;
 
-String commAccessURL = "/personalportal/CommonAccessPoint?action=" ;
+String commAccessURL = "/personalportal/CommonAccessPoint?action=";
 Map ppCommUIProperties = new Map();
 
 String getPropertyValue(String propertyName){

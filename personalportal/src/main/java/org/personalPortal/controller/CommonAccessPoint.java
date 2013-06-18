@@ -3,6 +3,7 @@ package org.personalPortal.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -54,25 +55,17 @@ public class CommonAccessPoint extends HttpServlet {
 				responseWriter.close();
 				return;
 			case "getPortalWideCommUIData":
-				switch (loggedInUser.getUserLanguage()) {
-				case "en":
 					ResourceBundle bundle = ResourceBundle.getBundle("org.personalPortal.model.personalPortal", 
-													loggedInUser.getUserLocale());
+							loggedInUser.getUserLocale());
 					Map<String, String> responseObject = new LinkedHashMap<String, String>();
-					responseObject.put("personalPortal", bundle.getString("personalPortal"));
+					for(String key : bundle.keySet()){
+						responseObject.put(key, bundle.getString(key));
+					}
 					//Writing the response
 					response.setContentType("application/json");
-					responseWriter = response.getWriter();
 					responseWriter.println(JSON.serialize(responseObject));
 					responseWriter.close();
 					return;
-				case "ar":
-					ResourceBundle.getBundle("org.personalPortal.model.personalPortal", loggedInUser.getUserLocale()).getString("");
-					return;
-				default:
-					break;
-				}
-				break;
 			default:
 				break;
 			}

@@ -6482,11 +6482,11 @@ $$.populateGeneralDialogForAddContact_closure0 = {"": "Closure;",
     comment = $.InputElement_InputElement(null);
     $.set$name$x(comment, "land_line_comment");
     landLineLE.appendChild(comment);
-    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("comments")), ": </label>"));
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("country")), ": </label>"));
     country = $.InputElement_InputElement("tel");
     $.set$name$x(country, "line_country");
     landLineLE.appendChild(country);
-    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("country")), ": </label>"));
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("cityAreacode")), ": </label>"));
     areaCode = $.InputElement_InputElement("tel");
     $.set$name$x(areaCode, "area_code");
     landLineLE.appendChild(areaCode);
@@ -6500,6 +6500,24 @@ $$.populateGeneralDialogForAddContact_closure0 = {"": "Closure;",
 };
 
 $$.populateGeneralDialogForAddContact_closure1 = {"": "Closure;",
+  call$1: function(e) {
+    var addressLE, t1, address, comment;
+    addressLE = document.createElement("li");
+    t1 = $.getInterceptor$x(addressLE);
+    t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("address")), ": </label>"));
+    address = document.createElement("textarea");
+    $.set$name$x(address, "address_txt");
+    addressLE.appendChild(address);
+    t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+    comment = $.InputElement_InputElement(null);
+    $.set$name$x(comment, "address_comment");
+    addressLE.appendChild(comment);
+    document.querySelector("#addresses_list").appendChild(addressLE);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogForAddContact_closure2 = {"": "Closure;",
   call$1: function(e) {
     var contact, cellPhonesList, t1, cell, cellPhone, t2, groupInput, requestData, output, request;
     contact = $.JsonObject$(null);
@@ -6744,6 +6762,36 @@ $$.getData_closure = {"": "Closure;request_0",
       t2 = false;
     if (t2)
       $.$indexSet$ax(window.sessionStorage, $.JSString_methods.$add("cb_locale_data_", $.toString$0($.$index$asx(window.sessionStorage, "locale"))), t1.responseText);
+  },
+  $isFunction: true
+};
+
+$$.getPropertyValue_closure0 = {"": "Closure;request_0",
+  call$1: function(_) {
+    var t1, t2;
+    t1 = this.request_0;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
+    } else
+      t2 = false;
+    if (t2)
+      $.$indexSet$ax(window.sessionStorage, "locale", t1.responseText);
+  },
+  $isFunction: true
+};
+
+$$.getData_closure0 = {"": "Closure;request_0",
+  call$1: function(_) {
+    var t1, t2;
+    t1 = this.request_0;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
+    } else
+      t2 = false;
+    if (t2)
+      $.$indexSet$ax(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale"))), t1.responseText);
   },
   $isFunction: true
 };
@@ -13204,7 +13252,7 @@ $.closeGeneralDialog = function() {
 };
 
 $.populateGeneralDialogForAddContact = function() {
-  var bodySection, groupSelection, t1, nameCommentDiv, namefield, t2, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, dialogFooter, addContactSaveBtn;
+  var bodySection, groupSelection, t1, nameCommentDiv, namefield, t2, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, dialogFooter, addContactSaveBtn;
   $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.toUpperCase$0$s($.getPropertyValue("addContact"))), "</h1>"));
   bodySection = document.querySelector("#general_dialog_body");
   groupSelection = document.createElement("select");
@@ -13221,6 +13269,7 @@ $.populateGeneralDialogForAddContact = function() {
   t2 = $.getInterceptor$x(namefield);
   t2.set$id(namefield, "contact_name");
   t2.set$placeholder(namefield, "");
+  t1.appendHtml$1(nameCommentDiv, $.JSString_methods.$add($.JSString_methods.$add("<label for='contact_name'>", $.getPropertyValue0("name")), ": </label>"));
   nameCommentDiv.appendChild(namefield);
   contactCommentsTextArea = document.createElement("textarea");
   t2 = $.getInterceptor$x(contactCommentsTextArea);
@@ -13229,36 +13278,49 @@ $.populateGeneralDialogForAddContact = function() {
   t1.appendHtml$1(nameCommentDiv, $.JSString_methods.$add($.JSString_methods.$add("<label for='contact_comments'>", $.getPropertyValue("comments")), ": </label>"));
   nameCommentDiv.appendChild(contactCommentsTextArea);
   phonesDiv = document.createElement("div");
-  $.set$id$x(phonesDiv, "phones_div");
+  t1 = $.getInterceptor$x(phonesDiv);
+  t1.set$id(phonesDiv, "phones_div");
   phonesFieldSet = document.createElement("fieldset");
   phonesFiledSetLegend = document.createElement("legend");
   addCellPhoneBtn = document.createElement("button");
-  t1 = $.getInterceptor$x(addCellPhoneBtn);
-  t1.set$id(addCellPhoneBtn, "add_cell_phone_btn");
+  t2 = $.getInterceptor$x(addCellPhoneBtn);
+  t2.set$id(addCellPhoneBtn, "add_cell_phone_btn");
   addCellPhoneBtn.textContent = "\ud83d\udcf6";
-  t1.set$title(addCellPhoneBtn, $.getPropertyValue("addCell"));
-  t1.get$onClick(addCellPhoneBtn).listen$1(new $.populateGeneralDialogForAddContact_closure());
+  t2.set$title(addCellPhoneBtn, $.getPropertyValue("addCell"));
+  t2.get$onClick(addCellPhoneBtn).listen$1(new $.populateGeneralDialogForAddContact_closure());
   addLandLineBtn = document.createElement("button");
-  t1 = $.getInterceptor$x(addLandLineBtn);
-  t1.set$id(addLandLineBtn, "add_land_line_btn");
+  t2 = $.getInterceptor$x(addLandLineBtn);
+  t2.set$id(addLandLineBtn, "add_land_line_btn");
   addLandLineBtn.textContent = "\u260e";
-  t1.set$title(addLandLineBtn, $.getPropertyValue("addLandLine"));
-  t1.get$onClick(addLandLineBtn).listen$1(new $.populateGeneralDialogForAddContact_closure0());
+  t2.set$title(addLandLineBtn, $.getPropertyValue("addLandLine"));
+  t2.get$onClick(addLandLineBtn).listen$1(new $.populateGeneralDialogForAddContact_closure0());
   phonesFiledSetLegend.appendChild(addCellPhoneBtn);
   phonesFiledSetLegend.appendChild(addLandLineBtn);
-  t1 = $.getInterceptor$x(phonesFieldSet);
+  t2 = $.getInterceptor$x(phonesFieldSet);
   phonesFieldSet.appendChild(phonesFiledSetLegend);
-  t1.appendHtml$1(phonesFieldSet, "<ul id='cell_phones_list'></ul>");
-  t1.appendHtml$1(phonesFieldSet, "</br><ul id='land_lines_list'></ul>");
+  t2.appendHtml$1(phonesFieldSet, "<ul id='cell_phones_list'></ul>");
+  t2.appendHtml$1(phonesFieldSet, "</br><ul id='land_lines_list'></ul>");
   phonesDiv.appendChild(phonesFieldSet);
+  addressDiv = document.createElement("div");
+  t1.set$id(phonesDiv, "addresses_div");
+  addressesFieldlSet = document.createElement("fieldset");
+  addressesFieldSetLegend = document.createElement("legend");
+  addressesFieldSetLegendBTN = document.createElement("button");
+  addressesFieldSetLegendBTN.textContent = "\u2302";
+  $.get$onClick$x(addressesFieldSetLegendBTN).listen$1(new $.populateGeneralDialogForAddContact_closure1());
+  addressesFieldSetLegend.appendChild(addressesFieldSetLegendBTN);
+  addressesFieldlSet.appendChild(addressesFieldSetLegend);
+  $.appendHtml$1$x(addressesFieldlSet, "<ul id='addresses_list'></ul>");
+  addressDiv.appendChild(addressesFieldlSet);
   bodySection.appendChild(nameCommentDiv);
   bodySection.appendChild(phonesDiv);
+  bodySection.appendChild(addressDiv);
   dialogFooter = document.querySelector("#general_dialog_footer");
   addContactSaveBtn = document.createElement("button");
   t1 = $.getInterceptor$x(addContactSaveBtn);
   t1.set$id(addContactSaveBtn, "add_contact_save_btn");
   addContactSaveBtn.textContent = "Save";
-  t1.get$onClick(addContactSaveBtn).listen$1(new $.populateGeneralDialogForAddContact_closure1());
+  t1.get$onClick(addContactSaveBtn).listen$1(new $.populateGeneralDialogForAddContact_closure2());
   dialogFooter.appendChild(addContactSaveBtn);
 };
 
@@ -13331,6 +13393,45 @@ $.getData = function(propertyName) {
     $.cbLocaleDataMap = $.parse($.$index$asx(window.sessionStorage, $.JSString_methods.$add("cb_locale_data_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))), null);
     $.$indexSet$ax($.get$cbLocaleDataMap(), "user_locale", $.$index$asx(window.sessionStorage, "locale"));
     return $.$index$asx($.get$cbLocaleDataMap(), propertyName);
+  }
+};
+
+$.getPropertyValue0 = function(propertyName) {
+  var request, t1;
+  if ($.get$isEmpty$asx($.get$ppCommUIProperties()) === true) {
+    if ($.toString$0($.$index$asx(window.sessionStorage, "locale")) === "null") {
+      request = new XMLHttpRequest();
+      t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
+      $._EventStreamSubscription$(t1._target, t1._eventType, new $.getPropertyValue_closure0(request), t1._useCapture);
+      $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add($.commAccessURL, "getLoggedInUserLocale"), false);
+      request.send("");
+    }
+    return $.getData0(propertyName);
+  } else if ($.$eq($.$index$asx($.get$ppCommUIProperties(), "user_locale"), $.$index$asx(window.sessionStorage, "locale")))
+    return $.$index$asx($.get$ppCommUIProperties(), propertyName);
+  else {
+    $.throwExpression($.NoSuchMethodError$("", "getData", [], $.Map_empty, ["propertyName"]));
+    return;
+  }
+};
+
+$.getData0 = function(propertyName) {
+  var request, t1;
+  if ($.$index$asx(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))) == null) {
+    request = new XMLHttpRequest();
+    t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
+    $._EventStreamSubscription$(t1._target, t1._eventType, new $.getData_closure0(request), t1._useCapture);
+    $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add($.commAccessURL, "getPortalWideCommUIData"), false);
+    request.send("");
+    $.clear$0$ax($.get$ppCommUIProperties());
+    $.ppCommUIProperties = $.parse($.$index$asx(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))), null);
+    $.$indexSet$ax($.get$ppCommUIProperties(), "user_locale", $.$index$asx(window.sessionStorage, "locale"));
+    return $.$index$asx($.get$ppCommUIProperties(), propertyName);
+  } else {
+    $.clear$0$ax($.get$ppCommUIProperties());
+    $.ppCommUIProperties = $.parse($.$index$asx(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))), null);
+    $.$indexSet$ax($.get$ppCommUIProperties(), "user_locale", $.$index$asx(window.sessionStorage, "locale"));
+    return $.$index$asx($.get$ppCommUIProperties(), propertyName);
   }
 };
 
@@ -13619,6 +13720,7 @@ $.Device__isIE = null;
 $.baseURL = "http://localhost:8080/personalportal/ContactsBook?action=";
 $.enableJsonObjectDebugMessages = false;
 $.cbBaseURL = "/personalportal/ContactsBook?action=";
+$.commAccessURL = "/personalportal/CommonAccessPoint?action=";
 $._activeObserver = null;
 $._changedExpressions = null;
 $._ExpressionObserver__nextId = 0;
@@ -14028,6 +14130,9 @@ Isolate.$lazy($, "addGroupBtn", "addGroupBtn", "get$addGroupBtn", function() {
   return $.ButtonElement_ButtonElement();
 });
 Isolate.$lazy($, "cbLocaleDataMap", "cbLocaleDataMap", "get$cbLocaleDataMap", function() {
+  return $.Map_Map(null, null);
+});
+Isolate.$lazy($, "ppCommUIProperties", "ppCommUIProperties", "get$ppCommUIProperties", function() {
   return $.Map_Map(null, null);
 });
 // Native classes

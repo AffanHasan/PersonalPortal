@@ -123,7 +123,7 @@ void populateGeneralDialogForAddContact(){
   TextInputElement namefield = new TextInputElement();
   namefield.id="contact_name";
   namefield.placeholder = "";
-  //nameCommentDiv.appendHtml("<label for='contact_name'>"+pp_comm_ui.getPropertyValue("name")+": </label>");
+  nameCommentDiv.appendHtml("<label for='contact_name'>"+pp_comm_ui.getPropertyValue("name")+": </label>");
   nameCommentDiv.append(namefield);//append name input & it's label
   TextAreaElement contactCommentsTextArea = new TextAreaElement();//Create a comment text area
   contactCommentsTextArea.id="contact_comments";
@@ -168,11 +168,11 @@ void populateGeneralDialogForAddContact(){
         InputElement comment = new InputElement();
         comment.name="land_line_comment";
         landLineLE.append(comment);
-        landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("comments")+": </label>");
+        landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("country")+": </label>");
         InputElement country = new InputElement(type: "tel");
         country.name="line_country";
         landLineLE.append(country);
-        landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("country")+": </label>");
+        landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("cityAreacode")+": </label>");
         InputElement areaCode = new InputElement(type: "tel");
         areaCode.name="area_code";
         landLineLE.append(areaCode);
@@ -190,8 +190,34 @@ void populateGeneralDialogForAddContact(){
   phonesFieldSet.appendHtml("</br><ul id='land_lines_list'></ul>");//Append un ordered list of land lines to field set
   phonesDiv.append(phonesFieldSet);//Append field set to the phones_div
   
+  DivElement addressDiv = new DivElement();//Create new div to hold Adresses
+  phonesDiv.id="addresses_div";
+  FieldSetElement addressesFieldlSet = new FieldSetElement();
+  LegendElement addressesFieldSetLegend = new LegendElement();//Legend element
+  ButtonElement addressesFieldSetLegendBTN = new ButtonElement();//Legend element button
+  addressesFieldSetLegendBTN.text = "⌂";
+  addressesFieldSetLegendBTN.onClick.listen(//Legend button onclick EH
+      (Event e){
+        LIElement addressLE = new LIElement();//Create a list element
+        addressLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("address")+": </label>");
+        TextAreaElement address = new TextAreaElement();
+        address.name="address_txt";
+        addressLE.append(address);//append address input
+        addressLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
+        InputElement comment = new InputElement();
+        comment.name="address_comment";
+        addressLE.append(comment);//append comment input
+        query("#addresses_list").append(addressLE);//Appending this li to the unordered cell phones list
+      }
+  );
+  addressesFieldSetLegend.append(addressesFieldSetLegendBTN);
+  addressesFieldlSet.append(addressesFieldSetLegend);
+  addressesFieldlSet.appendHtml("<ul id='addresses_list'></ul>");//Append un ordered list of addresses to fieldset
+  addressDiv.append(addressesFieldlSet);//append fieldset to addressDiv
+  
   bodySection.append(nameCommentDiv);//append the name & comment div to body section
   bodySection.append(phonesDiv);//append the phones div to body section
+  bodySection.append(addressDiv);//append the addresses div to body section
   
   HtmlElement dialogFooter = query("#general_dialog_footer");//Footer of the general dialog
   ButtonElement addContactSaveBtn = new ButtonElement();//Save button for add contact dialog

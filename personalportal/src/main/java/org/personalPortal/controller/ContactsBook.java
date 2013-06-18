@@ -126,7 +126,6 @@ public class ContactsBook extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		if(request.getParameter("action") != null && this.loggedInUser != null)
 		switch (request.getParameter("action")) {
 		case "addSingleContact":
