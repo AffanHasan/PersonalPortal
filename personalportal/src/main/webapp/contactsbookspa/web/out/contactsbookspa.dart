@@ -209,11 +209,14 @@ void populateGeneralDialogForAddContact(){
   LegendElement addressesFieldSetLegend = new LegendElement();//Legend element
   ButtonElement addressesFieldSetLegendBTN = new ButtonElement();//Legend element button
   addressesFieldSetLegendBTN.text = "⌂";
+  addressesFieldSetLegendBTN.title = cb_locale_data.getPropertyValue("address");
   addressesFieldSetLegendBTN.onClick.listen(//Legend button onclick EH
       (Event e){
         LIElement addressLE = new LIElement();//Create a list element
         addressLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("address")+": </label>");
         TextAreaElement address = new TextAreaElement();
+        address.style.height = "70px";
+        address.style.width = "500px";
         address.name="address_txt";
         addressLE.append(address);//append address input
         addressLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
@@ -257,6 +260,21 @@ void populateGeneralDialogForAddContact(){
             cellInput = cell.children[5];
             cellPhone.number = cellInput.value;
             contact.cellPhoneList.add(cellPhone); 
+          }
+        }
+        //Getting the addresses
+        HtmlElement addressesList = query("#addresses_list");
+        if(!addressesList.children.isEmpty){//If user entered an address
+          contact.addressesList = new List<JsonObject>();
+          JsonObject addressObject;
+          InputElement input;
+          for(LIElement address in addressesList.children){
+            addressObject = new JsonObject();
+            input = address.children[1];
+            addressObject.address = input.value;
+            input = address.children[3];
+            addressObject.comment = input.value;
+            contact.addressesList.add(addressObject);
           }
         }
         //Getting group name

@@ -6506,6 +6506,8 @@ $$.populateGeneralDialogForAddContact_closure1 = {"": "Closure;",
     t1 = $.getInterceptor$x(addressLE);
     t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("address")), ": </label>"));
     address = document.createElement("textarea");
+    $.set$height$x(address.style, "70px");
+    $.set$width$x(address.style, "500px");
     $.set$name$x(address, "address_txt");
     addressLE.appendChild(address);
     t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
@@ -6519,7 +6521,7 @@ $$.populateGeneralDialogForAddContact_closure1 = {"": "Closure;",
 
 $$.populateGeneralDialogForAddContact_closure2 = {"": "Closure;",
   call$1: function(e) {
-    var contact, cellPhonesList, t1, cell, cellPhone, t2, groupInput, requestData, output, request;
+    var contact, cellPhonesList, t1, cell, cellPhone, t2, addressesList, address, addressObject, groupInput, requestData, output, request;
     contact = $.JsonObject$(null);
     contact.set$name(contact, $.get$value$x(document.querySelector("#contact_name")));
     contact.set$comments($.get$value$x(document.querySelector("#contact_comments")));
@@ -6536,6 +6538,22 @@ $$.populateGeneralDialogForAddContact_closure2 = {"": "Closure;",
         cellPhone.set$network($.get$value$x($.$index$asx(t2.get$children(cell), 3)));
         cellPhone.set$number($.get$value$x($.$index$asx(t2.get$children(cell), 5)));
         $.add$1$ax(contact.get$cellPhoneList(), cellPhone);
+      }
+    }
+    addressesList = document.querySelector("#addresses_list");
+    t1 = $.getInterceptor$x(addressesList);
+    t2 = t1.get$children(addressesList);
+    if (!t2.get$isEmpty(t2)) {
+      t2 = $.List_List($, $.JsonObject);
+      t2.$builtinTypeInfo = [$.JsonObject];
+      contact.set$addressesList(t2);
+      for (t1 = t1.get$children(addressesList), t1 = t1.get$iterator(t1); t1.moveNext$0() === true;) {
+        address = t1.get$current();
+        addressObject = $.JsonObject$(null);
+        t2 = $.getInterceptor$x(address);
+        addressObject.set$address($.get$value$x($.$index$asx(t2.get$children(address), 1)));
+        addressObject.set$comment($.get$value$x($.$index$asx(t2.get$children(address), 3)));
+        $.add$1$ax(contact.get$addressesList(), addressObject);
       }
     }
     groupInput = document.querySelector("#add_contact_group_selection");
@@ -7566,6 +7584,9 @@ $$.CssStyleDeclaration = {"": "Interceptor;length=",
   set$display: function(receiver, value) {
     this.setProperty$3(receiver, "display", value, "");
   },
+  set$height: function(receiver, value) {
+    this.setProperty$3(receiver, "height", value, "");
+  },
   get$left: function(receiver) {
     return this.getPropertyValue$1(receiver, "left");
   },
@@ -7577,6 +7598,9 @@ $$.CssStyleDeclaration = {"": "Interceptor;length=",
   },
   set$right: function(receiver, value) {
     this.setProperty$3(receiver, "right", value, "");
+  },
+  set$width: function(receiver, value) {
+    this.setProperty$3(receiver, "width", value, "");
   }
 };
 
@@ -13306,8 +13330,10 @@ $.populateGeneralDialogForAddContact = function() {
   addressesFieldlSet = document.createElement("fieldset");
   addressesFieldSetLegend = document.createElement("legend");
   addressesFieldSetLegendBTN = document.createElement("button");
+  t1 = $.getInterceptor$x(addressesFieldSetLegendBTN);
   addressesFieldSetLegendBTN.textContent = "\u2302";
-  $.get$onClick$x(addressesFieldSetLegendBTN).listen$1(new $.populateGeneralDialogForAddContact_closure1());
+  t1.set$title(addressesFieldSetLegendBTN, $.getPropertyValue("address"));
+  t1.get$onClick(addressesFieldSetLegendBTN).listen$1(new $.populateGeneralDialogForAddContact_closure1());
   addressesFieldSetLegend.appendChild(addressesFieldSetLegendBTN);
   addressesFieldlSet.appendChild(addressesFieldSetLegend);
   $.appendHtml$1$x(addressesFieldlSet, "<ul id='addresses_list'></ul>");
@@ -13949,6 +13975,9 @@ $.send$2$x = function(receiver, a0, a1) {
 $.set$display$x = function(receiver, value) {
   return $.getInterceptor$x(receiver).set$display(receiver, value);
 };
+$.set$height$x = function(receiver, value) {
+  return $.getInterceptor$x(receiver).set$height(receiver, value);
+};
 $.set$id$x = function(receiver, value) {
   return $.getInterceptor$x(receiver).set$id(receiver, value);
 };
@@ -13978,6 +14007,9 @@ $.set$type$x = function(receiver, value) {
 };
 $.set$value$x = function(receiver, value) {
   return $.getInterceptor$x(receiver).set$value(receiver, value);
+};
+$.set$width$x = function(receiver, value) {
+  return $.getInterceptor$x(receiver).set$width(receiver, value);
 };
 $.setRange$4$ax = function(receiver, a0, a1, a2, a3) {
   return $.getInterceptor$ax(receiver).setRange$4(receiver, a0, a1, a2, a3);
@@ -15297,7 +15329,7 @@ function init() {
         }
       }
     }
-    var objectClassObject = collectedClasses.Object, shortNames = "get$p,call$0,call$1,call$2,call$3,call$4,eval$1,get$sb,then$1,get$_id,create$0,get$_key,listen$1,lookup$1,toJson$0,get$_list,get$_name,get$_next,process$0,set$_next,_onError$1,get$_state,get$_value,moveNext$0,set$_state,set$_value,set$number,visitMap$1,_callback$2,_dispatch$1,get$current,iterSetup$3,set$_handle,set$comment,set$network,visitList$1,_sendError$1,_sendValue$1,catchError$1,set$comments,toSendPort$0,unregister$1,_setGlobals$0,get$_callback,get$_contents,get$_duration,get$_previous,get$_workerId,set$_contents,set$_previous,_runCallback$1,get$_isolateId,get$_scheduled,runIteration$0,set$_scheduled,_checkReplyTo$1,get$_futurePort,visitSendPort$1,get$$$_observers,get$_liblib2$_id,get$_receivePort,set$$$_observers,visitPrimitive$1,get$_nextListener,get$cellPhoneList,set$_nextListener,set$cellPhoneList,visitCloseToken$1,_liblib6$_onData$1,compareAndNotify$0,get$_cancelOnError,set$_liblib1$_next,visitIsolateSink$1,_insertAdjacentHtml$2,deserializeSendPort$1,get$_resultOrListeners,set$_liblib1$_previous,deserializeCloseToken$1,deserializeIsolateSink$1,get$_liblib6$_subscription,set$_liblib6$_subscription".split(","), longNames = "p,call,call,call,call,call,eval,sb,then,_id,create,_key,listen,lookup,toJson,_list,_name,_next,process,_next=,_onError,_state,_value,moveNext,_state=,_value=,number=,visitMap,_callback,_dispatch,current,iterSetup,_handle=,comment=,network=,visitList,_sendError,_sendValue,catchError,comments=,toSendPort,unregister,_setGlobals,_callback,_contents,_duration,_previous,_workerId,_contents=,_previous=,_runCallback,_isolateId,_scheduled,runIteration,_scheduled=,_checkReplyTo,_futurePort,visitSendPort,$_observers,_id,_receivePort,$_observers=,visitPrimitive,_nextListener,cellPhoneList,_nextListener=,cellPhoneList=,visitCloseToken,_onData,compareAndNotify,_cancelOnError,_next=,visitIsolateSink,_insertAdjacentHtml,deserializeSendPort,_resultOrListeners,_previous=,deserializeCloseToken,deserializeIsolateSink,_subscription,_subscription=".split(",");
+    var objectClassObject = collectedClasses.Object, shortNames = "get$p,call$0,call$1,call$2,call$3,call$4,eval$1,get$sb,then$1,get$_id,create$0,get$_key,listen$1,lookup$1,toJson$0,get$_list,get$_name,get$_next,process$0,set$_next,_onError$1,get$_state,get$_value,moveNext$0,set$_state,set$_value,set$number,visitMap$1,_callback$2,_dispatch$1,get$current,iterSetup$3,set$_handle,set$address,set$comment,set$network,visitList$1,_sendError$1,_sendValue$1,catchError$1,set$comments,toSendPort$0,unregister$1,_setGlobals$0,get$_callback,get$_contents,get$_duration,get$_previous,get$_workerId,set$_contents,set$_previous,_runCallback$1,get$_isolateId,get$_scheduled,runIteration$0,set$_scheduled,_checkReplyTo$1,get$_futurePort,visitSendPort$1,get$$$_observers,get$_liblib2$_id,get$_receivePort,set$$$_observers,visitPrimitive$1,get$_nextListener,get$addressesList,get$cellPhoneList,set$_nextListener,set$addressesList,set$cellPhoneList,visitCloseToken$1,_liblib6$_onData$1,compareAndNotify$0,get$_cancelOnError,set$_liblib1$_next,visitIsolateSink$1,_insertAdjacentHtml$2,deserializeSendPort$1,get$_resultOrListeners,set$_liblib1$_previous,deserializeCloseToken$1,deserializeIsolateSink$1,get$_liblib6$_subscription,set$_liblib6$_subscription".split(","), longNames = "p,call,call,call,call,call,eval,sb,then,_id,create,_key,listen,lookup,toJson,_list,_name,_next,process,_next=,_onError,_state,_value,moveNext,_state=,_value=,number=,visitMap,_callback,_dispatch,current,iterSetup,_handle=,address=,comment=,network=,visitList,_sendError,_sendValue,catchError,comments=,toSendPort,unregister,_setGlobals,_callback,_contents,_duration,_previous,_workerId,_contents=,_previous=,_runCallback,_isolateId,_scheduled,runIteration,_scheduled=,_checkReplyTo,_futurePort,visitSendPort,$_observers,_id,_receivePort,$_observers=,visitPrimitive,_nextListener,addressesList,cellPhoneList,_nextListener=,addressesList=,cellPhoneList=,visitCloseToken,_onData,compareAndNotify,_cancelOnError,_next=,visitIsolateSink,_insertAdjacentHtml,deserializeSendPort,_resultOrListeners,_previous=,deserializeCloseToken,deserializeIsolateSink,_subscription,_subscription=".split(",");
     for (var j = 0; j < shortNames.length; j++) {
       var type = 0;
       var short = shortNames[j];

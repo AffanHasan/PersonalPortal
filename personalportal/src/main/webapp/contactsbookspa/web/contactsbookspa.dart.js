@@ -225,15 +225,15 @@ $$.MappedIterator = {"": "Iterator;_current,_iterator,_f",
   }
 };
 
-$$.MappedListIterable = {"": "ListIterable;_liblib$_source,_f",
+$$.MappedListIterable = {"": "ListIterable;_source,_f",
   _f$1: function(arg0) {
     return this._f.call$1(arg0);
   },
   get$length: function(_) {
-    return $.get$length$asx(this._liblib$_source);
+    return $.get$length$asx(this._source);
   },
   elementAt$1: function(_, index) {
-    return this._f$1($.elementAt$1$ax(this._liblib$_source, index));
+    return this._f$1($.elementAt$1$ax(this._source, index));
   },
   $asIterable: function (S, T) { return [T]; }
 };
@@ -346,9 +346,9 @@ $$.HashMapKeyIterable = {"": "IterableBase;_map",
   $asIterable: null
 };
 
-$$.HashMapKeyIterator = {"": "Object;_map,_keys,_offset,_liblib1$_current",
+$$.HashMapKeyIterator = {"": "Object;_map,_keys,_offset,_liblib0$_current",
   get$current: function() {
-    return this._liblib1$_current;
+    return this._liblib0$_current;
   },
   moveNext$0: function() {
     var keys, offset, t1;
@@ -358,10 +358,10 @@ $$.HashMapKeyIterator = {"": "Object;_map,_keys,_offset,_liblib1$_current",
     if (keys !== t1._keys)
       throw $.wrapException($.ConcurrentModificationError$(t1));
     else if (offset >= keys.length) {
-      this._liblib1$_current = null;
+      this._liblib0$_current = null;
       return false;
     } else {
-      this._liblib1$_current = keys[offset];
+      this._liblib0$_current = keys[offset];
       this._offset = offset + 1;
       return true;
     }
@@ -402,9 +402,9 @@ $$.LinkedHashMapKeyIterable = {"": "IterableBase;_map",
   $asIterable: null
 };
 
-$$.LinkedHashMapKeyIterator = {"": "Object;_map,_modifications,_cell,_liblib1$_current",
+$$.LinkedHashMapKeyIterator = {"": "Object;_map,_modifications,_cell,_liblib0$_current",
   get$current: function() {
-    return this._liblib1$_current;
+    return this._liblib0$_current;
   },
   moveNext$0: function() {
     var t1 = this._map;
@@ -413,10 +413,10 @@ $$.LinkedHashMapKeyIterator = {"": "Object;_map,_modifications,_cell,_liblib1$_c
     else {
       t1 = this._cell;
       if (t1 == null) {
-        this._liblib1$_current = null;
+        this._liblib0$_current = null;
         return false;
       } else {
-        this._liblib1$_current = t1.get$_key();
+        this._liblib0$_current = t1.get$_key();
         this._cell = this._cell.get$_next();
         return true;
       }
@@ -456,6 +456,10 @@ $$.ConstantMap = {"": "Object;length>,_jsObject,_liblib2$_keys",
     return result._contents;
   },
   $indexSet: function(_, key, val) {
+    $.throwExpression($.UnsupportedError$("Cannot modify unmodifiable Map"));
+    return;
+  },
+  clear$0: function(_) {
     $.throwExpression($.UnsupportedError$("Cannot modify unmodifiable Map"));
     return;
   },
@@ -1441,6 +1445,9 @@ $$.JSArray = {"": "List/Interceptor;",
     for (t1 = this.get$iterator(collection); t1.moveNext$0();)
       this.add$1(receiver, t1.get$current());
   },
+  clear$0: function(receiver) {
+    this.set$length(receiver, 0);
+  },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
   },
@@ -1829,6 +1836,9 @@ $$.JSString = {"": "String/Interceptor;",
   substring$1: function($receiver, startIndex) {
     return this.substring$2($receiver, startIndex, null);
   },
+  toUpperCase$0: function(receiver) {
+    return receiver.toUpperCase();
+  },
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
@@ -2120,14 +2130,14 @@ $$._FutureImpl = {"": "Object;_state@,_resultOrListeners<",
     } else
       this._setValue$1(result);
   },
-  _FutureImpl$immediate$1: function(value) {
-    this._state = 1;
-    this._resultOrListeners = value;
-  },
   _FutureImpl$immediateError$2: function(error, stackTrace) {
     if (stackTrace != null)
       $._attachStackTrace(error, stackTrace);
     this._setError$1(error);
+  },
+  _FutureImpl$immediate$1: function(value) {
+    this._state = 1;
+    this._resultOrListeners = value;
   },
   $is_FutureImpl: true,
   $isFuture: true
@@ -2550,11 +2560,11 @@ $$._ForwardingStreamSubscription = {"": "_BaseStreamSubscription;_stream,_cancel
     var t1, t2;
     t1 = this.get$_handleData();
     t2 = this.get$_handleError();
-    this._subscription = this._stream._source.listen$3$onDone$onError(t1, this.get$_handleDone(), t2);
+    this._subscription = this._stream._liblib3$_source.listen$3$onDone$onError(t1, this.get$_handleDone(), t2);
   }
 };
 
-$$._WhereStream = {"": "_ForwardingStream;_test,_source",
+$$._WhereStream = {"": "_ForwardingStream;_test,_liblib3$_source",
   _test$1: function(arg0) {
     return this._test.call$1(arg0);
   },
@@ -2581,7 +2591,7 @@ $$._WhereStream = {"": "_ForwardingStream;_test,_source",
   }
 };
 
-$$._MapStream = {"": "_ForwardingStream;_transform,_source",
+$$._MapStream = {"": "_ForwardingStream;_transform,_liblib3$_source",
   _transform$1: function(arg0) {
     return this._transform.call$1(arg0);
   },
@@ -2607,7 +2617,7 @@ $$._MapStream = {"": "_ForwardingStream;_transform,_source",
   }
 };
 
-$$._SkipStream = {"": "_ForwardingStream;_remaining,_source",
+$$._SkipStream = {"": "_ForwardingStream;_remaining,_liblib3$_source",
   _handleData$2: function(inputEvent, sink) {
     if ($.$gt$n(this._remaining, 0) === true) {
       this._remaining = $.$sub$n(this._remaining, 1);
@@ -2792,6 +2802,15 @@ $$.HashMap = {"": "Object;_length,_strings,_nums,_rest,_keys",
       this._length = this._length - 1;
       this._keys = null;
       return bucket.splice(index, 2)[1];
+    }
+  },
+  clear$0: function(_) {
+    if (this._length > 0) {
+      this._keys = null;
+      this._rest = null;
+      this._nums = null;
+      this._strings = null;
+      this._length = 0;
     }
   },
   forEach$1: function(_, action) {
@@ -2992,6 +3011,17 @@ $$.LinkedHashMap = {"": "Object;_length,_strings,_nums,_rest,_first,_last,_modif
       }
     }
   },
+  clear$0: function(_) {
+    if (this._length > 0) {
+      this._last = null;
+      this._first = null;
+      this._rest = null;
+      this._nums = null;
+      this._strings = null;
+      this._length = 0;
+      this._modifications = this._modifications + 1 & 67108863;
+    }
+  },
   forEach$1: function(_, action) {
     var cell, modifications;
     cell = this._first;
@@ -3112,6 +3142,9 @@ $$.ListMixin = {"": "Object;",
     var t1 = this.get$length(receiver);
     this.set$length(receiver, $.$add$ns(t1, 1));
     this.$indexSet(receiver, t1, element);
+  },
+  clear$0: function(receiver) {
+    this.set$length(receiver, 0);
   },
   removeLast$0: function(receiver) {
     var result;
@@ -3239,6 +3272,21 @@ $$.ListQueue = {"": "IterableBase;_table,_head,_tail,_modificationCount",
   add$1: function(_, element) {
     this._add$1(this, element);
   },
+  clear$0: function(_) {
+    var i, t1, t2, t3, t4;
+    i = this._head;
+    t1 = this._tail;
+    if (i !== t1) {
+      for (t2 = this._table, t3 = t2.length, t4 = t3 - 1; i !== t1; i = (i + 1 & t4) >>> 0) {
+        if (i < 0 || i >= t3)
+          throw $.ioore(i);
+        t2[i] = null;
+      }
+      this._tail = 0;
+      this._head = 0;
+      this._modificationCount = this._modificationCount + 1;
+    }
+  },
   toString$0: function(_) {
     var result = $.StringBuffer$("");
     $.ToString__emitValue(this, result, $.List_List($));
@@ -3330,25 +3378,25 @@ $$.ListQueue = {"": "IterableBase;_table,_head,_tail,_modificationCount",
   $isIterable: true
 };
 
-$$._ListQueueIterator = {"": "Object;_queue,_end,_modificationCount,_liblib1$_position,_liblib1$_current",
+$$._ListQueueIterator = {"": "Object;_queue,_end,_modificationCount,_liblib0$_position,_liblib0$_current",
   get$current: function() {
-    return this._liblib1$_current;
+    return this._liblib0$_current;
   },
   moveNext$0: function() {
     var t1, t2, t3;
     t1 = this._queue;
     if (this._modificationCount !== t1._modificationCount)
       $.throwExpression($.ConcurrentModificationError$(t1));
-    if ($.$eq(this._liblib1$_position, this._end)) {
-      this._liblib1$_current = null;
+    if ($.$eq(this._liblib0$_position, this._end)) {
+      this._liblib0$_current = null;
       return false;
     }
     t2 = t1._table;
-    t3 = this._liblib1$_position;
+    t3 = this._liblib0$_position;
     if (t3 >>> 0 !== t3 || t3 >= t2.length)
       throw $.ioore(t3);
-    this._liblib1$_current = t2[t3];
-    this._liblib1$_position = $.$and$n($.$add$ns(this._liblib1$_position, 1), t1._table.length - 1);
+    this._liblib0$_current = t2[t3];
+    this._liblib0$_position = $.$and$n($.$add$ns(this._liblib0$_position, 1), t1._table.length - 1);
     return true;
   }
 };
@@ -3728,6 +3776,9 @@ $$.Object = {"": ";",
   cancel$0: function($receiver) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("cancel", "cancel$0", 0, [], []));
   },
+  clear$0: function($receiver) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("clear", "clear$0", 0, [], []));
+  },
   codeUnitAt$1: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("codeUnitAt", "codeUnitAt$1", 0, [$0], []));
   },
@@ -3827,6 +3878,9 @@ $$.Object = {"": ";",
   toList$1$growable: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("toList", "toList$1$growable", 0, [$0], ["growable"]));
   },
+  toUpperCase$0: function($receiver) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("toUpperCase", "toUpperCase$0", 0, [], []));
+  },
   write$1: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("write", "write$1", 0, [$0], []));
   }
@@ -3876,6 +3930,9 @@ $$.StringBuffer = {"": "Object;_contents@",
       }
     }
   },
+  clear$0: function(_) {
+    this._contents = "";
+  },
   toString$0: function(_) {
     return this._contents;
   },
@@ -3918,6 +3975,9 @@ $$._ChildrenElementList = {"": "ListBase;_element,_childElements",
   },
   get$iterator: function(_) {
     return $.get$iterator$ax(this.toList$0(this));
+  },
+  clear$0: function(_) {
+    this._element.textContent = "";
   },
   removeLast$0: function(_) {
     var t1, result, t2;
@@ -4261,22 +4321,22 @@ $$.Rect = {"": "Object;left>,top>,width>,height>",
 
 $$._DOMWindowCrossFrame = {"": "Object;_window"};
 
-$$.FixedSizeListIterator = {"": "Object;_array,_liblib0$_length,_position,_liblib0$_current",
+$$.FixedSizeListIterator = {"": "Object;_array,_liblib1$_length,_position,_liblib1$_current",
   moveNext$0: function() {
     var nextPosition, t1;
     nextPosition = $.$add$ns(this._position, 1);
-    t1 = this._liblib0$_length;
+    t1 = this._liblib1$_length;
     if ($.$lt$n(nextPosition, t1) === true) {
-      this._liblib0$_current = $.$index$asx(this._array, nextPosition);
+      this._liblib1$_current = $.$index$asx(this._array, nextPosition);
       this._position = nextPosition;
       return true;
     }
-    this._liblib0$_current = null;
+    this._liblib1$_current = null;
     this._position = t1;
     return false;
   },
   get$current: function() {
-    return this._liblib0$_current;
+    return this._liblib1$_current;
   }
 };
 
@@ -5108,15 +5168,15 @@ $$.populateGeneralDialogForAddContact_closure = {"": "Closure;",
     var cellPhoneLE, t1, comment, network, number;
     cellPhoneLE = document.createElement("li");
     t1 = $.getInterceptor$x(cellPhoneLE);
-    t1.appendHtml$1(cellPhoneLE, "<label>Comments: </label>");
+    t1.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
     comment = $.InputElement_InputElement(null);
     $.set$name$x(comment, "cell_comment");
     cellPhoneLE.appendChild(comment);
-    t1.appendHtml$1(cellPhoneLE, "<label>   Network: </label>");
+    t1.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("network")), ": </label>"));
     network = $.InputElement_InputElement("tel");
     $.set$name$x(network, "cell_network");
     cellPhoneLE.appendChild(network);
-    t1.appendHtml$1(cellPhoneLE, "<label>   Number: </label>");
+    t1.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("number")), ": </label>"));
     number = $.InputElement_InputElement("tel");
     $.set$name$x(number, "cell_number");
     cellPhoneLE.appendChild(number);
@@ -5129,19 +5189,19 @@ $$.populateGeneralDialogForAddContact_closure0 = {"": "Closure;",
     var landLineLE, t1, comment, country, areaCode, number;
     landLineLE = document.createElement("li");
     t1 = $.getInterceptor$x(landLineLE);
-    t1.appendHtml$1(landLineLE, "<label>Comments: </label>");
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
     comment = $.InputElement_InputElement(null);
     $.set$name$x(comment, "land_line_comment");
     landLineLE.appendChild(comment);
-    t1.appendHtml$1(landLineLE, "<label>   Country: </label>");
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("country")), ": </label>"));
     country = $.InputElement_InputElement("tel");
     $.set$name$x(country, "line_country");
     landLineLE.appendChild(country);
-    t1.appendHtml$1(landLineLE, "<label>   City/Area code: </label>");
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("cityAreacode")), ": </label>"));
     areaCode = $.InputElement_InputElement("tel");
     $.set$name$x(areaCode, "area_code");
     landLineLE.appendChild(areaCode);
-    t1.appendHtml$1(landLineLE, "<label>   Number: </label>");
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("number")), ": </label>"));
     number = $.InputElement_InputElement("tel");
     $.set$name$x(number, "line_number");
     landLineLE.appendChild(number);
@@ -5151,7 +5211,24 @@ $$.populateGeneralDialogForAddContact_closure0 = {"": "Closure;",
 
 $$.populateGeneralDialogForAddContact_closure1 = {"": "Closure;",
   call$1: function(e) {
-    var contact, cellPhonesList, t1, cell, cellPhone, t2, groupInput, requestData, output, request;
+    var addressLE, t1, address, comment;
+    addressLE = document.createElement("li");
+    t1 = $.getInterceptor$x(addressLE);
+    t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("address")), ": </label>"));
+    address = document.createElement("textarea");
+    $.set$name$x(address, "address_txt");
+    addressLE.appendChild(address);
+    t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+    comment = $.InputElement_InputElement(null);
+    $.set$name$x(comment, "address_comment");
+    addressLE.appendChild(comment);
+    document.querySelector("#addresses_list").appendChild(addressLE);
+  }
+};
+
+$$.populateGeneralDialogForAddContact_closure2 = {"": "Closure;",
+  call$1: function(e) {
+    var contact, cellPhonesList, t1, cell, cellPhone, t2, addressesList, address, addressObject, groupInput, requestData, output, request;
     contact = $.JsonObject$();
     contact.set$name(contact, $.get$value$x(document.querySelector("#contact_name")));
     contact.set$comments($.get$value$x(document.querySelector("#contact_comments")));
@@ -5166,6 +5243,20 @@ $$.populateGeneralDialogForAddContact_closure1 = {"": "Closure;",
         cellPhone.set$network($.get$value$x($.$index$asx(t2.get$children(cell), 3)));
         cellPhone.set$number($.get$value$x($.$index$asx(t2.get$children(cell), 5)));
         $.add$1$ax(contact.get$cellPhoneList(), cellPhone);
+      }
+    }
+    addressesList = document.querySelector("#addresses_list");
+    t1 = $.getInterceptor$x(addressesList);
+    t2 = t1.get$children(addressesList);
+    if (!t2.get$isEmpty(t2)) {
+      contact.set$addressesList($.List_List($));
+      for (t1 = t1.get$children(addressesList), t1 = t1.get$iterator(t1); t1.moveNext$0() === true;) {
+        address = t1.get$current();
+        addressObject = $.JsonObject$();
+        t2 = $.getInterceptor$x(address);
+        addressObject.set$address($.get$value$x($.$index$asx(t2.get$children(address), 1)));
+        addressObject.set$comment($.get$value$x($.$index$asx(t2.get$children(address), 3)));
+        $.add$1$ax(contact.get$addressesList(), addressObject);
       }
     }
     groupInput = document.querySelector("#add_contact_group_selection");
@@ -5287,6 +5378,20 @@ $$.JsonObject = {"": "Object;_jsonString,_objectData,isExtendable",
     } else
       throw $.wrapException($.JsonObjectException$("JsonObject is not extendable"));
   },
+  clear$0: function(_) {
+    var t1;
+    if (this.isExtendable) {
+      t1 = this._objectData;
+      if (t1._length > 0) {
+        t1._keys = null;
+        t1._rest = null;
+        t1._nums = null;
+        t1._strings = null;
+        t1._length = 0;
+      }
+    } else
+      throw $.wrapException($.JsonObjectException$("JsonObject is not extendable"));
+  },
   JsonObject$0: function() {
     this._objectData = $.Map_Map();
     this.isExtendable = true;
@@ -5313,14 +5418,40 @@ $$.getPropertyValue_closure = {"": "Closure;request_0",
       t2 = t2 === 200 || t2 === 0;
     } else
       t2 = false;
-    if (t2) {
-      $.Primitives_printString($.JSString_methods.$add("Getting localse: ", t1.responseText));
+    if (t2)
       $.$indexSet$ax(window.sessionStorage, "locale", t1.responseText);
-    }
   }
 };
 
 $$.getData_closure = {"": "Closure;request_0",
+  call$1: function(_) {
+    var t1, t2;
+    t1 = this.request_0;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
+    } else
+      t2 = false;
+    if (t2)
+      $.$indexSet$ax(window.sessionStorage, $.JSString_methods.$add("cb_locale_data_", $.toString$0($.$index$asx(window.sessionStorage, "locale"))), t1.responseText);
+  }
+};
+
+$$.getPropertyValue_closure0 = {"": "Closure;request_0",
+  call$1: function(_) {
+    var t1, t2;
+    t1 = this.request_0;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
+    } else
+      t2 = false;
+    if (t2)
+      $.$indexSet$ax(window.sessionStorage, "locale", t1.responseText);
+  }
+};
+
+$$.getData_closure0 = {"": "Closure;request_0",
   call$1: function(_) {
     var t1, t2;
     t1 = this.request_0;
@@ -5442,6 +5573,10 @@ $$.CssRegionRule = {"": "CssRule;"};
 $$.CssRule = {"": "Interceptor;"};
 
 $$.CssStyleDeclaration = {"": "Interceptor;length=",
+  getPropertyValue$1: function(receiver, propertyName) {
+    var propValue = receiver.getPropertyValue(propertyName);
+    return propValue != null ? propValue : "";
+  },
   setProperty$3: function(receiver, propertyName, value, priority) {
     var exception;
     try {
@@ -5454,6 +5589,12 @@ $$.CssStyleDeclaration = {"": "Interceptor;length=",
       $.unwrapException(exception);
     }
 
+  },
+  get$clear: function(receiver) {
+    return this.getPropertyValue$1(receiver, "clear");
+  },
+  clear$0: function($receiver) {
+    return this.get$clear($receiver).call$0();
   },
   set$display: function(receiver, value) {
     this.setProperty$3(receiver, "display", value, "");
@@ -5486,6 +5627,9 @@ $$.DataTransferItemList = {"": "Interceptor;length=",
   },
   add$1: function($receiver, data_OR_file) {
     return $receiver.add(data_OR_file);
+  },
+  clear$0: function(receiver) {
+    return receiver.clear();
   }
 };
 
@@ -6430,6 +6574,9 @@ $$.Storage = {"": "Interceptor;",
   $indexSet: function(receiver, key, value) {
     receiver.setItem(key, value);
   },
+  clear$0: function(receiver) {
+    return receiver.clear();
+  },
   forEach$1: function(receiver, f) {
     var i, key;
     for (i = 0; true; ++i) {
@@ -7058,6 +7205,19 @@ $$.ObjectStore = {"": "Interceptor;",
   add$1: function($receiver, value) {
     return this.add$2($receiver, value, null);
   },
+  clear$0: function(receiver) {
+    var e, stacktrace, t1, exception;
+    try {
+      t1 = $._completeRequest(receiver.clear());
+      return t1;
+    } catch (exception) {
+      t1 = $.unwrapException(exception);
+      e = t1;
+      stacktrace = $._StackTrace$(exception.stack);
+      return $._FutureImpl$immediateError(e, stacktrace);
+    }
+
+  },
   $$dom_add$2: function(receiver, value, key) {
     var t1 = $ === key;
     if (t1)
@@ -7226,6 +7386,9 @@ $$.LengthList = {"": "Interceptor_ListMixin_ImmutableListMixin18;",
       throw $.ioore(index);
     return receiver[index];
   },
+  clear$0: function(receiver) {
+    return receiver.clear();
+  },
   $isList: true,
   $asList: function() { return [$.Length]; },
   $isIterable: true,
@@ -7268,6 +7431,9 @@ $$.NumberList = {"": "Interceptor_ListMixin_ImmutableListMixin19;",
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
     return receiver[index];
+  },
+  clear$0: function(receiver) {
+    return receiver.clear();
   },
   $isList: true,
   $asList: function() { return [$.Number]; },
@@ -7336,6 +7502,9 @@ $$.PathSegList = {"": "Interceptor_ListMixin_ImmutableListMixin20;",
       throw $.ioore(index);
     return receiver[index];
   },
+  clear$0: function(receiver) {
+    return receiver.clear();
+  },
   $isList: true,
   $asList: function() { return [$.PathSeg]; },
   $isIterable: true,
@@ -7352,7 +7521,11 @@ $$.PatternElement = {"": "StyledElement;"};
 
 $$.Point = {"": "Interceptor;"};
 
-$$.PointList = {"": "Interceptor;"};
+$$.PointList = {"": "Interceptor;",
+  clear$0: function(receiver) {
+    return receiver.clear();
+  }
+};
 
 $$.PolygonElement = {"": "StyledElement;"};
 
@@ -7394,6 +7567,9 @@ $$.StringList = {"": "Interceptor_ListMixin_ImmutableListMixin21;",
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
     return receiver[index];
+  },
+  clear$0: function(receiver) {
+    return receiver.clear();
   },
   $isList: true,
   $asList: function() { return [$.JSString]; },
@@ -7489,6 +7665,9 @@ $$.TransformList = {"": "Interceptor_ListMixin_ImmutableListMixin22;",
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
     return receiver[index];
+  },
+  clear$0: function(receiver) {
+    return receiver.clear();
   },
   $isJavaScriptIndexingBehavior: true,
   $asJavaScriptIndexingBehavior: null,
@@ -7627,6 +7806,9 @@ $$.Float32List = {"": "TypedData;",
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
   },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -7729,6 +7911,9 @@ $$.Float64List = {"": "TypedData;",
   },
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
+  },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -7833,6 +8018,9 @@ $$.Int16List = {"": "TypedData;",
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
   },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -7935,6 +8123,9 @@ $$.Int32List = {"": "TypedData;",
   },
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
+  },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -8039,6 +8230,9 @@ $$.Int8List = {"": "TypedData;",
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
   },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -8141,6 +8335,9 @@ $$.Uint16List = {"": "TypedData;",
   },
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
+  },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -8245,6 +8442,9 @@ $$.Uint32List = {"": "TypedData;",
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
   },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -8344,6 +8544,9 @@ $$.Uint8ClampedList = {"": "Uint8List;",
   },
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
+  },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -8447,6 +8650,9 @@ $$.Uint8List = {"": "TypedData;",
   },
   add$1: function(receiver, value) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
+  },
+  clear$0: function(receiver) {
+    throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -10345,7 +10551,7 @@ $._Lists_getRange$bailout = function(state0, a, start, end, accumulator) {
 };
 
 $.main = function() {
-  $.appendHtml$1$x(document.querySelector("#application_header"), $.getPropertyValue("personalPortal"));
+  $.appendHtml$1$x(document.querySelector("#application_header"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.getPropertyValue("contactsBook")), "</h1>"));
   $.renderControlsPanelOnFirstLoad();
   $.loadDataContainerOnFirstLoad();
 };
@@ -10357,12 +10563,12 @@ $.loadDataContainerOnFirstLoad = function() {
 
 $.renderControlsPanelOnFirstLoad = function() {
   $.set$text$x($.get$addContactBtn(), "+");
-  $.set$title$x($.get$addContactBtn(), "Add Contact");
+  $.set$title$x($.get$addContactBtn(), $.getPropertyValue("addContact"));
   $.set$id$x($.get$addContactBtn(), "add_contact_btn");
   $.get$onClick$x($.get$addContactBtn()).listen$1(new $.renderControlsPanelOnFirstLoad_closure());
   document.querySelector("#control_panel").appendChild($.get$addContactBtn());
   $.set$text$x($.get$addGroupBtn(), "\u229e");
-  $.set$title$x($.get$addGroupBtn(), "Add Group");
+  $.set$title$x($.get$addGroupBtn(), $.getPropertyValue("addGroup"));
   $.set$id$x($.get$addGroupBtn(), "add_contacts_group");
   $.get$onClick$x($.get$addGroupBtn()).listen$1(new $.renderControlsPanelOnFirstLoad_closure0());
   document.querySelector("#control_panel").appendChild($.get$addGroupBtn());
@@ -10377,8 +10583,8 @@ $.closeGeneralDialog = function() {
 };
 
 $.populateGeneralDialogForAddContact = function() {
-  var bodySection, groupSelection, t1, nameCommentDiv, namefield, t2, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, dialogFooter, addContactSaveBtn;
-  $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), "<h1>ADD CONTACT</h1>");
+  var bodySection, groupSelection, t1, nameCommentDiv, namefield, t2, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, dialogFooter, addContactSaveBtn;
+  $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.toUpperCase$0$s($.getPropertyValue("addContact"))), "</h1>"));
   bodySection = document.querySelector("#general_dialog_body");
   groupSelection = document.createElement("select");
   t1 = $.getInterceptor$x(groupSelection);
@@ -10394,45 +10600,60 @@ $.populateGeneralDialogForAddContact = function() {
   t2 = $.getInterceptor$x(namefield);
   t2.set$id(namefield, "contact_name");
   t2.set$placeholder(namefield, "");
-  t1.appendHtml$1(nameCommentDiv, "<label for='contact_name'>Name: </label>");
+  t1.appendHtml$1(nameCommentDiv, $.JSString_methods.$add($.JSString_methods.$add("<label for='contact_name'>", $.getPropertyValue0("name")), ": </label>"));
   nameCommentDiv.appendChild(namefield);
   contactCommentsTextArea = document.createElement("textarea");
   t2 = $.getInterceptor$x(contactCommentsTextArea);
   t2.set$id(contactCommentsTextArea, "contact_comments");
   t2.set$placeholder(contactCommentsTextArea, "");
-  t1.appendHtml$1(nameCommentDiv, "<label for='contact_comments'>Your Comments: </label>");
+  t1.appendHtml$1(nameCommentDiv, $.JSString_methods.$add($.JSString_methods.$add("<label for='contact_comments'>", $.getPropertyValue("comments")), ": </label>"));
   nameCommentDiv.appendChild(contactCommentsTextArea);
   phonesDiv = document.createElement("div");
-  $.set$id$x(phonesDiv, "phones_div");
+  t1 = $.getInterceptor$x(phonesDiv);
+  t1.set$id(phonesDiv, "phones_div");
   phonesFieldSet = document.createElement("fieldset");
   phonesFiledSetLegend = document.createElement("legend");
   addCellPhoneBtn = document.createElement("button");
-  t1 = $.getInterceptor$x(addCellPhoneBtn);
-  t1.set$id(addCellPhoneBtn, "add_cell_phone_btn");
+  t2 = $.getInterceptor$x(addCellPhoneBtn);
+  t2.set$id(addCellPhoneBtn, "add_cell_phone_btn");
   addCellPhoneBtn.textContent = "\ud83d\udcf6";
-  t1.set$title(addCellPhoneBtn, "Add cell phone");
-  t1.get$onClick(addCellPhoneBtn).listen$1(new $.populateGeneralDialogForAddContact_closure());
+  t2.set$title(addCellPhoneBtn, $.getPropertyValue("addCell"));
+  t2.get$onClick(addCellPhoneBtn).listen$1(new $.populateGeneralDialogForAddContact_closure());
   addLandLineBtn = document.createElement("button");
-  t1 = $.getInterceptor$x(addLandLineBtn);
-  t1.set$id(addLandLineBtn, "add_land_line_btn");
+  t2 = $.getInterceptor$x(addLandLineBtn);
+  t2.set$id(addLandLineBtn, "add_land_line_btn");
   addLandLineBtn.textContent = "\u260e";
-  t1.set$title(addLandLineBtn, "Add land line");
-  t1.get$onClick(addLandLineBtn).listen$1(new $.populateGeneralDialogForAddContact_closure0());
+  t2.set$title(addLandLineBtn, $.getPropertyValue("addLandLine"));
+  t2.get$onClick(addLandLineBtn).listen$1(new $.populateGeneralDialogForAddContact_closure0());
   phonesFiledSetLegend.appendChild(addCellPhoneBtn);
   phonesFiledSetLegend.appendChild(addLandLineBtn);
-  t1 = $.getInterceptor$x(phonesFieldSet);
+  t2 = $.getInterceptor$x(phonesFieldSet);
   phonesFieldSet.appendChild(phonesFiledSetLegend);
-  t1.appendHtml$1(phonesFieldSet, "<ul id='cell_phones_list'></ul>");
-  t1.appendHtml$1(phonesFieldSet, "</br><ul id='land_lines_list'></ul>");
+  t2.appendHtml$1(phonesFieldSet, "<ul id='cell_phones_list'></ul>");
+  t2.appendHtml$1(phonesFieldSet, "</br><ul id='land_lines_list'></ul>");
   phonesDiv.appendChild(phonesFieldSet);
+  addressDiv = document.createElement("div");
+  t1.set$id(phonesDiv, "addresses_div");
+  addressesFieldlSet = document.createElement("fieldset");
+  addressesFieldSetLegend = document.createElement("legend");
+  addressesFieldSetLegendBTN = document.createElement("button");
+  t1 = $.getInterceptor$x(addressesFieldSetLegendBTN);
+  addressesFieldSetLegendBTN.textContent = "\u2302";
+  t1.set$title(addressesFieldSetLegendBTN, $.getPropertyValue("address"));
+  t1.get$onClick(addressesFieldSetLegendBTN).listen$1(new $.populateGeneralDialogForAddContact_closure1());
+  addressesFieldSetLegend.appendChild(addressesFieldSetLegendBTN);
+  addressesFieldlSet.appendChild(addressesFieldSetLegend);
+  $.appendHtml$1$x(addressesFieldlSet, "<ul id='addresses_list'></ul>");
+  addressDiv.appendChild(addressesFieldlSet);
   bodySection.appendChild(nameCommentDiv);
   bodySection.appendChild(phonesDiv);
+  bodySection.appendChild(addressDiv);
   dialogFooter = document.querySelector("#general_dialog_footer");
   addContactSaveBtn = document.createElement("button");
   t1 = $.getInterceptor$x(addContactSaveBtn);
   t1.set$id(addContactSaveBtn, "add_contact_save_btn");
   addContactSaveBtn.textContent = "Save";
-  t1.get$onClick(addContactSaveBtn).listen$1(new $.populateGeneralDialogForAddContact_closure1());
+  t1.get$onClick(addContactSaveBtn).listen$1(new $.populateGeneralDialogForAddContact_closure2());
   dialogFooter.appendChild(addContactSaveBtn);
 };
 
@@ -10448,17 +10669,17 @@ $.JsonObjectException$ = function(message) {
 
 $.getPropertyValue = function(propertyName) {
   var request, t1;
-  if ($.get$isEmpty$asx($.get$ppCommUIProperties()) === true) {
+  if ($.get$isEmpty$asx($.get$cbLocaleDataMap()) === true) {
     if ($.toString$0($.$index$asx(window.sessionStorage, "locale")) === "null") {
       request = new XMLHttpRequest();
       t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
       $._EventStreamSubscription$(t1._target, t1._eventType, new $.getPropertyValue_closure(request), t1._useCapture);
-      $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add($.commAccessURL, "getLoggedInUserLocale"), false);
+      $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add("/personalportal/CommonAccessPoint?action=", "getLoggedInUserLocale"), false);
       request.send("");
     }
     return $.getData(propertyName);
-  } else if ($.$eq($.$index$asx($.get$ppCommUIProperties(), "user_locale"), $.$index$asx(window.sessionStorage, "locale")))
-    return $.$index$asx($.get$ppCommUIProperties(), propertyName);
+  } else if ($.$eq($.$index$asx($.get$cbLocaleDataMap(), "user_locale"), $.$index$asx(window.sessionStorage, "locale")))
+    return $.$index$asx($.get$cbLocaleDataMap(), propertyName);
   else {
     $.throwExpression($.NoSuchMethodError$("", "getData", [], $.Map_empty, ["propertyName"]));
     return;
@@ -10467,17 +10688,57 @@ $.getPropertyValue = function(propertyName) {
 
 $.getData = function(propertyName) {
   var request, t1;
-  if ($.$index$asx(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))) == null) {
-    $.Primitives_printString("For current locale the data dono t exists");
+  if ($.$index$asx(window.sessionStorage, $.JSString_methods.$add("cb_locale_data_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))) == null) {
     request = new XMLHttpRequest();
     t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
     $._EventStreamSubscription$(t1._target, t1._eventType, new $.getData_closure(request), t1._useCapture);
+    $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add($.cbBaseURL, "getCBLocaleWiseData"), false);
+    request.send("");
+    $.clear$0$ax($.get$cbLocaleDataMap());
+    $.cbLocaleDataMap = $.parse($.$index$asx(window.sessionStorage, $.JSString_methods.$add("cb_locale_data_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))), null);
+    $.$indexSet$ax($.get$cbLocaleDataMap(), "user_locale", $.$index$asx(window.sessionStorage, "locale"));
+    return $.$index$asx($.get$cbLocaleDataMap(), propertyName);
+  } else {
+    $.clear$0$ax($.get$cbLocaleDataMap());
+    $.cbLocaleDataMap = $.parse($.$index$asx(window.sessionStorage, $.JSString_methods.$add("cb_locale_data_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))), null);
+    $.$indexSet$ax($.get$cbLocaleDataMap(), "user_locale", $.$index$asx(window.sessionStorage, "locale"));
+    return $.$index$asx($.get$cbLocaleDataMap(), propertyName);
+  }
+};
+
+$.getPropertyValue0 = function(propertyName) {
+  var request, t1;
+  if ($.get$isEmpty$asx($.get$ppCommUIProperties()) === true) {
+    if ($.toString$0($.$index$asx(window.sessionStorage, "locale")) === "null") {
+      request = new XMLHttpRequest();
+      t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
+      $._EventStreamSubscription$(t1._target, t1._eventType, new $.getPropertyValue_closure0(request), t1._useCapture);
+      $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add($.commAccessURL, "getLoggedInUserLocale"), false);
+      request.send("");
+    }
+    return $.getData0(propertyName);
+  } else if ($.$eq($.$index$asx($.get$ppCommUIProperties(), "user_locale"), $.$index$asx(window.sessionStorage, "locale")))
+    return $.$index$asx($.get$ppCommUIProperties(), propertyName);
+  else {
+    $.throwExpression($.NoSuchMethodError$("", "getData", [], $.Map_empty, ["propertyName"]));
+    return;
+  }
+};
+
+$.getData0 = function(propertyName) {
+  var request, t1;
+  if ($.$index$asx(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))) == null) {
+    request = new XMLHttpRequest();
+    t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
+    $._EventStreamSubscription$(t1._target, t1._eventType, new $.getData_closure0(request), t1._useCapture);
     $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add($.commAccessURL, "getPortalWideCommUIData"), false);
     request.send("");
+    $.clear$0$ax($.get$ppCommUIProperties());
     $.ppCommUIProperties = $.parse($.$index$asx(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))), null);
     $.$indexSet$ax($.get$ppCommUIProperties(), "user_locale", $.$index$asx(window.sessionStorage, "locale"));
     return $.$index$asx($.get$ppCommUIProperties(), propertyName);
   } else {
+    $.clear$0$ax($.get$ppCommUIProperties());
     $.ppCommUIProperties = $.parse($.$index$asx(window.sessionStorage, $.JSString_methods.$add("pp_comm_ui_", $.toString$0($.$index$asx(window.sessionStorage, "locale")))), null);
     $.$indexSet$ax($.get$ppCommUIProperties(), "user_locale", $.$index$asx(window.sessionStorage, "locale"));
     return $.$index$asx($.get$ppCommUIProperties(), propertyName);
@@ -10534,6 +10795,7 @@ $.leafTags = null;
 $._callbacksAreEnqueued = false;
 $.baseURL = "http://localhost:8080/personalportal/ContactsBook?action=";
 $.enableJsonObjectDebugMessages = false;
+$.cbBaseURL = "/personalportal/ContactsBook?action=";
 $.commAccessURL = "/personalportal/CommonAccessPoint?action=";
 $.$$dom_addEventListener$3$x = function(receiver, a0, a1, a2) {
   return $.getInterceptor$x(receiver).$$dom_addEventListener$3(receiver, a0, a1, a2);
@@ -10613,6 +10875,9 @@ $.appendHtml$1$x = function(receiver, a0) {
 };
 $.cancel$0$x = function(receiver) {
   return $.getInterceptor$x(receiver).cancel$0(receiver);
+};
+$.clear$0$ax = function(receiver) {
+  return $.getInterceptor$ax(receiver).clear$0(receiver);
 };
 $.elementAt$1$ax = function(receiver, a0) {
   return $.getInterceptor$ax(receiver).elementAt$1(receiver, a0);
@@ -10712,6 +10977,9 @@ $.toList$1$growable$ax = function(receiver, a0) {
 };
 $.toString$0 = function(receiver) {
   return $.getInterceptor(receiver).toString$0(receiver);
+};
+$.toUpperCase$0$s = function(receiver) {
+  return $.getInterceptor$s(receiver).toUpperCase$0(receiver);
 };
 $.write$1$x = function(receiver, a0) {
   return $.getInterceptor$x(receiver).write$1(receiver, a0);
@@ -10832,6 +11100,9 @@ Isolate.$lazy($, "addContactBtn", "addContactBtn", "get$addContactBtn", function
 });
 Isolate.$lazy($, "addGroupBtn", "addGroupBtn", "get$addGroupBtn", function() {
   return $.ButtonElement_ButtonElement();
+});
+Isolate.$lazy($, "cbLocaleDataMap", "cbLocaleDataMap", "get$cbLocaleDataMap", function() {
+  return $.Map_Map();
 });
 Isolate.$lazy($, "ppCommUIProperties", "ppCommUIProperties", "get$ppCommUIProperties", function() {
   return $.Map_Map();
@@ -11998,7 +12269,7 @@ function init() {
         }
       }
     }
-    var objectClassObject = collectedClasses.Object, shortNames = "get$p,call$0,call$1,call$2,call$3,eval$1,get$sb,then$1,get$_id,get$_key,listen$1,lookup$1,toJson$0,get$_name,get$_next,process$0,set$_next,_onError$1,get$_state,get$_value,moveNext$0,set$_state,set$_value,set$number,visitMap$1,_callback$2,_dispatch$1,get$current,set$_handle,set$comment,set$network,visitList$1,_sendError$1,_sendValue$1,catchError$1,set$comments,toSendPort$0,unregister$1,_setGlobals$0,get$_callback,get$_contents,get$_duration,get$_workerId,set$_contents,get$_isolateId,runIteration$0,_checkReplyTo$1,get$_futurePort,visitSendPort$1,get$_receivePort,visitPrimitive$1,get$_nextListener,get$_subscription,get$cellPhoneList,set$_nextListener,set$_subscription,set$cellPhoneList,visitCloseToken$1,_liblib3$_onData$1,get$_cancelOnError,visitIsolateSink$1,_insertAdjacentHtml$2,deserializeSendPort$1,get$_resultOrListeners,deserializeCloseToken$1,deserializeIsolateSink$1".split(","), longNames = "p,call,call,call,call,eval,sb,then,_id,_key,listen,lookup,toJson,_name,_next,process,_next=,_onError,_state,_value,moveNext,_state=,_value=,number=,visitMap,_callback,_dispatch,current,_handle=,comment=,network=,visitList,_sendError,_sendValue,catchError,comments=,toSendPort,unregister,_setGlobals,_callback,_contents,_duration,_workerId,_contents=,_isolateId,runIteration,_checkReplyTo,_futurePort,visitSendPort,_receivePort,visitPrimitive,_nextListener,_subscription,cellPhoneList,_nextListener=,_subscription=,cellPhoneList=,visitCloseToken,_onData,_cancelOnError,visitIsolateSink,_insertAdjacentHtml,deserializeSendPort,_resultOrListeners,deserializeCloseToken,deserializeIsolateSink".split(",");
+    var objectClassObject = collectedClasses.Object, shortNames = "get$p,call$0,call$1,call$2,call$3,eval$1,get$sb,then$1,get$_id,get$_key,listen$1,lookup$1,toJson$0,get$_name,get$_next,process$0,set$_next,_onError$1,get$_state,get$_value,moveNext$0,set$_state,set$_value,set$number,visitMap$1,_callback$2,_dispatch$1,get$current,set$_handle,set$address,set$comment,set$network,visitList$1,_sendError$1,_sendValue$1,catchError$1,set$comments,toSendPort$0,unregister$1,_setGlobals$0,get$_callback,get$_contents,get$_duration,get$_workerId,set$_contents,get$_isolateId,runIteration$0,_checkReplyTo$1,get$_futurePort,visitSendPort$1,get$_receivePort,visitPrimitive$1,get$_nextListener,get$_subscription,get$addressesList,get$cellPhoneList,set$_nextListener,set$_subscription,set$addressesList,set$cellPhoneList,visitCloseToken$1,_liblib3$_onData$1,get$_cancelOnError,visitIsolateSink$1,_insertAdjacentHtml$2,deserializeSendPort$1,get$_resultOrListeners,deserializeCloseToken$1,deserializeIsolateSink$1".split(","), longNames = "p,call,call,call,call,eval,sb,then,_id,_key,listen,lookup,toJson,_name,_next,process,_next=,_onError,_state,_value,moveNext,_state=,_value=,number=,visitMap,_callback,_dispatch,current,_handle=,address=,comment=,network=,visitList,_sendError,_sendValue,catchError,comments=,toSendPort,unregister,_setGlobals,_callback,_contents,_duration,_workerId,_contents=,_isolateId,runIteration,_checkReplyTo,_futurePort,visitSendPort,_receivePort,visitPrimitive,_nextListener,_subscription,addressesList,cellPhoneList,_nextListener=,_subscription=,addressesList=,cellPhoneList=,visitCloseToken,_onData,_cancelOnError,visitIsolateSink,_insertAdjacentHtml,deserializeSendPort,_resultOrListeners,deserializeCloseToken,deserializeIsolateSink".split(",");
     for (var j = 0; j < shortNames.length; j++) {
       var type = 0;
       var short = shortNames[j];
