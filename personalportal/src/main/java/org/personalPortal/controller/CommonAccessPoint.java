@@ -3,7 +3,6 @@ package org.personalPortal.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedHashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -15,11 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.personalPortal.model.LoggedInUser;
-import org.personalPortal.model.PersonalPortalDBCollections;
 import org.personalPortal.model.PortalUser;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 
 /**

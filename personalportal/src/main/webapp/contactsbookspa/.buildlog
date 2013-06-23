@@ -17632,3 +17632,3608 @@ build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --
 Total time                                                   --  33 ms
 build.dart finished [793 ms]
 
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 713 ms
+build.dart finished [1461 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [575 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 717 ms
+build.dart finished [1225 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [565 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 661 ms
+Total time                                                   -- 695 ms
+build.dart finished [1218 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 656 ms
+Total time                                                   -- 693 ms
+build.dart finished [1225 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  35 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 659 ms
+Total time                                                   -- 693 ms
+build.dart finished [1214 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 666 ms
+Total time                                                   -- 705 ms
+build.dart finished [1222 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 673 ms
+Total time                                                   -- 714 ms
+build.dart finished [1224 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 708 ms
+build.dart finished [1222 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [539 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 694 ms
+Total time                                                   -- 734 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 661 ms
+Total time                                                   -- 701 ms
+build.dart finished [1222 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [573 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 712 ms
+build.dart finished [1228 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 708 ms
+build.dart finished [1225 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 671 ms
+Total time                                                   -- 709 ms
+build.dart finished [1231 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 690 ms
+Total time                                                   -- 730 ms
+build.dart finished [1247 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [563 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 671 ms
+Total time                                                   -- 711 ms
+build.dart finished [1220 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 663 ms
+Total time                                                   -- 700 ms
+build.dart finished [1227 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 661 ms
+Total time                                                   -- 696 ms
+build.dart finished [1211 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [540 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 718 ms
+build.dart finished [1239 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 669 ms
+Total time                                                   -- 704 ms
+build.dart finished [1225 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [537 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 716 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [536 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 659 ms
+Total time                                                   -- 695 ms
+build.dart finished [1209 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [537 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 664 ms
+Total time                                                   -- 701 ms
+build.dart finished [1242 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 668 ms
+Total time                                                   -- 708 ms
+build.dart finished [1273 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [553 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 702 ms
+Total time                                                   -- 744 ms
+build.dart finished [1268 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [583 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 663 ms
+Total time                                                   -- 698 ms
+build.dart finished [1223 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 714 ms
+build.dart finished [1235 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [550 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 666 ms
+Total time                                                   -- 702 ms
+build.dart finished [1234 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [562 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 666 ms
+Total time                                                   -- 701 ms
+build.dart finished [1237 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  35 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 665 ms
+Total time                                                   -- 699 ms
+build.dart finished [1208 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [555 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 671 ms
+Total time                                                   -- 712 ms
+build.dart finished [1246 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [557 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 669 ms
+Total time                                                   -- 709 ms
+build.dart finished [1224 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [586 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 668 ms
+Total time                                                   -- 705 ms
+build.dart finished [1246 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [538 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 710 ms
+build.dart finished [1226 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 664 ms
+Total time                                                   -- 698 ms
+build.dart finished [1252 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 716 ms
+build.dart finished [1254 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  37 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 712 ms
+build.dart finished [1228 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 668 ms
+Total time                                                   -- 705 ms
+build.dart finished [1271 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 694 ms
+Total time                                                   -- 728 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 727 ms
+Total time                                                   -- 776 ms
+build.dart finished [1462 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 671 ms
+Total time                                                   -- 709 ms
+build.dart finished [1256 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 733 ms
+Total time                                                   -- 773 ms
+build.dart finished [1289 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 722 ms
+build.dart finished [1298 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [565 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 717 ms
+build.dart finished [1235 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 720 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 709 ms
+build.dart finished [1284 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 709 ms
+Total time                                                   -- 745 ms
+build.dart finished [1265 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 698 ms
+Total time                                                   -- 738 ms
+build.dart finished [1251 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 710 ms
+build.dart finished [1234 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 713 ms
+build.dart finished [1241 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  29 ms
+build.dart finished [597 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 716 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [575 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  30 ms
+build.dart finished [567 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 715 ms
+build.dart finished [1443 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [626 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 718 ms
+build.dart finished [1292 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [575 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 684 ms
+Total time                                                   -- 724 ms
+build.dart finished [1253 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [563 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 711 ms
+build.dart finished [1257 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [567 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 684 ms
+Total time                                                   -- 721 ms
+build.dart finished [1241 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 684 ms
+Total time                                                   -- 721 ms
+build.dart finished [1283 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  36 ms
+build.dart finished [567 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 716 ms
+Total time                                                   -- 757 ms
+build.dart finished [1303 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [563 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 713 ms
+build.dart finished [1242 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 718 ms
+build.dart finished [1308 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [560 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 719 ms
+build.dart finished [1259 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [573 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 714 ms
+build.dart finished [1237 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [555 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 696 ms
+Total time                                                   -- 735 ms
+build.dart finished [1262 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [554 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 709 ms
+build.dart finished [1233 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 699 ms
+Total time                                                   -- 738 ms
+build.dart finished [1319 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [564 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 687 ms
+Total time                                                   -- 728 ms
+build.dart finished [1270 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  37 ms
+build.dart finished [703 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 727 ms
+Total time                                                   -- 767 ms
+build.dart finished [1541 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart --changed=web/out/contactsbookspa.css --changed=web/out...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 695 ms
+Total time                                                   -- 734 ms
+build.dart finished [1269 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 719 ms
+build.dart finished [1241 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 715 ms
+build.dart finished [1233 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [531 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 723 ms
+build.dart finished [1282 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [613 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 709 ms
+Total time                                                   -- 748 ms
+build.dart finished [1286 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 701 ms
+Total time                                                   -- 738 ms
+build.dart finished [1325 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [577 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 696 ms
+Total time                                                   -- 755 ms
+build.dart finished [1286 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 680 ms
+Total time                                                   -- 738 ms
+build.dart finished [1272 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [562 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 719 ms
+build.dart finished [1265 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [567 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 683 ms
+Total time                                                   -- 722 ms
+build.dart finished [1257 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [569 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 724 ms
+build.dart finished [1248 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [567 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 684 ms
+Total time                                                   -- 720 ms
+build.dart finished [1252 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 688 ms
+Total time                                                   -- 728 ms
+build.dart finished [1245 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 715 ms
+build.dart finished [1232 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [581 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 680 ms
+Total time                                                   -- 720 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 721 ms
+Total time                                                   -- 762 ms
+build.dart finished [1277 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [564 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 683 ms
+Total time                                                   -- 719 ms
+build.dart finished [1245 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [553 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 729 ms
+Total time                                                   -- 768 ms
+build.dart finished [1280 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 715 ms
+build.dart finished [1299 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 688 ms
+Total time                                                   -- 751 ms
+build.dart finished [1317 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [574 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  29 ms
+build.dart finished [707 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 689 ms
+Total time                                                   -- 749 ms
+build.dart finished [1274 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [579 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 721 ms
+Total time                                                   -- 784 ms
+build.dart finished [1338 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [587 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 744 ms
+build.dart finished [1263 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [583 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 710 ms
+Total time                                                   -- 749 ms
+build.dart finished [1285 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  36 ms
+build.dart finished [655 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 704 ms
+Total time                                                   -- 740 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [572 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 688 ms
+Total time                                                   -- 747 ms
+build.dart finished [1273 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 689 ms
+Total time                                                   -- 749 ms
+build.dart finished [1289 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 708 ms
+Total time                                                   -- 743 ms
+build.dart finished [1272 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [564 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 706 ms
+Total time                                                   -- 768 ms
+build.dart finished [1299 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart --changed=web/out/contactsbookspa.css --changed=web/out...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 718 ms
+Total time                                                   -- 756 ms
+build.dart finished [1284 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 713 ms
+Total time                                                   -- 754 ms
+build.dart finished [1277 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 723 ms
+Total time                                                   -- 757 ms
+build.dart finished [1271 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 695 ms
+Total time                                                   -- 759 ms
+build.dart finished [1277 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 693 ms
+Total time                                                   -- 756 ms
+build.dart finished [1272 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 700 ms
+Total time                                                   -- 760 ms
+build.dart finished [1277 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 700 ms
+Total time                                                   -- 758 ms
+build.dart finished [1276 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [554 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 691 ms
+Total time                                                   -- 753 ms
+build.dart finished [1277 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 735 ms
+build.dart finished [1258 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 716 ms
+Total time                                                   -- 756 ms
+build.dart finished [1288 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 708 ms
+Total time                                                   -- 744 ms
+build.dart finished [1273 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 751 ms
+build.dart finished [1285 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [554 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 714 ms
+Total time                                                   -- 752 ms
+build.dart finished [1284 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [540 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 712 ms
+Total time                                                   -- 752 ms
+build.dart finished [1282 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [575 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 750 ms
+build.dart finished [1260 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [555 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 713 ms
+Total time                                                   -- 751 ms
+build.dart finished [1276 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  30 ms
+build.dart finished [732 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 718 ms
+Total time                                                   -- 755 ms
+build.dart finished [1328 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [579 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 716 ms
+Total time                                                   -- 755 ms
+build.dart finished [1318 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [585 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 743 ms
+Total time                                                   -- 782 ms
+build.dart finished [1303 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [555 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  29 ms
+build.dart finished [592 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart --changed=web/out/contactsbookspa.css --changed=web/out...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 714 ms
+Total time                                                   -- 748 ms
+build.dart finished [1490 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [693 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 713 ms
+Total time                                                   -- 751 ms
+build.dart finished [1258 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 709 ms
+Total time                                                   -- 743 ms
+build.dart finished [1271 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 707 ms
+Total time                                                   -- 743 ms
+build.dart finished [1255 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [574 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 722 ms
+Total time                                                   -- 757 ms
+build.dart finished [1271 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart --changed=web/out/contactsbookspa.css --changed=web/out...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 712 ms
+Total time                                                   -- 751 ms
+build.dart finished [1274 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 709 ms
+Total time                                                   -- 748 ms
+build.dart finished [1263 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 710 ms
+Total time                                                   -- 744 ms
+build.dart finished [1256 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 709 ms
+Total time                                                   -- 747 ms
+build.dart finished [1257 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 732 ms
+build.dart finished [1244 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 737 ms
+build.dart finished [1267 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 747 ms
+build.dart finished [1261 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 719 ms
+Total time                                                   -- 757 ms
+build.dart finished [1268 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 716 ms
+Total time                                                   -- 757 ms
+build.dart finished [1277 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 753 ms
+build.dart finished [1277 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 712 ms
+Total time                                                   -- 745 ms
+build.dart finished [1267 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 705 ms
+Total time                                                   -- 741 ms
+build.dart finished [1258 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --full
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 759 ms
+Total time                                                   -- 795 ms
+build.dart finished [1540 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  48 ms
+build.dart finished [911 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 1009 ms
+Total time                                                   -- 1059 ms
+build.dart finished [2627 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  42 ms
+build.dart finished [756 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  33 ms
+build.dart finished [603 ms]
+
+---
+build.dart --machine --full
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 753 ms
+Total time                                                   -- 791 ms
+build.dart finished [1563 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [749 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 713 ms
+Total time                                                   -- 748 ms
+build.dart finished [1426 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [709 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 720 ms
+Total time                                                   -- 757 ms
+build.dart finished [1269 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [585 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 730 ms
+Total time                                                   -- 764 ms
+build.dart finished [1274 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart --changed=web/out/contactsbookspa.css --changed=web/out...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+[{"method":"error","params":{"file":"web/contactsbookspa.dart","message":"The file web cannot be processed. Files cannot be under the output folder (web/out).","line":3,"charStart":28,"charEnd":44}}]
+Total time spent on web/contactsbookspa.html                 -- 559 ms
+Total time                                                   -- 600 ms
+build.dart finished [1134 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+[{"method":"error","params":{"file":"web/contactsbookspa.dart","message":"The file web cannot be processed. Files cannot be under the output folder (web/out).","line":3,"charStart":28,"charEnd":44}}]
+Total time spent on web/contactsbookspa.html                 -- 557 ms
+Total time                                                   -- 593 ms
+build.dart finished [1111 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 717 ms
+Total time                                                   -- 758 ms
+build.dart finished [1267 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [538 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+[{"method":"error","params":{"file":"web/contactsbookspa.dart","message":"unable to open file \"web/add_contact.dart;\n\"","line":10,"charStart":282,"charEnd":360}}]
+Total time spent on web/contactsbookspa.html                 -- 560 ms
+Total time                                                   -- 596 ms
+build.dart finished [1111 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 748 ms
+build.dart finished [1271 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 726 ms
+Total time                                                   -- 764 ms
+build.dart finished [1290 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart --changed=web/out/contactsbookspa.css --changed=web/out/con...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+[{"method":"error","params":{"file":"web/add_contact.dart","message":"The file web cannot be processed. Files cannot be under the output folder (web/out).","line":1,"charStart":0,"charEnd":16}}]
+Total time spent on web/contactsbookspa.html                 -- 573 ms
+Total time                                                   -- 609 ms
+build.dart finished [1117 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 717 ms
+Total time                                                   -- 754 ms
+build.dart finished [1279 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 710 ms
+Total time                                                   -- 747 ms
+build.dart finished [1260 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 722 ms
+Total time                                                   -- 762 ms
+build.dart finished [1265 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [555 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 751 ms
+build.dart finished [1264 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 714 ms
+Total time                                                   -- 758 ms
+build.dart finished [1283 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 713 ms
+Total time                                                   -- 753 ms
+build.dart finished [1269 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 725 ms
+Total time                                                   -- 761 ms
+build.dart finished [1267 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 707 ms
+Total time                                                   -- 744 ms
+build.dart finished [1251 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 727 ms
+Total time                                                   -- 764 ms
+build.dart finished [1274 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 705 ms
+Total time                                                   -- 743 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [540 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 720 ms
+Total time                                                   -- 764 ms
+build.dart finished [1271 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 644 ms
+Total time                                                   -- 684 ms
+build.dart finished [1191 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 643 ms
+Total time                                                   -- 679 ms
+build.dart finished [1191 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  36 ms
+build.dart finished [614 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 723 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 715 ms
+build.dart finished [1228 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 718 ms
+build.dart finished [1239 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 707 ms
+Total time                                                   -- 743 ms
+build.dart finished [1264 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart --changed=web/out/contactsbookspa.css --changed=web/out/con...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 715 ms
+build.dart finished [1243 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 683 ms
+Total time                                                   -- 720 ms
+build.dart finished [1234 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 707 ms
+Total time                                                   -- 742 ms
+build.dart finished [1292 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 711 ms
+build.dart finished [1237 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 722 ms
+build.dart finished [1245 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 713 ms
+build.dart finished [1238 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 696 ms
+Total time                                                   -- 735 ms
+build.dart finished [1254 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 717 ms
+build.dart finished [1232 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [588 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 697 ms
+Total time                                                   -- 736 ms
+build.dart finished [1254 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 671 ms
+Total time                                                   -- 709 ms
+build.dart finished [1225 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 720 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [539 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 714 ms
+build.dart finished [1235 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [550 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 669 ms
+Total time                                                   -- 708 ms
+build.dart finished [1227 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 673 ms
+Total time                                                   -- 712 ms
+build.dart finished [1248 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 713 ms
+build.dart finished [1232 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 712 ms
+build.dart finished [1235 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 720 ms
+build.dart finished [1238 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 723 ms
+build.dart finished [1247 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 715 ms
+build.dart finished [1234 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 672 ms
+Total time                                                   -- 709 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 673 ms
+Total time                                                   -- 711 ms
+build.dart finished [1234 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  33 ms
+build.dart finished [592 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 723 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  32 ms
+build.dart finished [584 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 688 ms
+Total time                                                   -- 727 ms
+build.dart finished [1248 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [557 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  40 ms
+build.dart finished [578 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 690 ms
+Total time                                                   -- 731 ms
+build.dart finished [1260 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 710 ms
+build.dart finished [1234 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  35 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 673 ms
+Total time                                                   -- 715 ms
+build.dart finished [1252 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [563 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 713 ms
+build.dart finished [1232 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [554 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 712 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [557 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 673 ms
+Total time                                                   -- 711 ms
+build.dart finished [1224 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 712 ms
+build.dart finished [1230 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 710 ms
+build.dart finished [1237 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  29 ms
+build.dart finished [918 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 710 ms
+Total time                                                   -- 746 ms
+build.dart finished [1400 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [560 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 722 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [563 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 673 ms
+Total time                                                   -- 710 ms
+build.dart finished [1233 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 716 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 715 ms
+build.dart finished [1241 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 714 ms
+build.dart finished [1245 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [535 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 718 ms
+build.dart finished [1285 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [570 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 718 ms
+build.dart finished [1260 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [555 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 722 ms
+build.dart finished [1241 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [553 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 674 ms
+Total time                                                   -- 713 ms
+build.dart finished [1254 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 723 ms
+build.dart finished [1251 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 717 ms
+build.dart finished [1248 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [573 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 683 ms
+Total time                                                   -- 717 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  29 ms
+build.dart finished [564 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 719 ms
+build.dart finished [1246 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [569 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 722 ms
+build.dart finished [1245 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 668 ms
+Total time                                                   -- 706 ms
+build.dart finished [1220 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 698 ms
+Total time                                                   -- 738 ms
+build.dart finished [1258 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 689 ms
+Total time                                                   -- 728 ms
+build.dart finished [1255 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [557 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 714 ms
+build.dart finished [1239 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 714 ms
+build.dart finished [1234 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 680 ms
+Total time                                                   -- 720 ms
+build.dart finished [1258 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 718 ms
+build.dart finished [1237 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 711 ms
+build.dart finished [1231 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [543 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 684 ms
+Total time                                                   -- 723 ms
+build.dart finished [1243 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 692 ms
+Total time                                                   -- 731 ms
+build.dart finished [1247 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [607 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 714 ms
+build.dart finished [1235 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 683 ms
+Total time                                                   -- 722 ms
+build.dart finished [1244 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [565 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 719 ms
+build.dart finished [1239 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 712 ms
+build.dart finished [1237 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 723 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [562 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 690 ms
+Total time                                                   -- 729 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  35 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 720 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [550 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 712 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [566 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 718 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 721 ms
+build.dart finished [1242 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 716 ms
+build.dart finished [1251 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 717 ms
+build.dart finished [1262 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 721 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 687 ms
+Total time                                                   -- 723 ms
+build.dart finished [1244 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 715 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 724 ms
+build.dart finished [1312 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [553 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  29 ms
+build.dart finished [617 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 719 ms
+build.dart finished [1246 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [575 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  31 ms
+build.dart finished [566 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 687 ms
+Total time                                                   -- 725 ms
+build.dart finished [1258 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  36 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 691 ms
+Total time                                                   -- 726 ms
+build.dart finished [1247 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [551 ms]
+
+---
+build.dart --machine --full
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 1030 ms
+Total time                                                   -- 1084 ms
+build.dart finished [2757 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  53 ms
+build.dart finished [1671 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 715 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 720 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  30 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 850 ms
+Total time                                                   -- 888 ms
+build.dart finished [1854 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  42 ms
+build.dart finished [874 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 725 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 720 ms
+build.dart finished [1261 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [550 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 714 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [562 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 698 ms
+Total time                                                   -- 736 ms
+build.dart finished [1248 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [553 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 711 ms
+build.dart finished [1218 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [529 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 715 ms
+build.dart finished [1235 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [542 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+[{"method":"warning","params":{"file":"web/contactsbookspa.html","message":"Incorrect comment.","line":33,"charStart":1279,"charEnd":1284}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 712 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [557 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 716 ms
+build.dart finished [1236 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [540 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 719 ms
+build.dart finished [1232 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [539 ms]
+
+---
+build.dart --machine --changed=web/contactsbookspa.html
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 688 ms
+Total time                                                   -- 727 ms
+build.dart finished [1231 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [537 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 717 ms
+build.dart finished [1251 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [538 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 716 ms
+build.dart finished [1248 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 697 ms
+Total time                                                   -- 731 ms
+build.dart finished [1264 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 720 ms
+build.dart finished [1256 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 713 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [554 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 692 ms
+Total time                                                   -- 728 ms
+build.dart finished [1255 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [547 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 720 ms
+build.dart finished [1244 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [553 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 718 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [573 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  29 ms
+build.dart finished [683 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 687 ms
+Total time                                                   -- 726 ms
+build.dart finished [1312 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [594 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 714 ms
+Total time                                                   -- 749 ms
+build.dart finished [1270 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [770 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  32 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 681 ms
+Total time                                                   -- 716 ms
+build.dart finished [1303 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 713 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [581 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 683 ms
+Total time                                                   -- 722 ms
+build.dart finished [1271 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 688 ms
+Total time                                                   -- 724 ms
+build.dart finished [1241 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [541 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 692 ms
+Total time                                                   -- 732 ms
+build.dart finished [1244 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [538 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 690 ms
+Total time                                                   -- 730 ms
+build.dart finished [1255 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  54 ms
+build.dart finished [590 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 721 ms
+build.dart finished [1229 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 684 ms
+Total time                                                   -- 722 ms
+build.dart finished [1250 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [557 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 750 ms
+build.dart finished [1273 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 691 ms
+Total time                                                   -- 731 ms
+build.dart finished [1256 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 678 ms
+Total time                                                   -- 718 ms
+build.dart finished [1239 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 684 ms
+Total time                                                   -- 722 ms
+build.dart finished [1238 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  31 ms
+build.dart finished [540 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 676 ms
+Total time                                                   -- 714 ms
+build.dart finished [1240 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [544 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 722 ms
+Total time                                                   -- 761 ms
+build.dart finished [1294 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [539 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 692 ms
+Total time                                                   -- 729 ms
+build.dart finished [1281 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [556 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 711 ms
+Total time                                                   -- 745 ms
+build.dart finished [1259 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  31 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --clean
+Total time                                                   --  76 ms
+build.dart finished [675 ms]
+
+---
+build.dart --machine --full
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 704 ms
+Total time                                                   -- 740 ms
+build.dart finished [1280 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [895 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  32 ms
+build.dart finished [586 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 675 ms
+Total time                                                   -- 717 ms
+build.dart finished [1720 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [548 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  32 ms
+build.dart finished [549 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 739 ms
+Total time                                                   -- 776 ms
+build.dart finished [1339 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [560 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 685 ms
+Total time                                                   -- 722 ms
+build.dart finished [1334 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [550 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  32 ms
+build.dart finished [567 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 688 ms
+Total time                                                   -- 723 ms
+build.dart finished [1293 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [545 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 707 ms
+Total time                                                   -- 745 ms
+build.dart finished [1261 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [546 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 689 ms
+Total time                                                   -- 725 ms
+build.dart finished [1239 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [555 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 680 ms
+Total time                                                   -- 719 ms
+build.dart finished [1237 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 732 ms
+Total time                                                   -- 768 ms
+build.dart finished [1287 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [552 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  32 ms
+build.dart finished [576 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 686 ms
+Total time                                                   -- 725 ms
+build.dart finished [1264 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [576 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 677 ms
+Total time                                                   -- 712 ms
+build.dart finished [1249 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [558 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 692 ms
+Total time                                                   -- 728 ms
+build.dart finished [1280 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart --changed=web/out/contactsbookspa.css --changed=web/out/con...
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 717 ms
+build.dart finished [1247 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [554 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 717 ms
+build.dart finished [1246 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  41 ms
+build.dart finished [639 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 690 ms
+Total time                                                   -- 729 ms
+build.dart finished [1248 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  34 ms
+build.dart finished [554 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 679 ms
+Total time                                                   -- 717 ms
+build.dart finished [1241 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [550 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  32 ms
+build.dart finished [725 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 682 ms
+Total time                                                   -- 719 ms
+build.dart finished [1246 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [559 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 701 ms
+Total time                                                   -- 737 ms
+build.dart finished [1290 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  32 ms
+build.dart finished [561 ms]
+
+---
+build.dart --machine --changed=web/add_contact.dart
+[{"method":"mapping","params":{"from":"web/contactsbookspa.html","to":"web/out/contactsbookspa.html"}}]
+Total time spent on web/contactsbookspa.html                 -- 721 ms
+Total time                                                   -- 761 ms
+build.dart finished [1284 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.css --changed=web/out/contactsbookspa.dart --changed=web...
+Total time                                                   --  33 ms
+build.dart finished [557 ms]
+
+---
+build.dart --machine --changed=web/out/contactsbookspa.html_bootstrap.dart.js --changed=web/out/contactsbookspa...
+Total time                                                   --  33 ms
+build.dart finished [570 ms]
+

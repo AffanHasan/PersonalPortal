@@ -99,7 +99,7 @@ public class ContactsBook extends HttpServlet {
 				//Writing the response
 				response.setContentType("application/json");
 				PrintWriter responseWriter = response.getWriter();
-				responseWriter.println(((contactsBook.keySet().size() > 1) ? contactsBook.keySet() : "[]"));//Return a list of contacts groups
+				responseWriter.println(((contactsBook.keySet().size() > 1) ? JSON.serialize(contactsBook.keySet()) : "[]"));//Return a list of contacts groups
 				responseWriter.close();
 			}
 			break;
@@ -138,9 +138,27 @@ public class ContactsBook extends HttpServlet {
 			    line = in.readLine();
 			}
 			System.out.println(zAPIInputStringP);
-			
+			//Parse the request JSON into object
+			BasicDBObject requestJSON = (BasicDBObject) JSON.parse(zAPIInputStringP);
+	    	BasicDBObject query = new BasicDBObject();
+	    	query.append("_id", this.loggedInUser.getId());
+	    	BasicDBObject operationDoc = new BasicDBObject();
+	    	operationDoc.append("$push", ( new BasicDBObject() ).append(requestJSON.get("groupName").toString()
+	    			, requestJSON.get("contactDocument")));
+			if(this.documentCRUDService.update(query, operationDoc, "contactsBooks")){
+				//Writing the response
+				response.setContentType("text/plain");
+				PrintWriter responseWriter = response.getWriter();
+				responseWriter.println("saved");
+				responseWriter.close();
+			}else{
+				//Writing the response
+				response.setContentType("text/plain");
+				PrintWriter responseWriter = response.getWriter();
+				responseWriter.println("not_saved");
+				responseWriter.close();
+			}
 			break;
-
 		default:
 			break;
 		}

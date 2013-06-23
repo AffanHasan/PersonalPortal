@@ -18,17 +18,16 @@
       <!-- Template for contacts search -->
       <template id="contacts_search"></template>
     </section>
-    <!-- A general full screen dialog used for various tasks such as add/edit a contact or to create a group etc -->
+    <!-- A general full screen dialog used for various tasks such as add/edit a contact or to create a group etc it's z-index is 1 -->
     <div id="general_dialog">
       <section id="general_dialog_header">
         <div id="general_dialog_header_content"></div> 
         <button id="close_general_dialog_btn">❌</button>
       </section>
-      <section id="general_dialog_body">
-      </section>
+      <section id="general_dialog_body"></section>
       <section id="general_dialog_footer"></section>
     </div>
-    <!-- Protective shield used when a dialog is invoked it's visibility is initially display : none-->
+    <!-- Protective shield used when a dialog is invoked it's visibility is initially display : none it's z-index is 0-->
     <div id="overlay_shield"></div>
     
     <script src="../packages/browser/dart.js"></script>

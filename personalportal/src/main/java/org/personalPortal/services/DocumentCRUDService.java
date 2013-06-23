@@ -2,6 +2,7 @@ package org.personalPortal.services;
 
 import java.util.logging.Logger;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -20,9 +21,9 @@ import org.personalPortal.model.EnvProperty;
 /**
  * Session Bean implementation class DocumentCRUDService
  */
-@Stateless(mappedName = "chulbula")
 @LocalBean
 @Local(IBasicDocumentService.class)
+@Stateless(mappedName = "chulbula")
 @TransactionManagement(TransactionManagementType.BEAN)
 public class DocumentCRUDService implements IBasicDocumentService {
 	
@@ -60,12 +61,21 @@ public class DocumentCRUDService implements IBasicDocumentService {
     }
 
 	/**
+	 * Updates a document which is found by the 'query document' parameter with the 'updatedDocument' parameter in the collection specified by 'collectionName' paramter
      * @see IBasicDocumentService#update(DBObject, DBObject, String)
+     * @return true if update is a success, false if not
      */
     @Override
-    public boolean update(DBObject OriginalDocument, DBObject updatedDocument, String collectionName) {
+    public boolean update(DBObject queryDocument, DBObject updatedDocument, String collectionName) {
         // TODO Auto-generated method stub
-			return false;
+    	this.dbCollection = this.db.getCollection(collectionName);
+    	try{
+    		this.dbCollection.update(queryDocument, updatedDocument);
+    		return true;
+    	}catch (MongoException e){
+    		this.logger.severe(e.toString());
+    		return false;
+    	}
     }
 
 	/**
