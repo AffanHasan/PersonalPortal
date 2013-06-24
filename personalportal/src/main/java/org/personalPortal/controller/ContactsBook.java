@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
@@ -80,6 +82,7 @@ public class ContactsBook extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter responseWriter = response.getWriter();
 		if(request.getParameter("action") != null && this.loggedInUser != null)
 		switch (request.getParameter("action")) {
 		case "getContactsGroupList":
@@ -92,14 +95,18 @@ public class ContactsBook extends HttpServlet {
 				this.documentCRUDService.persist(contactsBook, PersonalPortalDBCollections.contactsBooks.name());//Persist the empty contacts book
 				//Writing the response
 				response.setContentType("application/json");
-				PrintWriter responseWriter = response.getWriter();
 				responseWriter.println("[]");//Return am empty list of contacts groups
 				responseWriter.close();
 			}else {//If contacts book document for this user exists
 				//Writing the response
+				Set<String> groupNames = new LinkedHashSet<String>();
+				for(String group : contactsBook.keySet()){
+					if(!group.equals("_id")){
+						groupNames.add(group);
+					}
+				}
 				response.setContentType("application/json");
-				PrintWriter responseWriter = response.getWriter();
-				responseWriter.println(((contactsBook.keySet().size() > 1) ? JSON.serialize(contactsBook.keySet()) : "[]"));//Return a list of contacts groups
+				responseWriter.println(((contactsBook.keySet().size() > 1) ? JSON.serialize(groupNames) : "[]"));//Return a list of contacts groups
 				responseWriter.close();
 			}
 			break;
@@ -112,9 +119,14 @@ public class ContactsBook extends HttpServlet {
 			}
 			//Writing the response
 			response.setContentType("application/json");
-			PrintWriter responseWriter = response.getWriter();
 			responseWriter = response.getWriter();
 			responseWriter.println(JSON.serialize(responseObject));
+			responseWriter.close();
+			break;
+		case "getContactsListForAGroup"://Getting a list of contacts documents for a group
+			response.setContentType("application/json");
+			responseWriter.println(JSON.serialize(((BasicDBObject) this.documentCRUDService.findOneById("contactsBooks", BasicDBObject.class, this.loggedInUser.getId()))
+					.get(request.getParameter("groupName"))));//Return a list of contacts in the requested group
 			responseWriter.close();
 			break;
 		default:

@@ -6541,35 +6541,91 @@ $$.addContactSaveOperation_closure = {"": "Closure;request_0",
 
 $$.loadDataContainerOnFirstLoad_closure = {"": "Closure;",
   call$1: function(responseText) {
-    var jsonList, i, groupName, group, t1;
-    document.createElement("details");
+    var t1, group, jsonList, t2, i, summary, t3;
+    t1 = {};
+    group = document.createElement("details");
+    t1.groupName_1 = null;
     jsonList = $.parse(responseText, null);
     if (typeof jsonList !== "string" && (typeof jsonList !== "object" || jsonList === null || jsonList.constructor !== Array && !$.getInterceptor(jsonList).$isJavaScriptIndexingBehavior))
-      return this.call$1$bailout(1, jsonList);
+      return this.call$1$bailout(1, t1, jsonList, group);
     if ($.get$isEmpty$asx(jsonList))
       ;
     else
-      for (i = 0; i < jsonList.length; ++i) {
-        groupName = $.toString$0(jsonList[i]);
-        group = document.createElement("details");
-        $.appendHtml$1$x(group, "<summary>" + $.S(groupName) + "</summary>");
-        t1 = $.get$children$x(document.querySelector("#data_container"));
-        t1.add$1(t1, group);
+      for (t2 = $.getInterceptor$x(group), i = 0; i < jsonList.length; ++i) {
+        t1.groupName_1 = $.toString$0(jsonList[i]);
+        t2.set$id(group, $.$add$ns(t1.groupName_1, "_group"));
+        summary = document.createElement("summary");
+        t3 = $.getInterceptor$x(summary);
+        t3.set$text(summary, t1.groupName_1);
+        t3.get$onClick(summary).listen$1(new $.loadDataContainerOnFirstLoad__closure(t1));
+        group.appendChild(summary);
+        t3 = $.get$children$x(document.querySelector("#data_container"));
+        t3.add$1(t3, group);
       }
   },
-  call$1$bailout: function(state0, jsonList) {
-    var t1, i, groupName, group, t2;
-    t1 = $.getInterceptor$asx(jsonList);
-    if (t1.get$isEmpty(jsonList) === true)
+  call$1$bailout: function(state0, t1, jsonList, group) {
+    var t2, t3, i, summary, t4;
+    t2 = $.getInterceptor$asx(jsonList);
+    if (t2.get$isEmpty(jsonList) === true)
       ;
     else
-      for (i = 0; $.JSNumber_methods.$lt(i, t1.get$length(jsonList)); ++i) {
-        groupName = $.toString$0(t1.$index(jsonList, i));
-        group = document.createElement("details");
-        $.appendHtml$1$x(group, "<summary>" + $.S(groupName) + "</summary>");
-        t2 = $.get$children$x(document.querySelector("#data_container"));
-        t2.add$1(t2, group);
+      for (t3 = $.getInterceptor$x(group), i = 0; $.JSNumber_methods.$lt(i, t2.get$length(jsonList)); ++i) {
+        t1.groupName_1 = $.toString$0(t2.$index(jsonList, i));
+        t3.set$id(group, $.$add$ns(t1.groupName_1, "_group"));
+        summary = document.createElement("summary");
+        t4 = $.getInterceptor$x(summary);
+        t4.set$text(summary, t1.groupName_1);
+        t4.get$onClick(summary).listen$1(new $.loadDataContainerOnFirstLoad__closure(t1));
+        group.appendChild(summary);
+        t4 = $.get$children$x(document.querySelector("#data_container"));
+        t4.add$1(t4, group);
       }
+  },
+  $isFunction: true
+};
+
+$$.loadDataContainerOnFirstLoad__closure = {"": "Closure;box_1",
+  call$1: function(e) {
+    var t1, t2, t3, t4, t5;
+    t1 = {};
+    t2 = $.get$contactsBook();
+    t3 = this.box_1;
+    t4 = t3.groupName_1;
+    t5 = t2._objectData;
+    if (t5.containsKey$1(t5, t2._symbolToString$1(t4)))
+      ;
+    else {
+      new XMLHttpRequest();
+      t1.contactsList_0 = null;
+      $.HttpRequest_getString($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.baseURL, "getContactsListForAGroup"), "&"), "groupName="), t3.groupName_1), null, null).then$1(new $.loadDataContainerOnFirstLoad___closure(t1, t3));
+    }
+  },
+  $isFunction: true
+};
+
+$$.loadDataContainerOnFirstLoad___closure = {"": "Closure;box_0,box_1",
+  call$1: function(responseText) {
+    var t1, t2, t3, contact, contactElement, t4, t5;
+    t1 = this.box_0;
+    t1.contactsList_0 = $.parse(responseText, null);
+    t2 = this.box_1;
+    t3 = $.JSString_methods.$add($.JSString_methods.$add("#", t2.groupName_1), "_group");
+    $.appendHtml$1$x(document.querySelector(t3), $.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add("<ul id=", t2.groupName_1), "_contacts_list"), "></ul>"));
+    $.Primitives_printString("one");
+    for (t3 = $.get$iterator$ax(t1.contactsList_0); t3.moveNext$0() === true;) {
+      contact = t3.get$current();
+      contactElement = document.createElement("li");
+      t4 = $.getInterceptor$asx(contact);
+      t5 = $.getInterceptor$x(contactElement);
+      t5.appendText$1(contactElement, t4.$index(contact, "name"));
+      t5.appendText$1(contactElement, t4.$index(contact, "comments"));
+      $.Primitives_printString("inside");
+      t4 = $.JSString_methods.$add($.JSString_methods.$add("#", t2.groupName_1), "_contacts_list");
+      document.querySelector(t4).appendChild(contactElement);
+      $.Primitives_printString("after");
+    }
+    t3 = $.get$contactsBook();
+    t3.$indexSet(t3, t2.groupName_1, t1.contactsList_0);
   },
   $isFunction: true
 };
@@ -7765,8 +7821,17 @@ $$.Element = {"": "Node;$$dom_children:children=,id%,innerHtml:innerHTML},title}
   get$children: function(receiver) {
     return $._ChildrenElementList$_wrap(receiver);
   },
+  appendText$1: function(receiver, text) {
+    this.insertAdjacentText$2(receiver, "beforeend", text);
+  },
   appendHtml$1: function(receiver, text) {
     this.insertAdjacentHtml$2(receiver, "beforeend", text);
+  },
+  insertAdjacentText$2: function(receiver, where, text) {
+    if (!!receiver.insertAdjacentText)
+      receiver.insertAdjacentText(where, text);
+    else
+      this._insertAdjacentNode$2(receiver, where, document.createTextNode(text));
   },
   insertAdjacentHtml$2: function(receiver, where, text) {
     var fragment;
@@ -9707,6 +9772,9 @@ $$.SvgElement = {"": "Element;",
     t1 = $.getInterceptor$x(container);
     t1.set$innerHtml(container, "<svg version=\"1.1\">" + $.S(svg) + "</svg>");
     this.set$children(receiver, $.get$children$x($.$index$asx(t1.get$children(container), 0)));
+  },
+  insertAdjacentText$2: function(receiver, where, text) {
+    throw $.wrapException($.UnsupportedError$("Cannot invoke insertAdjacentText on SVG."));
   },
   insertAdjacentHtml$2: function(receiver, where, text) {
     throw $.wrapException($.UnsupportedError$("Cannot invoke insertAdjacentHtml on SVG."));
@@ -13938,7 +14006,7 @@ $.leafTags = null;
 $._callbacksAreEnqueued = false;
 $.Device__isOpera = null;
 $.Device__isIE = null;
-$.baseURL = "http://localhost:8080/personalportal/ContactsBook?action=";
+$.baseURL = "/personalportal/ContactsBook?action=";
 $.enableJsonObjectDebugMessages = false;
 $.cbBaseURL = "/personalportal/ContactsBook?action=";
 $.commAccessURL = "/personalportal/CommonAccessPoint?action=";

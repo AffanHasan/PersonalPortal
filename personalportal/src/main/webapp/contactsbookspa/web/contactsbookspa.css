@@ -18,7 +18,10 @@ h1{
 }
 
 #general_dialog_body{
-  height: 100%;
+  height: 82%;
+  margin-top: 50px;
+  margin-bottom: 4px;
+  overflow: auto;
 }
 
 #general_dialog_header{
