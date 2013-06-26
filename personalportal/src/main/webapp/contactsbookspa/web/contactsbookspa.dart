@@ -4,6 +4,7 @@ import 'dart:html';
 import 'dart:json' as json;
 import 'package:lib/cb_locale_data.dart' as cb_locale_data;
 import 'package:web_ui/web_ui.dart';
+import 'package:web_ui/watcher.dart' as watchers;
 import "package:json_object/json_object.dart";
 import "package:pp_commons/pp_common_ui.dart" as pp_comm_ui;
 
@@ -31,6 +32,7 @@ void main() {
   renderBasicUIOnFirstLoad();
   
   //TODO : Load initial data container
+  print("--- calling loadDataContainerOnFirstLoad");
   loadDataContainerOnFirstLoad();
 }
 
@@ -54,16 +56,17 @@ void loadDataContainerOnFirstLoad(){
         List<String> jsonList = json.parse(responseText);//Server returns json list of contacts groups
         if(jsonList.isEmpty){//If no contacts in this book
         }
-        else
+        else{
           for(int i = 0; i < jsonList.length; i++ ){
             groupName = jsonList[i].toString();
+            contactsBook[groupName] = "";
+            print("contactsBook.keys.length : " + contactsBook.keys.length.toString());
             group.id=groupName + "_group";
             HtmlElement summary = new Element.tag("summary");
             summary.text = groupName;
             summary.onClick.listen(
                 (Event e){
                   if(contactsBook.containsKey(groupName)){
-                    
                   }else{
                     //Sending the GET request to the server
                     HttpRequest request = new HttpRequest();
@@ -74,14 +77,11 @@ void loadDataContainerOnFirstLoad(){
                           contactsList = json.parse(responseText);
                           query("#" + groupName + "_group").appendHtml("<ul id="+groupName + "_contacts_list"+"></ul>");
                           LIElement contactElement;
-                          print("one");
                           for(JsonObject contact in contactsList){
                             contactElement = new LIElement();
                             contactElement.appendText(contact["name"]);
                             contactElement.appendText(contact["comments"]);
-                            print("inside");
                             query("#" + groupName + "_contacts_list").append(contactElement);
-                            print("after");
                           }
                           contactsBook[groupName] = contactsList;
                         }
@@ -91,7 +91,9 @@ void loadDataContainerOnFirstLoad(){
             );
             group.append(summary);
             query("#data_container").children.add(group);
+            watchers.dispatch();
           }
+        }
       }
   );
 }

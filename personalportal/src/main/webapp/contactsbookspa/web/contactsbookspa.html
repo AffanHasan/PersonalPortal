@@ -15,8 +15,10 @@
     <section id="control_panel"></section>
     <section id="data_container">
       <!-- Template for contacts groups collapsible sections -->
-      <template id="collapsable_contacts_grouping" iterate="keys in contactsBook.keys" instantiate="showCCG">
-        <div>keys</div>
+      <template id="collapsable_contacts_grouping" instantiate="if showCCG">
+        <template iterate="key in contactsBook.keys">
+          <details><summary>{{key}}</summary></details>
+        </template>
       </template>
       <!-- Template for contacts search -->
       <template id="contacts_search" instantiate="if showCS"></template>
