@@ -32,7 +32,6 @@ void main() {
   renderBasicUIOnFirstLoad();
   
   //TODO : Load initial data container
-  print("--- calling loadDataContainerOnFirstLoad");
   loadDataContainerOnFirstLoad();
 }
 
@@ -48,49 +47,18 @@ void renderBasicUIOnFirstLoad(){
  * To load the data_container div on application start up
  */
 void loadDataContainerOnFirstLoad(){
-  DivElement data_container = query("#data_container");
+  //DivElement data_container = query("#data_container");
+  //Getting list of contacts group
   HttpRequest.getString(baseURL + "getContactsGroupList").then(
       (String responseText){
         DetailsElement group = new DetailsElement();
         String groupName;
-        List<String> jsonList = json.parse(responseText);//Server returns json list of contacts groups
-        if(jsonList.isEmpty){//If no contacts in this book
+        List<String> groupList = json.parse(responseText);//Server returns json list of contacts groups
+        if(groupList.isEmpty){//If no contacts in this book
         }
         else{
-          for(int i = 0; i < jsonList.length; i++ ){
-            groupName = jsonList[i].toString();
+          for(String groupName in groupList){
             contactsBook[groupName] = "";
-            print("contactsBook.keys.length : " + contactsBook.keys.length.toString());
-            group.id=groupName + "_group";
-            HtmlElement summary = new Element.tag("summary");
-            summary.text = groupName;
-            summary.onClick.listen(
-                (Event e){
-                  if(contactsBook.containsKey(groupName)){
-                  }else{
-                    //Sending the GET request to the server
-                    HttpRequest request = new HttpRequest();
-                    List<JsonObject> contactsList;
-                    // add an event handler that is called when the request finishes
-                    HttpRequest.getString(baseURL + "getContactsListForAGroup" + "&" + "groupName=" + groupName).then(
-                        (String responseText){
-                          contactsList = json.parse(responseText);
-                          query("#" + groupName + "_group").appendHtml("<ul id="+groupName + "_contacts_list"+"></ul>");
-                          LIElement contactElement;
-                          for(JsonObject contact in contactsList){
-                            contactElement = new LIElement();
-                            contactElement.appendText(contact["name"]);
-                            contactElement.appendText(contact["comments"]);
-                            query("#" + groupName + "_contacts_list").append(contactElement);
-                          }
-                          contactsBook[groupName] = contactsList;
-                        }
-                    );
-                  }
-                }
-            );
-            group.append(summary);
-            query("#data_container").children.add(group);
             watchers.dispatch();
           }
         }
@@ -121,6 +89,24 @@ void renderControlsPanelOnFirstLoad(){
       }
   );
   query("#control_panel").append(addGroupBtn);
+}
+
+/**
+ * It checks if the contactsBook Map contains a contacts list for a group name or not,
+ * if not then load it from server and add it to the contactsBook map.
+ * */
+void loadContactsListForGroup(String groupName, Event event){
+  print('Inside contactGroupOnClick method');
+  if(contactsBook[groupName].isEmpty){
+    List<JsonObject> contactsList;
+    HttpRequest.getString(baseURL + "getContactsListForAGroup" + "&" + "groupName=" + groupName).then(
+        (String responseText){
+          contactsList = json.parse(responseText);
+          contactsBook[groupName] = contactsList;
+          watchers.dispatch();
+        }
+    );
+  }
 }
 
 /**

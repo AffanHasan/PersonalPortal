@@ -317,8 +317,18 @@ void addContactSaveOperation(Event e){
     if (request.readyState == HttpRequest.DONE &&
         (request.status == 200 || request.status == 0)) {
       //Close general dialog only if save is success full
-      if(request.responseText.startsWith("saved"))
+      if(request.responseText.startsWith("saved")){
+        //Updating the contacts list for this group
+        List<JsonObject> contactsList;
+        HttpRequest.getString(baseURL + "getContactsListForAGroup" + "&" + "groupName=" + groupInput.value).then(
+            (String responseText){
+              contactsList = json.parse(responseText);
+              contactsBook[groupInput.value] = contactsList;
+              watchers.dispatch();
+            }
+        ); 
         closeGeneralDialog();
+      }
       else{
       }
     }
