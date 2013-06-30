@@ -18,10 +18,11 @@
       <template id="collapsable_contacts_grouping" instantiate="if showCCG">
         <template iterate="groupName in contactsBook.keys">
           <details id={{groupName}}_group>
-            <summary on-click="loadContactsListForGroup('$groupName', $event)">{{groupName}}</summary>
+            <summary on-click="loadContactsListForGroup('$groupName', true, $event)">{{groupName}}</summary>
             <ul id={{groupName}}_contacts_list template iterate="contact in contactsBook['$groupName']"> 
               <li>
-                <span name="contact_name">{{contact['name']}}</span><span name="contact_comments">{{contact['comments']}}</span>
+                <span name="contact_name">{{contact['name']}}</span>
+                <span name="contact_comments">{{ contact['comments'] == null ? "" : contact['comments'] }}</span>
               </li> 
             </ul>
           </details>

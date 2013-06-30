@@ -10,7 +10,12 @@ void populateGeneralDialogForAddContact(){
   HtmlElement bodySection = query("#general_dialog_body");
   SelectElement groupSelection = new SelectElement();
   groupSelection.id="add_contact_group_selection";
-  groupSelection.children.add(new OptionElement("uncategorized", "uncategorized", true, true));
+  if(!contactsBook.containsKey(cb_locale_data.getPropertyValue("uncategorizedGroup")))
+    groupSelection.children.add(new OptionElement(cb_locale_data.getPropertyValue("uncategorizedGroup"), 
+                                                  cb_locale_data.getPropertyValue("uncategorizedGroup"), true, true));
+  for(String item in contactsBook.keys){
+    groupSelection.children.add(new OptionElement(item));
+  }
   bodySection.appendHtml("<label for='add_contact_group_selection'>Group: </label>");
   bodySection.append(groupSelection);//Add Group selection combo to pop up body section
   
@@ -305,28 +310,43 @@ void addContactSaveOperation(Event e){
     window.alert(pp_comm_ui.getPropertyValue("name") + " : " + cb_locale_data.getPropertyValue("required"));
     return;
   }
+  //Preparing request data
+  JsonObject requestData = new JsonObject();
   //Getting group name
   SelectElement groupInput = query("#add_contact_group_selection");
-  JsonObject requestData = new JsonObject();
   requestData["groupName"] = groupInput.value;
-  requestData["contactDocument"] = contact;
+  List<JsonObject> contactsList;
+  if(!contactsBook.containsKey(groupInput.value))
+    contactsBook[groupInput.value] = "";
+  if(!contactsBook[groupInput.value].isEmpty){
+    contactsList = contactsBook[groupInput.value].toList();
+  }
+  else{
+    print("Loading from server list is empty");
+    loadContactsListForGroup(groupInput.value, false, null);
+    contactsList = contactsBook[groupInput.value].toList();
+  }
+  //Assigning this contact an id fot this group
+  contact['_id'] = contactsList.length;
+  contactsList.add(contact);
+  contactsList.sort(//Sorting the contacts list by name
+      (a, b){
+        String name1 = a['name'];
+        String name2 = b['name'];
+        return name1.compareTo(name2);
+      }
+  );
+  requestData["contactsList"] = contactsList;
+  //Updating the contacts list for this group
+  contactsBook[groupInput.value] = contactsList;
   //Sending the post request to the server
   HttpRequest request = new HttpRequest();
   // add an event handler that is called when the request finishes
   request.onReadyStateChange.listen((_) {
     if (request.readyState == HttpRequest.DONE &&
         (request.status == 200 || request.status == 0)) {
-      //Close general dialog only if save is success full
-      if(request.responseText.startsWith("saved")){
-        //Updating the contacts list for this group
-        List<JsonObject> contactsList;
-        HttpRequest.getString(baseURL + "getContactsListForAGroup" + "&" + "groupName=" + groupInput.value).then(
-            (String responseText){
-              contactsList = json.parse(responseText);
-              contactsBook[groupInput.value] = contactsList;
-              watchers.dispatch();
-            }
-        ); 
+      if(request.responseText.startsWith("saved")){//Close general dialog only if save is success full
+        watchers.dispatch();
         closeGeneralDialog();
       }
       else{

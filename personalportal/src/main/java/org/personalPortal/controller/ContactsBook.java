@@ -23,6 +23,7 @@ import org.personalPortal.model.PersonalPortalDBCollections;
 import org.personalPortal.model.PortalUser;
 import org.personalPortal.services.DocumentCRUDService;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -138,41 +139,72 @@ public class ContactsBook extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("action") != null && this.loggedInUser != null)
-		switch (request.getParameter("action")) {
-		case "addSingleContact":
-			String zAPIInputStringP = "";
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-			                request.getInputStream()));
-			String line = in.readLine();
-			while (line != null) {
-			    zAPIInputStringP += line;
-			    line = in.readLine();
+		if(request.getParameter("action") != null && this.loggedInUser != null){
+			String postString = ""; BufferedReader in; String line; BasicDBObject postRequestDataInJSON;  			
+			switch (request.getParameter("action")) {
+			case "addSingleContact":
+			{
+				in = new BufferedReader(new InputStreamReader(
+				                request.getInputStream()));
+				line = in.readLine();
+				while (line != null) {
+				    postString += line;
+				    line = in.readLine();
+				}
+				//Parse the request JSON into object
+				postRequestDataInJSON = (BasicDBObject) JSON.parse(postString);
+		    	BasicDBObject query = new BasicDBObject();
+		    	query.append("_id", this.loggedInUser.getId());
+		    	BasicDBObject operationDoc = new BasicDBObject();
+		    	operationDoc.append("$set", (new BasicDBObject()).append((String) postRequestDataInJSON.get("groupName"), postRequestDataInJSON.get("contactsList")));
+				if(this.documentCRUDService.update(query, operationDoc, "contactsBooks")){
+					//Writing the response
+					response.setContentType("text/plain");
+					PrintWriter responseWriter = response.getWriter();
+					responseWriter.println("saved");
+					responseWriter.close();
+				}else{
+					//Writing the response
+					response.setContentType("text/plain");
+					PrintWriter responseWriter = response.getWriter();
+					responseWriter.println("not_saved");
+					responseWriter.close();
+				}
+				break;
 			}
-			System.out.println(zAPIInputStringP);
-			//Parse the request JSON into object
-			BasicDBObject requestJSON = (BasicDBObject) JSON.parse(zAPIInputStringP);
-	    	BasicDBObject query = new BasicDBObject();
-	    	query.append("_id", this.loggedInUser.getId());
-	    	BasicDBObject operationDoc = new BasicDBObject();
-	    	operationDoc.append("$push", ( new BasicDBObject() ).append(requestJSON.get("groupName").toString()
-	    			, requestJSON.get("contactDocument")));
-			if(this.documentCRUDService.update(query, operationDoc, "contactsBooks")){
-				//Writing the response
-				response.setContentType("text/plain");
-				PrintWriter responseWriter = response.getWriter();
-				responseWriter.println("saved");
-				responseWriter.close();
-			}else{
-				//Writing the response
-				response.setContentType("text/plain");
-				PrintWriter responseWriter = response.getWriter();
-				responseWriter.println("not_saved");
-				responseWriter.close();
+			case "createNewGroup":
+			{	
+				postString = "";
+				in = new BufferedReader(new InputStreamReader(
+				                request.getInputStream()));
+				line = in.readLine();
+				while (line != null) {
+				    postString += line;
+				    line = in.readLine();
+				}
+				postRequestDataInJSON = (BasicDBObject) JSON.parse(postString);
+		    	BasicDBObject query = new BasicDBObject();
+		    	query.append("_id", this.loggedInUser.getId());
+		    	BasicDBObject operationDoc = new BasicDBObject();
+		    	operationDoc.append("$set", (new BasicDBObject()).append((String) postRequestDataInJSON.get("groupName"), ""));
+				if(this.documentCRUDService.update(query, operationDoc, "contactsBooks")){
+					//Writing the response
+					response.setContentType("text/plain");
+					PrintWriter responseWriter = response.getWriter();
+					responseWriter.println("saved");
+					responseWriter.close();
+				}else{
+					//Writing the response
+					response.setContentType("text/plain");
+					PrintWriter responseWriter = response.getWriter();
+					responseWriter.println("not_saved");
+					responseWriter.close();
+				}
+				break;
 			}
-			break;
-		default:
-			break;
+			default:
+				break;
+			}
 		}
 	}
 

@@ -9,6 +9,7 @@ import "package:json_object/json_object.dart";
 import "package:pp_commons/pp_common_ui.dart" as pp_comm_ui;
 
 part "add_contact.dart";
+part "add_group.dart";
 
 /**
  * Holds the contacts book state
@@ -85,7 +86,8 @@ void renderControlsPanelOnFirstLoad(){
   addGroupBtn.id = "add_contacts_group";
   addGroupBtn.onClick.listen(
       (Event e){
-        window.alert("Under construction");
+        launchGeneralDialog();
+        populateGeneralDialogForAddGroup();
       }
   );
   query("#control_panel").append(addGroupBtn);
@@ -94,18 +96,35 @@ void renderControlsPanelOnFirstLoad(){
 /**
  * It checks if the contactsBook Map contains a contacts list for a group name or not,
  * if not then load it from server and add it to the contactsBook map.
+ * Also has an option of asynchronous or synchronous requests.
  * */
-void loadContactsListForGroup(String groupName, Event event){
-  print('Inside contactGroupOnClick method');
+void loadContactsListForGroup(String groupName, bool asynchronous, Event event){
   if(contactsBook[groupName].isEmpty){
-    List<JsonObject> contactsList;
-    HttpRequest.getString(baseURL + "getContactsListForAGroup" + "&" + "groupName=" + groupName).then(
-        (String responseText){
-          contactsList = json.parse(responseText);
-          contactsBook[groupName] = contactsList;
+    if(asynchronous){
+      List<JsonObject> contactsList;
+      HttpRequest.getString(baseURL + "getContactsListForAGroup" + "&" + "groupName=" + groupName).then(
+          (String responseText){
+            contactsList = json.parse(responseText);
+            contactsBook[groupName] = (contactsList == null || contactsList.isEmpty) ? new List<JsonObject>() : contactsList;
+            watchers.dispatch();
+          }
+      );
+    }else{
+      //Sending the post request to the server
+      HttpRequest request = new HttpRequest();
+      // add an event handler that is called when the request finishes
+      request.onReadyStateChange.listen((_) {
+        if (request.readyState == HttpRequest.DONE &&
+            (request.status == 200 || request.status == 0)) {
+          List<JsonObject> contactsList;
+          contactsList = json.parse(request.responseText);
+          contactsBook[groupName] = (contactsList == null || contactsList.isEmpty) ? new List<JsonObject>() : contactsList;
           watchers.dispatch();
         }
-    );
+      });
+      request.open("GET", baseURL + "getContactsListForAGroup" + "&" + "groupName=" + groupName, async: false);
+      request.send();
+    }
   }
 }
 
@@ -113,8 +132,8 @@ void loadContactsListForGroup(String groupName, Event event){
  * To launch the general dialog use this function and pass the type of action as string parameter
  */
 void launchGeneralDialog(){
-  query("#overlay_shield").style.display = "inline";
-  query("#general_dialog").style.display = "inline";
+ query("#overlay_shield").style.display = "inline";
+ query("#general_dialog").style.display = "inline";
 }
 
 void closeGeneralDialog(){

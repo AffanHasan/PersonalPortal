@@ -1619,6 +1619,16 @@ $$.JSArray = {"": "List/Interceptor;",
       $.throwExpression($.UnsupportedError$("set range"));
     $.IterableMixinWorkaround_setRangeList(receiver, start, end, iterable, skipCount);
   },
+  sort$1: function(receiver, compare) {
+    var t1;
+    if (!!receiver.immutable$list)
+      $.throwExpression($.UnsupportedError$("sort"));
+    t1 = receiver.length - 1;
+    if (t1 - 0 <= 32)
+      $.Sort_insertionSort_(receiver, 0, t1, compare);
+    else
+      $.Sort__dualPivotQuicksort(receiver, 0, t1, compare);
+  },
   indexOf$2: function(receiver, element, start) {
     return $.Arrays_indexOf(receiver, element, start, receiver.length);
   },
@@ -4363,6 +4373,13 @@ $$.ListMixin = {"": "Object;",
     this.set$length(receiver, $.$sub$n(this.get$length(receiver), 1));
     return result;
   },
+  sort$1: function(receiver, compare) {
+    var t1 = $.$sub$n(this.get$length(receiver), 1);
+    if ($.$le$n($.$sub$n(t1, 0), 32) === true)
+      $.Sort_insertionSort_(receiver, 0, t1, compare);
+    else
+      $.Sort__dualPivotQuicksort(receiver, 0, t1, compare);
+  },
   _rangeCheck$2: function(receiver, start, end) {
     var t1 = $.getInterceptor$n(start);
     if (t1.$lt(start, 0) === true || t1.$gt(start, this.get$length(receiver)) === true)
@@ -5345,6 +5362,11 @@ $$.Duration = {"": "Object;_duration<",
   $mul: function(_, factor) {
     return $.Duration$(0, 0, this._duration * factor, 0, 0, 0);
   },
+  $tdiv: function(_, quotient) {
+    if (quotient === 0)
+      throw $.wrapException($.IntegerDivisionByZeroException$());
+    return $.Duration$(0, 0, $.JSNumber_methods.$tdiv(this._duration, quotient), 0, 0, 0);
+  },
   $lt: function(_, other) {
     return $.JSNumber_methods.$lt(this._duration, other.get$_duration());
   },
@@ -5701,6 +5723,9 @@ $$.Object = {"": ";",
   $sub: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("-", "$sub", 0, [$0], []));
   },
+  $tdiv: function($receiver, $0) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("~/", "$tdiv", 0, [$0], []));
+  },
   $xor: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("^", "$xor", 0, [$0], []));
   },
@@ -5857,6 +5882,9 @@ $$.Object = {"": ";",
   get$nodes: function($receiver) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("nodes", "get$nodes", 1, [], []));
   },
+  get$onChange: function($receiver) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("onChange", "get$onChange", 1, [], []));
+  },
   get$onClick: function($receiver) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("onClick", "get$onClick", 1, [], []));
   },
@@ -6012,6 +6040,9 @@ $$.Object = {"": ";",
   },
   setValueWorkaround$2: function($0, $1) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("setValueWorkaround", "setValueWorkaround$2", 0, [$0, $1], []));
+  },
+  sort$1: function($receiver, $0) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("sort", "sort$1", 0, [$0], []));
   },
   split$1: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("split", "split$1", 0, [$0], []));
@@ -6183,6 +6214,9 @@ $$._ChildrenElementList = {"": "ListBase;_element,_childElements",
     for (t1 = $.get$iterator$ax(iterable), t2 = this._element; t1.moveNext$0() === true;)
       t2.appendChild(t1.get$current());
   },
+  sort$1: function(_, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort element lists"));
+  },
   setRange$4: function(_, start, end, iterable, skipCount) {
     throw $.wrapException($.UnimplementedError$(null));
   },
@@ -6233,6 +6267,9 @@ $$._FrozenElementList = {"": "ListBase;_nodeList",
   },
   set$length: function(_, newLength) {
     throw $.wrapException($.UnsupportedError$("Cannot modify list"));
+  },
+  sort$1: function(_, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort list"));
   },
   $asListBase: null,
   $asList: null,
@@ -6432,6 +6469,9 @@ $$._ChildNodeListLazy = {"": "ListBase;_this",
   },
   get$iterator: function(_) {
     return $.NodeList_methods.get$iterator(this._this.childNodes);
+  },
+  sort$1: function(_, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort Node list"));
   },
   setRange$4: function(_, start, end, iterable, skipCount) {
     throw $.wrapException($.UnsupportedError$("Cannot setRange on Node list"));
@@ -6676,6 +6716,9 @@ $$.ImmutableListMixin = {"": "Object;",
   },
   addAll$1: function(receiver, iterable) {
     throw $.wrapException($.UnsupportedError$("Cannot add to immutable List."));
+  },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -7323,6 +7366,9 @@ $$._WrappedList = {"": "ListBase;_list",
   set$length: function(_, newLength) {
     $.set$length$asx(this._list, newLength);
   },
+  sort$1: function(_, compare) {
+    $.sort$1$ax(this._list, compare);
+  },
   indexOf$2: function(_, element, start) {
     return $.indexOf$2$asx(this._list, element, start);
   },
@@ -7824,6 +7870,9 @@ $$.FilteredElementList = {"": "ListBase;_node,_childNodes",
     var t1, t2;
     for (t1 = $.get$iterator$ax(iterable), t2 = this._childNodes._this; t1.moveNext$0() === true;)
       t2.appendChild(t1.get$current());
+  },
+  sort$1: function(_, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort filtered list"));
   },
   setRange$4: function(_, start, end, iterable, skipCount) {
     throw $.wrapException($.UnsupportedError$("Cannot setRange on filtered list"));
@@ -8382,35 +8431,89 @@ $$.populateGeneralDialogForAddContact_closure4 = {"": "Closure;additionalInfoDiv
   $isFunction: true
 };
 
-$$.addContactSaveOperation_closure = {"": "Closure;groupInput_1,request_2",
+$$.addContactSaveOperation_closure = {"": "Closure;",
+  call$2: function(a, b) {
+    return $.compareTo$1$ns($.$index$asx(a, "name"), $.$index$asx(b, "name"));
+  },
+  $isFunction: true
+};
+
+$$.addContactSaveOperation_closure0 = {"": "Closure;request_0",
   call$1: function(_) {
-    var t1, t2, t3;
-    t1 = {};
-    t2 = this.request_2;
-    if (t2.readyState === 4) {
-      t3 = t2.status;
-      t3 = t3 === 200 || t3 === 0;
+    var t1, t2;
+    t1 = this.request_0;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
     } else
-      t3 = false;
-    if (t3)
-      if ($.startsWith$1$s(t2.responseText, "saved")) {
-        t1.contactsList_0 = null;
-        t2 = this.groupInput_1;
-        $.HttpRequest_getString($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.baseURL, "getContactsListForAGroup"), "&"), "groupName="), $.get$value$x(t2)), null, null).then$1(new $.addContactSaveOperation__closure(t1, t2));
+      t2 = false;
+    if (t2)
+      if ($.startsWith$1$s(t1.responseText, "saved")) {
+        $.dispatch();
         $.closeGeneralDialog();
       }
   },
   $isFunction: true
 };
 
-$$.addContactSaveOperation__closure = {"": "Closure;box_0,groupInput_3",
-  call$1: function(responseText) {
+$$.populateGeneralDialogForAddGroup_closure = {"": "Closure;groupNameInput_0",
+  call$1: function(e) {
+    var t1, t2, t3, t4, t5;
+    t1 = $.get$contactsBook();
+    t2 = this.groupNameInput_0;
+    t3 = $.getInterceptor$x(t2);
+    t4 = t3.get$value(t2);
+    t5 = t1._objectData;
+    if (t5.containsKey$1(t5, t1._symbolToString$1(t4))) {
+      window.alert($.getPropertyValue("alreadyExist"));
+      t3.set$value(t2, "");
+      $.set$innerHtml$x(document.querySelector("#general_dialog_footer"), "");
+    } else {
+      if ($.get$isEmpty$asx($.trim$0$s(t3.get$value(t2))) !== true) {
+        $.set$innerHtml$x(document.querySelector("#general_dialog_footer"), "");
+        $.populateGeneralDialogFooterAddGroup();
+        return;
+      }
+      $.set$innerHtml$x(document.querySelector("#general_dialog_footer"), "");
+      return;
+    }
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogFooterAddGroup_closure = {"": "Closure;",
+  call$1: function(e) {
+    var groupNameInput, requestData, request, t1, output;
+    groupNameInput = document.querySelector("#new_goup_name_input");
+    requestData = $.JsonObject$(null);
+    requestData.$indexSet(requestData, "groupName", $.get$value$x(groupNameInput));
+    request = new XMLHttpRequest();
+    t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
+    $._EventStreamSubscription$(t1._target, t1._eventType, new $.populateGeneralDialogFooterAddGroup__closure(groupNameInput, request), t1._useCapture);
+    $.HttpRequest_methods.open$3$async(request, "POST", $.JSString_methods.$add($.baseURL, "createNewGroup"), false);
+    output = $.StringBuffer$("");
+    $._JsonStringifier$(output).stringifyValue$1(requestData);
+    request.send(output._contents);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogFooterAddGroup__closure = {"": "Closure;groupNameInput_0,request_1",
+  call$1: function(_) {
     var t1, t2;
-    t1 = this.box_0;
-    t1.contactsList_0 = $.parse(responseText, null);
-    t2 = $.get$contactsBook();
-    t2.$indexSet(t2, $.get$value$x(this.groupInput_3), t1.contactsList_0);
-    $.dispatch();
+    t1 = this.request_1;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
+    } else
+      t2 = false;
+    if (t2)
+      if ($.startsWith$1$s(t1.responseText, "saved")) {
+        t1 = $.get$contactsBook();
+        t1.$indexSet(t1, $.get$value$x(this.groupNameInput_0), "");
+        $.dispatch();
+        $.closeGeneralDialog();
+      }
   },
   $isFunction: true
 };
@@ -8445,19 +8548,51 @@ $$.renderControlsPanelOnFirstLoad_closure = {"": "Closure;",
 
 $$.renderControlsPanelOnFirstLoad_closure0 = {"": "Closure;",
   call$1: function(e) {
-    window.alert("Under construction");
+    $.set$display$x(document.querySelector("#overlay_shield").style, "inline");
+    $.set$display$x(document.querySelector("#general_dialog").style, "inline");
+    $.populateGeneralDialogForAddGroup();
   },
   $isFunction: true
 };
 
 $$.loadContactsListForGroup_closure = {"": "Closure;box_0,groupName_1",
   call$1: function(responseText) {
-    var t1, t2;
+    var t1, t2, t3;
     t1 = this.box_0;
     t1.contactsList_0 = $.parse(responseText, null);
     t2 = $.get$contactsBook();
-    t2.$indexSet(t2, this.groupName_1, t1.contactsList_0);
+    t3 = t1.contactsList_0;
+    if (t3 == null || $.get$isEmpty$asx(t3) === true) {
+      t1 = $.List_List($, $.JsonObject);
+      t1.$builtinTypeInfo = [$.JsonObject];
+    } else
+      t1 = t1.contactsList_0;
+    t2.$indexSet(t2, this.groupName_1, t1);
     $.dispatch();
+  },
+  $isFunction: true
+};
+
+$$.loadContactsListForGroup_closure0 = {"": "Closure;groupName_2,request_3",
+  call$1: function(_) {
+    var t1, t2, contactsList;
+    t1 = this.request_3;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
+    } else
+      t2 = false;
+    if (t2) {
+      contactsList = $.parse(t1.responseText, null);
+      t1 = $.get$contactsBook();
+      if (contactsList == null || $.get$isEmpty$asx(contactsList) === true) {
+        t2 = $.List_List($, $.JsonObject);
+        t2.$builtinTypeInfo = [$.JsonObject];
+      } else
+        t2 = contactsList;
+      t1.$indexSet(t1, this.groupName_2, t2);
+      $.dispatch();
+    }
   },
   $isFunction: true
 };
@@ -8520,7 +8655,7 @@ $$.init_autogenerated___closure = {"": "Closure;groupName_6",
 
 $$.init_autogenerated___closure0 = {"": "Closure;groupName_7",
   call$1: function($$event) {
-    $.loadContactsListForGroup($.S(this.groupName_7), $$event);
+    $.loadContactsListForGroup($.S(this.groupName_7), true, $$event);
   },
   $isFunction: true
 };
@@ -8559,7 +8694,7 @@ $$.init_autogenerated___closure4 = {"": "Closure;__html2_10",
     __e3 = $.$index$asx(t1.get$nodes(__e6), 1);
     __binding2 = __t.contentBind$2(new $.init_autogenerated____closure(contact), false);
     $.add$1$ax($.get$nodes$x(__e3), __binding2);
-    __e5 = $.$index$asx(t1.get$nodes(__e6), 2);
+    __e5 = $.$index$asx(t1.get$nodes(__e6), 3);
     __binding4 = __t.contentBind$2(new $.init_autogenerated____closure0(contact), false);
     $.add$1$ax($.get$nodes$x(__e5), __binding4);
     $.addAll$1$ax(__t, [document.createTextNode(" \n              "), __e6, document.createTextNode(" \n            ")]);
@@ -8576,7 +8711,10 @@ $$.init_autogenerated____closure = {"": "Closure;contact_11",
 
 $$.init_autogenerated____closure0 = {"": "Closure;contact_12",
   call$0: function() {
-    return $.$index$asx(this.contact_12, "comments");
+    var t1, t2;
+    t1 = this.contact_12;
+    t2 = $.getInterceptor$asx(t1);
+    return t2.$index(t1, "comments") == null ? "" : t2.$index(t1, "comments");
   },
   $isFunction: true
 };
@@ -9830,6 +9968,9 @@ $$.Document = {"": "Node;implementation=",
       return receiver.webkitRegister($name, $.convertDartToNative_Dictionary(options));
     return receiver.webkitRegister($name);
   },
+  get$onChange: function(receiver) {
+    return $.EventStreamProvider_change.forTarget$1(receiver);
+  },
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
   },
@@ -10055,6 +10196,9 @@ $$.Element = {"": "Node;_templateIterator%,_templateInstanceRef},_templateConten
     if (!(receiver.tagName === "TEMPLATE" || this.get$_isAttributeTemplate(receiver)))
       throw $.wrapException($.UnsupportedError$($.S(receiver) + " is not a template."));
     $.TemplateElement_decorate(receiver, null);
+  },
+  get$onChange: function(receiver) {
+    return $.EventStreamProvider_change.forTarget$1(receiver);
   },
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
@@ -11298,6 +11442,9 @@ $$.Window = {"": "EventTarget;name}",
   toString$0: function(receiver) {
     return receiver.toString();
   },
+  get$onChange: function(receiver) {
+    return $.EventStreamProvider_change.forTarget$1(receiver);
+  },
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
   }
@@ -11802,6 +11949,9 @@ $$.DefsElement = {"": "StyledElement;"};
 $$.DescElement = {"": "StyledElement;"};
 
 $$.ElementInstance = {"": "EventTarget;parentNode=",
+  get$onChange: function(receiver) {
+    return $.EventStreamProvider_change.forTarget$1(receiver);
+  },
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
   }
@@ -12320,6 +12470,9 @@ $$.Float32List = {"": "TypedData;",
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
+  },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
@@ -12443,6 +12596,9 @@ $$.Float64List = {"": "TypedData;",
   },
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
@@ -12568,6 +12724,9 @@ $$.Int16List = {"": "TypedData;",
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
+  },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
@@ -12691,6 +12850,9 @@ $$.Int32List = {"": "TypedData;",
   },
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
@@ -12816,6 +12978,9 @@ $$.Int8List = {"": "TypedData;",
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
+  },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
@@ -12939,6 +13104,9 @@ $$.Uint16List = {"": "TypedData;",
   },
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
@@ -13064,6 +13232,9 @@ $$.Uint32List = {"": "TypedData;",
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
   },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
+  },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
@@ -13184,6 +13355,9 @@ $$.Uint8ClampedList = {"": "Uint8List;",
   },
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
@@ -13308,6 +13482,9 @@ $$.Uint8List = {"": "TypedData;",
   },
   clear$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot clear immutable List."));
+  },
+  sort$1: function(receiver, compare) {
+    throw $.wrapException($.UnsupportedError$("Cannot sort immutable List."));
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
@@ -13730,6 +13907,603 @@ $.IterableMixinWorkaround_setRangeList = function(list, start, end, from, skipCo
   if ($.$gt$n($.$add$ns(otherStart, $length), $.get$length$asx(otherList)) === true)
     throw $.wrapException($.StateError$("Not enough elements"));
   $.Arrays_copy(otherList, otherStart, list, start, $length);
+};
+
+$.Sort_insertionSort_ = function(a, left, right, compare) {
+  var i, el, j, t1, t2, j0;
+  if (typeof a !== "object" || a === null || (a.constructor !== Array || !!a.immutable$list) && !$.getInterceptor(a).$isJavaScriptIndexingBehavior)
+    return $.Sort_insertionSort_$bailout(1, a, left, right, compare);
+  if (typeof right !== "number")
+    return $.Sort_insertionSort_$bailout(1, a, left, right, compare);
+  for (i = left + 1; i <= right; ++i) {
+    if (i >>> 0 !== i || i >= a.length)
+      throw $.ioore(i);
+    el = a[i];
+    j = i;
+    while (true) {
+      if (j > left) {
+        t1 = j - 1;
+        if (t1 < 0 || t1 >= a.length)
+          throw $.ioore(t1);
+        t1 = $.$gt$n(compare.call$2(a[t1], el), 0) === true;
+      } else
+        t1 = false;
+      t2 = a.length;
+      if (!t1)
+        break;
+      j0 = j - 1;
+      if (j0 < 0 || j0 >= t2)
+        throw $.ioore(j0);
+      t1 = a[j0];
+      if (j < 0 || j >= t2)
+        throw $.ioore(j);
+      a[j] = t1;
+      j = j0;
+    }
+    if (j < 0 || j >= t2)
+      throw $.ioore(j);
+    a[j] = el;
+  }
+};
+
+$.Sort_insertionSort_$bailout = function(state0, a, left, right, compare) {
+  var i, t1, el, j, j0;
+  for (i = left + 1, t1 = $.getInterceptor$asx(a); $.JSNumber_methods.$le(i, right); ++i) {
+    el = t1.$index(a, i);
+    j = i;
+    while (true) {
+      if (!(j > left && $.$gt$n(compare.call$2(t1.$index(a, j - 1), el), 0) === true))
+        break;
+      j0 = j - 1;
+      t1.$indexSet(a, j, t1.$index(a, j0));
+      j = j0;
+    }
+    t1.$indexSet(a, j, el);
+  }
+};
+
+$.Sort__dualPivotQuicksort = function(a, left, right, compare) {
+  var t1, sixth, index1, index5, index3, index2, index4, el1, el2, el3, el4, el5, t0, t2, less, great, pivots_are_equal, k, ak, comp, great0, less0, t3;
+  if (typeof a !== "object" || a === null || (a.constructor !== Array || !!a.immutable$list) && !$.getInterceptor(a).$isJavaScriptIndexingBehavior)
+    return $.Sort__dualPivotQuicksort$bailout(1, a, left, right, compare);
+  t1 = $.getInterceptor$n(right);
+  sixth = $.$tdiv$n($.$add$ns(t1.$sub(right, left), 1), 6);
+  if (typeof sixth !== "number")
+    throw $.iae(sixth);
+  index1 = left + sixth;
+  index5 = t1.$sub(right, sixth);
+  if (typeof right !== "number")
+    throw $.iae(right);
+  index3 = $.JSNumber_methods.$tdiv(left + right, 2);
+  index2 = index3 - sixth;
+  index4 = index3 + sixth;
+  t1 = a.length;
+  if (index1 >>> 0 !== index1 || index1 >= t1)
+    throw $.ioore(index1);
+  el1 = a[index1];
+  if (index2 >>> 0 !== index2 || index2 >= t1)
+    throw $.ioore(index2);
+  el2 = a[index2];
+  if (index3 >>> 0 !== index3 || index3 >= t1)
+    throw $.ioore(index3);
+  el3 = a[index3];
+  if (index4 >>> 0 !== index4 || index4 >= t1)
+    throw $.ioore(index4);
+  el4 = a[index4];
+  if (index5 >>> 0 !== index5 || index5 >= t1)
+    throw $.ioore(index5);
+  el5 = a[index5];
+  if ($.$gt$n(compare.call$2(el1, el2), 0) === true) {
+    t0 = el2;
+    el2 = el1;
+    el1 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el4, el5), 0) === true) {
+    t0 = el5;
+    el5 = el4;
+    el4 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el1, el3), 0) === true) {
+    t0 = el3;
+    el3 = el1;
+    el1 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el2, el3), 0) === true) {
+    t0 = el3;
+    el3 = el2;
+    el2 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el1, el4), 0) === true) {
+    t0 = el4;
+    el4 = el1;
+    el1 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el3, el4), 0) === true) {
+    t0 = el4;
+    el4 = el3;
+    el3 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el2, el5), 0) === true) {
+    t0 = el5;
+    el5 = el2;
+    el2 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el2, el3), 0) === true) {
+    t0 = el3;
+    el3 = el2;
+    el2 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el4, el5), 0) === true) {
+    t0 = el5;
+    el5 = el4;
+    el4 = t0;
+  }
+  t1 = a.length;
+  if (index1 >= t1)
+    throw $.ioore(index1);
+  a[index1] = el1;
+  if (index3 >= t1)
+    throw $.ioore(index3);
+  a[index3] = el3;
+  if (index5 >= t1)
+    throw $.ioore(index5);
+  a[index5] = el5;
+  if (left >>> 0 !== left || left >= t1)
+    throw $.ioore(left);
+  t2 = a[left];
+  if (index2 >= t1)
+    throw $.ioore(index2);
+  a[index2] = t2;
+  if (right >>> 0 !== right || right >= t1)
+    throw $.ioore(right);
+  t2 = a[right];
+  if (index4 >= t1)
+    throw $.ioore(index4);
+  a[index4] = t2;
+  less = left + 1;
+  great = right - 1;
+  pivots_are_equal = $.$eq(compare.call$2(el2, el4), 0);
+  if (pivots_are_equal)
+    for (k = less; k <= great; ++k) {
+      if (k >= a.length)
+        throw $.ioore(k);
+      ak = a[k];
+      comp = compare.call$2(ak, el2);
+      t1 = $.getInterceptor(comp);
+      if (t1.$eq(comp, 0))
+        continue;
+      if (t1.$lt(comp, 0) === true) {
+        if (k !== less) {
+          t1 = a.length;
+          if (less >= t1)
+            throw $.ioore(less);
+          t2 = a[less];
+          if (k >= t1)
+            throw $.ioore(k);
+          a[k] = t2;
+          a[less] = ak;
+        }
+        ++less;
+      } else
+        for (; true;) {
+          if (great < 0 || great >= a.length)
+            throw $.ioore(great);
+          comp = compare.call$2(a[great], el2);
+          t1 = $.getInterceptor$n(comp);
+          if (t1.$gt(comp, 0) === true) {
+            --great;
+            continue;
+          } else {
+            t1 = t1.$lt(comp, 0);
+            great0 = great - 1;
+            t2 = a.length;
+            if (t1 === true) {
+              if (less >= t2)
+                throw $.ioore(less);
+              t1 = a[less];
+              if (k >= t2)
+                throw $.ioore(k);
+              a[k] = t1;
+              less0 = less + 1;
+              if (great >= t2)
+                throw $.ioore(great);
+              a[less] = a[great];
+              a[great] = ak;
+              great = great0;
+              less = less0;
+              break;
+            } else {
+              if (great >= t2)
+                throw $.ioore(great);
+              t1 = a[great];
+              if (k >= t2)
+                throw $.ioore(k);
+              a[k] = t1;
+              a[great] = ak;
+              great = great0;
+              break;
+            }
+          }
+        }
+    }
+  else
+    for (k = less; k <= great; ++k) {
+      if (k >= a.length)
+        throw $.ioore(k);
+      ak = a[k];
+      if ($.$lt$n(compare.call$2(ak, el2), 0) === true) {
+        if (k !== less) {
+          t1 = a.length;
+          if (less >= t1)
+            throw $.ioore(less);
+          t2 = a[less];
+          if (k >= t1)
+            throw $.ioore(k);
+          a[k] = t2;
+          a[less] = ak;
+        }
+        ++less;
+      } else if ($.$gt$n(compare.call$2(ak, el4), 0) === true)
+        for (; true;) {
+          if (great < 0 || great >= a.length)
+            throw $.ioore(great);
+          if ($.$gt$n(compare.call$2(a[great], el4), 0) === true) {
+            --great;
+            if (great < k)
+              break;
+            continue;
+          } else {
+            if (great >= a.length)
+              throw $.ioore(great);
+            t1 = $.$lt$n(compare.call$2(a[great], el2), 0);
+            great0 = great - 1;
+            t2 = a.length;
+            if (t1 === true) {
+              if (less >= t2)
+                throw $.ioore(less);
+              t1 = a[less];
+              if (k >= t2)
+                throw $.ioore(k);
+              a[k] = t1;
+              less0 = less + 1;
+              if (great >= t2)
+                throw $.ioore(great);
+              a[less] = a[great];
+              a[great] = ak;
+              less = less0;
+            } else {
+              if (great >= t2)
+                throw $.ioore(great);
+              t1 = a[great];
+              if (k >= t2)
+                throw $.ioore(k);
+              a[k] = t1;
+              a[great] = ak;
+            }
+            great = great0;
+            break;
+          }
+        }
+    }
+  t1 = less - 1;
+  t2 = a.length;
+  if (t1 >= t2)
+    throw $.ioore(t1);
+  t3 = a[t1];
+  if (left >= t2)
+    throw $.ioore(left);
+  a[left] = t3;
+  a[t1] = el2;
+  t1 = great + 1;
+  if (t1 < 0 || t1 >= t2)
+    throw $.ioore(t1);
+  t3 = a[t1];
+  if (right >= t2)
+    throw $.ioore(right);
+  a[right] = t3;
+  a[t1] = el4;
+  t1 = less - 2;
+  if (t1 - left <= 32)
+    $.Sort_insertionSort_(a, left, t1, compare);
+  else
+    $.Sort__dualPivotQuicksort(a, left, t1, compare);
+  t1 = great + 2;
+  if (right - t1 <= 32)
+    $.Sort_insertionSort_(a, t1, right, compare);
+  else
+    $.Sort__dualPivotQuicksort(a, t1, right, compare);
+  if (pivots_are_equal)
+    return;
+  if (less < index1 && great > index5) {
+    while (true) {
+      if (less >= a.length)
+        throw $.ioore(less);
+      if (!$.$eq(compare.call$2(a[less], el2), 0))
+        break;
+      ++less;
+    }
+    while (true) {
+      if (great < 0 || great >= a.length)
+        throw $.ioore(great);
+      if (!$.$eq(compare.call$2(a[great], el4), 0))
+        break;
+      --great;
+    }
+    for (k = less; k <= great; ++k) {
+      if (k >= a.length)
+        throw $.ioore(k);
+      ak = a[k];
+      if ($.$eq(compare.call$2(ak, el2), 0)) {
+        if (k !== less) {
+          t1 = a.length;
+          if (less >= t1)
+            throw $.ioore(less);
+          t2 = a[less];
+          if (k >= t1)
+            throw $.ioore(k);
+          a[k] = t2;
+          a[less] = ak;
+        }
+        ++less;
+      } else if ($.$eq(compare.call$2(ak, el4), 0))
+        for (; true;) {
+          if (great < 0 || great >= a.length)
+            throw $.ioore(great);
+          if ($.$eq(compare.call$2(a[great], el4), 0)) {
+            --great;
+            if (great < k)
+              break;
+            continue;
+          } else {
+            if (great >= a.length)
+              throw $.ioore(great);
+            t1 = $.$lt$n(compare.call$2(a[great], el2), 0);
+            great0 = great - 1;
+            t2 = a.length;
+            if (t1 === true) {
+              if (less >= t2)
+                throw $.ioore(less);
+              t1 = a[less];
+              if (k >= t2)
+                throw $.ioore(k);
+              a[k] = t1;
+              less0 = less + 1;
+              if (great >= t2)
+                throw $.ioore(great);
+              a[less] = a[great];
+              a[great] = ak;
+              less = less0;
+            } else {
+              if (great >= t2)
+                throw $.ioore(great);
+              t1 = a[great];
+              if (k >= t2)
+                throw $.ioore(k);
+              a[k] = t1;
+              a[great] = ak;
+            }
+            great = great0;
+            break;
+          }
+        }
+    }
+    if (great - less <= 32)
+      $.Sort_insertionSort_(a, less, great, compare);
+    else
+      $.Sort__dualPivotQuicksort(a, less, great, compare);
+  } else if (great - less <= 32)
+    $.Sort_insertionSort_(a, less, great, compare);
+  else
+    $.Sort__dualPivotQuicksort(a, less, great, compare);
+};
+
+$.Sort__dualPivotQuicksort$bailout = function(state0, a, left, right, compare) {
+  var t1, sixth, index1, index5, index3, index2, index4, el1, el2, el3, el4, el5, t0, less, great, pivots_are_equal, k, ak, comp, t2, great0, less0;
+  t1 = $.getInterceptor$n(right);
+  sixth = $.$tdiv$n($.$add$ns(t1.$sub(right, left), 1), 6);
+  if (typeof sixth !== "number")
+    throw $.iae(sixth);
+  index1 = left + sixth;
+  index5 = t1.$sub(right, sixth);
+  if (typeof right !== "number")
+    throw $.iae(right);
+  index3 = $.JSNumber_methods.$tdiv(left + right, 2);
+  index2 = index3 - sixth;
+  index4 = index3 + sixth;
+  t1 = $.getInterceptor$asx(a);
+  el1 = t1.$index(a, index1);
+  el2 = t1.$index(a, index2);
+  el3 = t1.$index(a, index3);
+  el4 = t1.$index(a, index4);
+  el5 = t1.$index(a, index5);
+  if ($.$gt$n(compare.call$2(el1, el2), 0) === true) {
+    t0 = el2;
+    el2 = el1;
+    el1 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el4, el5), 0) === true) {
+    t0 = el5;
+    el5 = el4;
+    el4 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el1, el3), 0) === true) {
+    t0 = el3;
+    el3 = el1;
+    el1 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el2, el3), 0) === true) {
+    t0 = el3;
+    el3 = el2;
+    el2 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el1, el4), 0) === true) {
+    t0 = el4;
+    el4 = el1;
+    el1 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el3, el4), 0) === true) {
+    t0 = el4;
+    el4 = el3;
+    el3 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el2, el5), 0) === true) {
+    t0 = el5;
+    el5 = el2;
+    el2 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el2, el3), 0) === true) {
+    t0 = el3;
+    el3 = el2;
+    el2 = t0;
+  }
+  if ($.$gt$n(compare.call$2(el4, el5), 0) === true) {
+    t0 = el5;
+    el5 = el4;
+    el4 = t0;
+  }
+  t1.$indexSet(a, index1, el1);
+  t1.$indexSet(a, index3, el3);
+  t1.$indexSet(a, index5, el5);
+  t1.$indexSet(a, index2, t1.$index(a, left));
+  t1.$indexSet(a, index4, t1.$index(a, right));
+  less = left + 1;
+  great = right - 1;
+  pivots_are_equal = $.$eq(compare.call$2(el2, el4), 0);
+  if (pivots_are_equal)
+    for (k = less; k <= great; ++k) {
+      ak = t1.$index(a, k);
+      comp = compare.call$2(ak, el2);
+      t2 = $.getInterceptor(comp);
+      if (t2.$eq(comp, 0))
+        continue;
+      if (t2.$lt(comp, 0) === true) {
+        if (k !== less) {
+          t1.$indexSet(a, k, t1.$index(a, less));
+          t1.$indexSet(a, less, ak);
+        }
+        ++less;
+      } else
+        for (; true;) {
+          comp = compare.call$2(t1.$index(a, great), el2);
+          t2 = $.getInterceptor$n(comp);
+          if (t2.$gt(comp, 0) === true) {
+            --great;
+            continue;
+          } else {
+            great0 = great - 1;
+            if (t2.$lt(comp, 0) === true) {
+              t1.$indexSet(a, k, t1.$index(a, less));
+              less0 = less + 1;
+              t1.$indexSet(a, less, t1.$index(a, great));
+              t1.$indexSet(a, great, ak);
+              great = great0;
+              less = less0;
+              break;
+            } else {
+              t1.$indexSet(a, k, t1.$index(a, great));
+              t1.$indexSet(a, great, ak);
+              great = great0;
+              break;
+            }
+          }
+        }
+    }
+  else
+    for (k = less; k <= great; ++k) {
+      ak = t1.$index(a, k);
+      if ($.$lt$n(compare.call$2(ak, el2), 0) === true) {
+        if (k !== less) {
+          t1.$indexSet(a, k, t1.$index(a, less));
+          t1.$indexSet(a, less, ak);
+        }
+        ++less;
+      } else if ($.$gt$n(compare.call$2(ak, el4), 0) === true)
+        for (; true;)
+          if ($.$gt$n(compare.call$2(t1.$index(a, great), el4), 0) === true) {
+            --great;
+            if (great < k)
+              break;
+            continue;
+          } else {
+            great0 = great - 1;
+            if ($.$lt$n(compare.call$2(t1.$index(a, great), el2), 0) === true) {
+              t1.$indexSet(a, k, t1.$index(a, less));
+              less0 = less + 1;
+              t1.$indexSet(a, less, t1.$index(a, great));
+              t1.$indexSet(a, great, ak);
+              great = great0;
+              less = less0;
+            } else {
+              t1.$indexSet(a, k, t1.$index(a, great));
+              t1.$indexSet(a, great, ak);
+              great = great0;
+            }
+            break;
+          }
+    }
+  t2 = less - 1;
+  t1.$indexSet(a, left, t1.$index(a, t2));
+  t1.$indexSet(a, t2, el2);
+  t2 = great + 1;
+  t1.$indexSet(a, right, t1.$index(a, t2));
+  t1.$indexSet(a, t2, el4);
+  t2 = less - 2;
+  if (t2 - left <= 32)
+    $.Sort_insertionSort_(a, left, t2, compare);
+  else
+    $.Sort__dualPivotQuicksort(a, left, t2, compare);
+  t2 = great + 2;
+  if (right - t2 <= 32)
+    $.Sort_insertionSort_(a, t2, right, compare);
+  else
+    $.Sort__dualPivotQuicksort(a, t2, right, compare);
+  if (pivots_are_equal)
+    return;
+  if (less < index1 && $.JSNumber_methods.$gt(great, index5)) {
+    for (; $.$eq(compare.call$2(t1.$index(a, less), el2), 0);)
+      ++less;
+    for (; $.$eq(compare.call$2(t1.$index(a, great), el4), 0);)
+      --great;
+    for (k = less; k <= great; ++k) {
+      ak = t1.$index(a, k);
+      if ($.$eq(compare.call$2(ak, el2), 0)) {
+        if (k !== less) {
+          t1.$indexSet(a, k, t1.$index(a, less));
+          t1.$indexSet(a, less, ak);
+        }
+        ++less;
+      } else if ($.$eq(compare.call$2(ak, el4), 0))
+        for (; true;)
+          if ($.$eq(compare.call$2(t1.$index(a, great), el4), 0)) {
+            --great;
+            if (great < k)
+              break;
+            continue;
+          } else {
+            great0 = great - 1;
+            if ($.$lt$n(compare.call$2(t1.$index(a, great), el2), 0) === true) {
+              t1.$indexSet(a, k, t1.$index(a, less));
+              less0 = less + 1;
+              t1.$indexSet(a, less, t1.$index(a, great));
+              t1.$indexSet(a, great, ak);
+              great = great0;
+              less = less0;
+            } else {
+              t1.$indexSet(a, k, t1.$index(a, great));
+              t1.$indexSet(a, great, ak);
+              great = great0;
+            }
+            break;
+          }
+    }
+    if (great - less <= 32)
+      $.Sort_insertionSort_(a, less, great, compare);
+    else
+      $.Sort__dualPivotQuicksort(a, less, great, compare);
+  } else if (great - less <= 32)
+    $.Sort_insertionSort_(a, less, great, compare);
+  else
+    $.Sort__dualPivotQuicksort(a, less, great, compare);
 };
 
 $.Symbol$unvalidated = function(_name) {
@@ -15490,6 +16264,10 @@ $.FormatException$ = function(message) {
   return new $.FormatException(message);
 };
 
+$.IntegerDivisionByZeroException$ = function() {
+  return new $.IntegerDivisionByZeroException();
+};
+
 $.Expando$ = function($name) {
   return new $.Expando($name);
 };
@@ -16643,14 +17421,24 @@ $._Lists_getRange$bailout = function(state0, a, start, end, accumulator) {
 };
 
 $.populateGeneralDialogForAddContact = function() {
-  var bodySection, groupSelection, t1, nameCommentDiv, namefield, t2, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, emailBTN, skypeBTN, additionalInfoDiv, additionalInfoBTN, dialogFooter, addContactSaveBtn;
+  var bodySection, groupSelection, t1, t2, t3, t4, item, nameCommentDiv, namefield, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, emailBTN, skypeBTN, additionalInfoDiv, additionalInfoBTN, dialogFooter, addContactSaveBtn;
   $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.toUpperCase$0$s($.getPropertyValue("addContact"))), "</h1>"));
   bodySection = document.querySelector("#general_dialog_body");
   groupSelection = document.createElement("select");
   t1 = $.getInterceptor$x(groupSelection);
   t1.set$id(groupSelection, "add_contact_group_selection");
-  t1 = t1.get$children(groupSelection);
-  t1.add$1(t1, $.OptionElement_OptionElement("uncategorized", "uncategorized", true, true));
+  t2 = $.get$contactsBook();
+  t3 = $.getPropertyValue("uncategorizedGroup");
+  t4 = t2._objectData;
+  if (!t4.containsKey$1(t4, t2._symbolToString$1(t3))) {
+    t2 = t1.get$children(groupSelection);
+    t2.add$1(t2, $.OptionElement_OptionElement($.getPropertyValue("uncategorizedGroup"), $.getPropertyValue("uncategorizedGroup"), true, true));
+  }
+  for (t2 = $.get$contactsBook()._objectData, t2 = t2.get$keys(t2), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
+    item = t2.get$current();
+    t3 = t1.get$children(groupSelection);
+    t3.add$1(t3, $.OptionElement_OptionElement(item, $, $, $));
+  }
   $.appendHtml$1$x(bodySection, "<label for='add_contact_group_selection'>Group: </label>");
   bodySection.appendChild(groupSelection);
   nameCommentDiv = document.createElement("div");
@@ -16751,7 +17539,7 @@ $.populateGeneralDialogForAddContact = function() {
 };
 
 $.addContactSaveOperation = function(e) {
-  var contact, fieldInput, t1, cellPhonesList, cell, cellPhone, t2, cellInput, t3, landLinesList, landLine, landLinePhone, landLineInput, addressesList, address, addressObject, input, emailInputs, email, skypeIdInputs, skypeId, addInfoItemList, item, input2, groupInput, requestData, request, output;
+  var contact, fieldInput, t1, cellPhonesList, cell, cellPhone, t2, cellInput, t3, landLinesList, landLine, landLinePhone, landLineInput, addressesList, address, addressObject, input, emailInputs, email, skypeIdInputs, skypeId, addInfoItemList, item, input2, requestData, groupInput, t4, contactsList, request, output;
   contact = $.JsonObject$(null);
   contact.set$name(contact, $.get$value$x(document.querySelector("#contact_name")));
   fieldInput = document.querySelector("#contact_comments");
@@ -16873,17 +17661,70 @@ $.addContactSaveOperation = function(e) {
     window.alert($.$add$ns($.$add$ns($.getPropertyValue0("name"), " : "), $.getPropertyValue("required")));
     return;
   }
-  groupInput = document.querySelector("#add_contact_group_selection");
   requestData = $.JsonObject$(null);
-  requestData.$indexSet(requestData, "groupName", $.get$value$x(groupInput));
-  requestData.$indexSet(requestData, "contactDocument", contact);
+  groupInput = document.querySelector("#add_contact_group_selection");
+  t1 = $.getInterceptor$x(groupInput);
+  requestData.$indexSet(requestData, "groupName", t1.get$value(groupInput));
+  t2 = $.get$contactsBook();
+  t3 = t1.get$value(groupInput);
+  t4 = t2._objectData;
+  if (!t4.containsKey$1(t4, t2._symbolToString$1(t3))) {
+    t2 = $.get$contactsBook();
+    t2.$indexSet(t2, t1.get$value(groupInput), "");
+  }
+  t2 = $.get$contactsBook();
+  t3 = t1.get$value(groupInput);
+  t2 = t2._objectData;
+  if ($.get$isEmpty$asx(t2.$index(t2, t3)) !== true) {
+    t2 = $.get$contactsBook();
+    t3 = t1.get$value(groupInput);
+    t2 = t2._objectData;
+    contactsList = $.toList$0$ax(t2.$index(t2, t3));
+  } else {
+    $.Primitives_printString("Loading from server list is empty");
+    $.loadContactsListForGroup(t1.get$value(groupInput), false, null);
+    t2 = $.get$contactsBook();
+    t3 = t1.get$value(groupInput);
+    t2 = t2._objectData;
+    contactsList = $.toList$0$ax(t2.$index(t2, t3));
+  }
+  t2 = $.getInterceptor$asx(contactsList);
+  contact.$indexSet(contact, "_id", t2.get$length(contactsList));
+  t2.add$1(contactsList, contact);
+  t2.sort$1(contactsList, new $.addContactSaveOperation_closure());
+  requestData.$indexSet(requestData, "contactsList", contactsList);
+  t2 = $.get$contactsBook();
+  t2.$indexSet(t2, t1.get$value(groupInput), contactsList);
   request = new XMLHttpRequest();
   t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
-  $._EventStreamSubscription$(t1._target, t1._eventType, new $.addContactSaveOperation_closure(groupInput, request), t1._useCapture);
+  $._EventStreamSubscription$(t1._target, t1._eventType, new $.addContactSaveOperation_closure0(request), t1._useCapture);
   $.HttpRequest_methods.open$3$async(request, "POST", $.JSString_methods.$add($.baseURL, "addSingleContact"), false);
   output = $.StringBuffer$("");
   $._JsonStringifier$(output).stringifyValue$1(requestData);
   request.send(output._contents);
+};
+
+$.populateGeneralDialogForAddGroup = function() {
+  var bodySection, groupNameInput, t1;
+  $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.toUpperCase$0$s($.getPropertyValue("addGroup"))), "</h1>"));
+  bodySection = document.querySelector("#general_dialog_body");
+  $.appendHtml$1$x(bodySection, $.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue0("name")), ": "), "</label>"));
+  groupNameInput = $.InputElement_InputElement(null);
+  t1 = $.getInterceptor$x(groupNameInput);
+  t1.set$id(groupNameInput, "new_goup_name_input");
+  t1.get$onChange(groupNameInput).listen$1(new $.populateGeneralDialogForAddGroup_closure(groupNameInput));
+  bodySection.appendChild(groupNameInput);
+};
+
+$.populateGeneralDialogFooterAddGroup = function() {
+  var dialogFooter, createGroupBtn, t1;
+  dialogFooter = document.querySelector("#general_dialog_footer");
+  createGroupBtn = document.createElement("button");
+  t1 = $.getInterceptor$x(createGroupBtn);
+  t1.set$id(createGroupBtn, "create_group_btn");
+  createGroupBtn.textContent = $.getPropertyValue("create");
+  t1.get$onClick(createGroupBtn).listen$1(new $.populateGeneralDialogFooterAddGroup_closure());
+  dialogFooter.appendChild(createGroupBtn);
 };
 
 $.loadDataContainerOnFirstLoad = function() {
@@ -16903,15 +17744,21 @@ $.renderControlsPanelOnFirstLoad = function() {
   document.querySelector("#control_panel").appendChild($.get$addGroupBtn());
 };
 
-$.loadContactsListForGroup = function(groupName, $event) {
-  var t1, t2;
+$.loadContactsListForGroup = function(groupName, asynchronous, $event) {
+  var t1, t2, request;
   t1 = {};
-  $.Primitives_printString("Inside contactGroupOnClick method");
   t2 = $.get$contactsBook()._objectData;
-  if ($.get$isEmpty$asx(t2.$index(t2, groupName)) === true) {
-    t1.contactsList_0 = null;
-    $.HttpRequest_getString($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.baseURL, "getContactsListForAGroup"), "&"), "groupName="), groupName), null, null).then$1(new $.loadContactsListForGroup_closure(t1, groupName));
-  }
+  if ($.get$isEmpty$asx(t2.$index(t2, groupName)) === true)
+    if (asynchronous) {
+      t1.contactsList_0 = null;
+      $.HttpRequest_getString($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.baseURL, "getContactsListForAGroup"), "&"), "groupName="), groupName), null, null).then$1(new $.loadContactsListForGroup_closure(t1, groupName));
+    } else {
+      request = new XMLHttpRequest();
+      t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
+      $._EventStreamSubscription$(t1._target, t1._eventType, new $.loadContactsListForGroup_closure0(groupName, request), t1._useCapture);
+      $.HttpRequest_methods.open$3$async(request, "GET", $.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.baseURL, "getContactsListForAGroup"), "&"), "groupName="), groupName), false);
+      request.send();
+    }
 };
 
 $.closeGeneralDialog = function() {
@@ -16927,7 +17774,7 @@ $.init_autogenerated = function() {
   __root = document.body;
   __html0 = document.createElement("template");
   __html1 = $._ElementFactoryProvider_createElement_html("<details>\n            <summary></summary>\n            <ul></ul>\n          </details>");
-  __html2 = $._ElementFactoryProvider_createElement_html("<li>\n                <span name=\"contact_name\"></span><span name=\"contact_comments\"></span>\n              </li>");
+  __html2 = $._ElementFactoryProvider_createElement_html("<li>\n                <span name=\"contact_name\"></span>\n                <span name=\"contact_comments\"></span>\n              </li>");
   __t = $.Template$(__root);
   t1 = $.getInterceptor$x(__root);
   t2 = t1.get$nodes(__root);
@@ -17450,6 +18297,9 @@ $.$sub$n = function(receiver, a0) {
     return receiver - a0;
   return $.getInterceptor$n(receiver).$sub(receiver, a0);
 };
+$.$tdiv$n = function(receiver, a0) {
+  return $.getInterceptor$n(receiver).$tdiv(receiver, a0);
+};
 $.$xor$n = function(receiver, a0) {
   if (typeof receiver == "number" && typeof a0 == "number")
     return (receiver ^ a0) >>> 0;
@@ -17691,6 +18541,9 @@ $.set$width$x = function(receiver, value) {
 };
 $.setRange$4$ax = function(receiver, a0, a1, a2, a3) {
   return $.getInterceptor$ax(receiver).setRange$4(receiver, a0, a1, a2, a3);
+};
+$.sort$1$ax = function(receiver, a0) {
+  return $.getInterceptor$ax(receiver).sort$1(receiver, a0);
 };
 $.split$1$s = function(receiver, a0) {
   return $.getInterceptor$s(receiver).split$1(receiver, a0);
