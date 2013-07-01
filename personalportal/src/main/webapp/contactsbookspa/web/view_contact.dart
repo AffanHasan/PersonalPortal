@@ -3,10 +3,18 @@ part of contacts_book_spa;
 /**
  * To populate the general dialog with the contact details
  */
-void populateGeneralDialogWithContactDetails(String groupName, String index){
+void populateGeneralDialogWithContactDetails(String groupName, int index){
   launchGeneralDialog();
   List<JsonObject> contactsList = contactsBook[groupName].toList();
+  contactsList.sort(//Sorting the contacts list by name
+      (a, b){
+        int name1 = a['_id'];
+        int name2 = b['_id'];
+        return name1.compareTo(name2);
+      }
+  );
   JsonObject contact = contactsList[index];
+  print("Index : " + index.toString());
   print(contact.toString());
   query("#general_dialog_header_content").appendHtml("<h1>" + contact['name'].toUpperCase() +"</h1>");
   HtmlElement bodySection = query("#general_dialog_body");
