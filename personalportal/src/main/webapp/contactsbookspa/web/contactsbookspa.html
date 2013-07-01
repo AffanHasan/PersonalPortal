@@ -19,10 +19,33 @@
         <template iterate="groupName in contactsBook.keys">
           <details id={{groupName}}_group>
             <summary on-click="loadContactsListForGroup('$groupName', true, $event)">{{groupName}}</summary>
-            <ul id={{groupName}}_contacts_list template iterate="contact in contactsBook['$groupName']"> 
+            <ul id={{groupName}}_contacts_list template iterate="contact in contactsBook['$groupName']">
               <li>
-                <span name="contact_name">{{contact['name']}}</span>
+                <a name="contact_name" href="#" on-click="populateGeneralDialogWithContactDetails('$groupName', contact['_id'])">
+                  {{ contact['name'] }}
+                </a>
                 <span name="contact_comments">{{ contact['comments'] == null ? "" : contact['comments'] }}</span>
+                <span template if="contact['cellPhoneList'] != null">
+                  <span name="contact_cell_phones" template iterate="cellPhone in contact['cellPhoneList']">
+                      <span name="cell_phone_item">
+                        {{ cellPhone['network'] + '-'  + cellPhone['number'] }}
+                      </span>
+                  </span>
+                </span>
+                <span template if="contact['landLinesList'] != null">
+                  <span name="contact_land_lines" template iterate="landLine in contact['landLinesList']">
+                      <span name="land_line_item">
+                        {{ landLine['country'] + '-'  + landLine['areaCode'] + '-'  + landLine['number'] }}
+                      </span>
+                  </span>
+                </span>
+                <span template if="contact['addressesList'] != null">
+                  <span name="contact_addresses" template iterate="address in contact['addressesList']">
+                      <span name="address_item_item">
+                        {{ address['address'] }}
+                      </span>
+                  </span>
+                </span>
               </li> 
             </ul>
           </details>

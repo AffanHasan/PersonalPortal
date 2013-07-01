@@ -1,6 +1,5 @@
 part of contacts_book_spa;
 
-
 /**
  * To populate the general dialog with add contact UI
  */
