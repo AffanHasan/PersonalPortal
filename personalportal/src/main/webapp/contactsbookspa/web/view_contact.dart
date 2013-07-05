@@ -31,8 +31,10 @@ void populateGeneralDialogWithContactDetails(String groupName, int index){
   
   DivElement nameCommentDiv = new DivElement();//Create new div to hold name & comments
   nameCommentDiv.id="name_comment_div";
-  nameCommentDiv.appendHtml("<label for='contact_comments'>"+cb_locale_data.getPropertyValue("comments")+": </label>");
-  nameCommentDiv.appendText(contact['comments']);
+  if(contact.containsKey('comments')){
+    nameCommentDiv.appendHtml("<label for='contact_comments'>"+cb_locale_data.getPropertyValue("comments")+": </label>");
+    nameCommentDiv.appendText(contact['comments']);
+  }
   DivElement phonesDiv = new DivElement();//Create new div to hold cell phones & land lines
   phonesDiv.id="phones_div";
   FieldSetElement phonesFieldSet = new FieldSetElement();
@@ -56,33 +58,7 @@ void populateGeneralDialogWithContactDetails(String groupName, int index){
   emailSkypeDiv.id="email_skype_div";
   FieldSetElement emailSkypeFieldSet = new FieldSetElement();
   LegendElement emailSkypeFieldSetLegend = new LegendElement();//Legend element
-  ButtonElement emailBTN = new ButtonElement();//Legend element button
-  emailBTN.id="add_email_btn";
-  emailBTN.text="@";
-  emailBTN.title = cb_locale_data.getPropertyValue("addEmail");
-  emailBTN.onClick.listen(
-      (Event e){
-        InputElement emailInput = new InputElement(type: "email");
-        emailInput.name="email_input";
-        query("#emails_div").appendHtml("<label>" + cb_locale_data.getPropertyValue("addEmail") + ": " + "</label>");
-        query("#emails_div").append(emailInput);
-      }
-  );
-  
-  ButtonElement skypeBTN = new ButtonElement();//Legend element button
-  skypeBTN.id="add_skype_btn";
-  skypeBTN.text=cb_locale_data.getPropertyValue("skypeId");
-  skypeBTN.onClick.listen(
-      (Event e){
-        InputElement skypeInput = new InputElement();
-        skypeInput.name="skype_input";
-        query("#skype_div").appendHtml("<label>" + cb_locale_data.getPropertyValue("skypeId") + ": " + "</label>");
-        query("#skype_div").append(skypeInput);
-      }
-  );
-
-  emailSkypeFieldSetLegend.append(emailBTN);
-  emailSkypeFieldSetLegend.append(skypeBTN);
+  emailSkypeFieldSetLegend.appendText(cb_locale_data.getPropertyValue("addEmail") + ', ' + cb_locale_data.getPropertyValue("skypeId"));
   emailSkypeFieldSet.append(emailSkypeFieldSetLegend);
   emailSkypeFieldSet.appendHtml("<div id='emails_div'></div>");//Append un ordered list of addresses to fieldset
   emailSkypeFieldSet.appendHtml("<div id='skype_div'></div>");//Append un ordered list of addresses to fieldset
@@ -90,25 +66,6 @@ void populateGeneralDialogWithContactDetails(String groupName, int index){
   
   DivElement additionalInfoDiv = new DivElement();//Additional info div
   additionalInfoDiv.id="additional_info_div";
-  ButtonElement additionalInfoBTN = new ButtonElement();//Additional Info Button
-  additionalInfoBTN.id="additional_infoBTN";
-  additionalInfoBTN.text=cb_locale_data.getPropertyValue("additionalInfo");
-  additionalInfoBTN.onClick.listen(
-      (Event e){
-        additionalInfoDiv.appendHtml("</br>");
-        LIElement additionalInfoItem = new LIElement();
-        InputElement additionalInfoFieldName = new InputElement();
-        additionalInfoFieldName.name="additional_info_field_name";
-        TextAreaElement additionalInfoText = new TextAreaElement();
-        additionalInfoText.name="additional_info_txt";
-        additionalInfoItem.appendHtml("<label>"+ cb_locale_data.getPropertyValue("fieldName") +": </label>");
-        additionalInfoItem.append(additionalInfoFieldName);
-        additionalInfoItem.append(additionalInfoText);
-        query("#additional_info_list").append(additionalInfoItem);
-      }
-  );
-  
-  additionalInfoDiv.append(additionalInfoBTN);
   additionalInfoDiv.appendHtml("<ul id='additional_info_list'></ul>");
   
   bodySection.append(nameCommentDiv);//append the name & comment div to body section
@@ -120,25 +77,21 @@ void populateGeneralDialogWithContactDetails(String groupName, int index){
   if(contact['cellPhoneList'] != null)
     for(JsonObject cellPhoneItem in contact['cellPhoneList']){
       LIElement cellPhoneLE = new LIElement();//Create a list element
-      cellPhoneLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
-      cellPhoneLE.appendText(cellPhoneItem['comment']);
-      cellPhoneLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("network")+": </label>");
-      cellPhoneLE.appendText(cellPhoneItem['network']);
-      cellPhoneLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("number")+": </label>");
-      cellPhoneLE.appendText(cellPhoneItem['number']);
+      if(cellPhoneItem.containsKey('comment')){
+        cellPhoneLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
+        cellPhoneLE.appendText(cellPhoneItem['comment']);
+      }
+      cellPhoneLE.appendText(cellPhoneItem['network'] + ' ' + cellPhoneItem['number']);
       query("#cell_phones_list").append(cellPhoneLE);//Appending this li to the unordered cell phones list
     }
   if(contact['landLinesList'] != null)
     for(JsonObject landLineItem in contact['landLinesList']){
       LIElement landLineLE = new LIElement();//Create a list element
-      landLineLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
-      landLineLE.appendText(landLineItem['comment']);
-      landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("country")+": </label>");
-      landLineLE.appendText(landLineItem['country']);
-      landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("cityAreacode")+": </label>");
-      landLineLE.appendText(landLineItem['areaCode']);
-      landLineLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("number")+": </label>");
-      landLineLE.appendText(landLineItem['number']);
+      if(landLineItem.containsKey('comment')){
+        landLineLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
+        landLineLE.appendText(landLineItem['comment']);
+      }
+      landLineLE.appendText(landLineItem['country'] +' '+ landLineItem['areaCode']+' '+landLineItem['number']);
       query("#land_lines_list").append(landLineLE);//Appending this li to the unordered cell phones list
     }
   if(contact['addressesList'] != null)
@@ -146,8 +99,25 @@ void populateGeneralDialogWithContactDetails(String groupName, int index){
       LIElement addressLE = new LIElement();//Create a list element
       addressLE.appendHtml("<label>   "+cb_locale_data.getPropertyValue("address")+": </label>");
       addressLE.appendText(addressItem['address']);
-      addressLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
-      addressLE.appendText(addressItem['comment']);
+      if(addressItem.containsKey('comment')){
+        addressLE.appendHtml("<label>"+ cb_locale_data.getPropertyValue("comments") +": </label>");
+        addressLE.appendText(addressItem['comment']);
+      }
       query("#addresses_list").append(addressLE);//Appending this li to the unordered cell phones list
     }
+  if(contact['emailAddressesList'] != null){
+    for(String emailItem in contact['emailAddressesList']){
+      query("#emails_div").appendText(' $emailItem ');
+    }
+  }
+  if(contact['skypeIdsList'] != null){
+    for(String skypeId in contact['skypeIdsList']){
+      query("#skype_div").appendText(' $skypeId ');
+    }
+  }
+  if(contact.containsKey('additionalInfo')){
+    for(String keyItem in contact['additionalInfo'].keys){
+      query("#additional_info_list").appendText('$keyItem : ' + (contact['additionalInfo'])[keyItem]);
+    }
+  }
 }

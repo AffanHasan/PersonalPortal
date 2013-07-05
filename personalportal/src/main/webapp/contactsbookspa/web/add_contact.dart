@@ -299,11 +299,17 @@ void addContactSaveOperation(Event e){
   }
   //Getting the additional information
   List<LIElement> addInfoItemList = query("#additional_info_list").children;
+  if(addInfoItemList != null && !addInfoItemList.isEmpty){
+    //We are embedding the additional info in a document becoz the lesser the number of keysz the better the performance!
+    contact['additionalInfo'] = new JsonObject();
+  }
   for(LIElement item in addInfoItemList){
     InputElement input = item.children[1];
     InputElement input2 = item.children[2];
-    if(!input.value.isEmpty && input2.value.isEmpty)
-      contact[input.value] = input2.value;
+    if(!input.value.isEmpty && !input2.value.isEmpty){
+      //contact[input.value] = input2.value;
+      (contact['additionalInfo'])[input.value] = input2.value;
+    }
   }
   //Validating the contact document
   if(contact.name.isEmpty){
