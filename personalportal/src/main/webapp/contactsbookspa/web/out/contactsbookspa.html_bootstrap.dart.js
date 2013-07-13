@@ -39,6 +39,38 @@ $$.ListIterable = {"": "IterableBase;",
   get$isEmpty: function(_) {
     return $.$eq(this.get$length(this), 0);
   },
+  firstWhere$2$orElse: function(_, test, orElse) {
+    var $length, i, element;
+    $length = this.get$length(this);
+    if (typeof $length !== "number")
+      return this.firstWhere$2$orElse$bailout1(1, test, orElse, $length);
+    for (i = 0; i < $length; ++i) {
+      element = this.elementAt$1(this, i);
+      if (test.call$1(element) === true)
+        return element;
+      if ($length !== this.get$length(this))
+        throw $.wrapException($.ConcurrentModificationError$(this));
+    }
+    if (orElse != null)
+      return orElse.call$0();
+    throw $.wrapException($.StateError$("No matching element"));
+  },
+  firstWhere$2$orElse$bailout1: function(state0, test, orElse, $length) {
+    var t1, i, element;
+    for (t1 = $.getInterceptor($length), i = 0; $.JSNumber_methods.$lt(i, $length); ++i) {
+      element = this.elementAt$1(this, i);
+      if (test.call$1(element) === true)
+        return element;
+      if (!t1.$eq($length, this.get$length(this)))
+        throw $.wrapException($.ConcurrentModificationError$(this));
+    }
+    if (orElse != null)
+      return orElse.call$0();
+    throw $.wrapException($.StateError$("No matching element"));
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   where$1: function(_, test) {
     return $.IterableBase.prototype.where$1.call(this, this, test);
   },
@@ -1562,6 +1594,9 @@ $$.JSArray = {"": "List/Interceptor;",
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
   },
+  removeWhere$1: function(receiver, test) {
+    $.IterableMixinWorkaround_removeWhereList(receiver, test);
+  },
   where$1: function(receiver, f) {
     return $.WhereIterable$(receiver, f, null);
   },
@@ -1578,6 +1613,12 @@ $$.JSArray = {"": "List/Interceptor;",
   },
   map$1: function(receiver, f) {
     return $.MappedListIterable$(receiver, f, null, null);
+  },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
   },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
@@ -2663,6 +2704,24 @@ $$.Stream = {"": "Object;",
     this.listen$4$cancelOnError$onDone$onError(new $.Stream_toList_closure(result), true, new $.Stream_toList_closure0(result, future), future.get$_setError());
     return future;
   },
+  firstWhere$2$defaultValue: function(_, test, defaultValue) {
+    var t1, $arguments, arguments0, t2, future;
+    t1 = {};
+    $arguments = this.$asStream;
+    arguments0 = $.getRuntimeTypeInfo(this);
+    if ($arguments != null && $arguments.constructor === Array)
+      ;
+    else
+      $arguments = typeof $arguments == "function" ? $arguments.apply(null, arguments0) : arguments0;
+    t2 = $arguments == null ? null : $arguments[0];
+    future = $._FutureImpl$(t2);
+    t1.subscription_0 = null;
+    t1.subscription_0 = this.listen$4$cancelOnError$onDone$onError(new $.Stream_firstWhere_closure(t1, test, future), true, new $.Stream_firstWhere_closure0(defaultValue, future), future.get$_setError());
+    return future;
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$defaultValue($receiver, test, null);
+  },
   elementAt$1: function(_, index) {
     var t1, t2, $arguments, arguments0, future;
     t1 = {};
@@ -2752,6 +2811,49 @@ $$.Stream_toList_closure = {"": "Closure;result_0",
 $$.Stream_toList_closure0 = {"": "Closure;result_1,future_2",
   call$0: function() {
     this.future_2._setValue$1(this.result_1);
+  },
+  $isFunction: true
+};
+
+$$.Stream_firstWhere_closure = {"": "Closure;box_0,test_1,future_2",
+  call$1: function(value) {
+    var t1, t2;
+    t1 = this.box_0;
+    t2 = this.future_2;
+    $._runUserCode(new $.Stream_firstWhere__closure(this.test_1, value), new $.Stream_firstWhere__closure0(t1, t2, value), $._cancelAndError(t1.subscription_0, t2));
+  },
+  $isFunction: true
+};
+
+$$.Stream_firstWhere__closure = {"": "Closure;test_3,value_4",
+  call$0: function() {
+    return this.test_3.call$1(this.value_4);
+  },
+  $isFunction: true
+};
+
+$$.Stream_firstWhere__closure0 = {"": "Closure;box_0,future_5,value_6",
+  call$1: function(isMatch) {
+    var t1;
+    if (isMatch === true) {
+      t1 = this.box_0.subscription_0;
+      t1.cancel$0(t1);
+      this.future_5._setValue$1(this.value_6);
+    }
+  },
+  $isFunction: true
+};
+
+$$.Stream_firstWhere_closure0 = {"": "Closure;defaultValue_7,future_8",
+  call$0: function() {
+    var t1, t2;
+    t1 = this.defaultValue_7;
+    if (t1 != null) {
+      t2 = this.future_8;
+      $._runUserCode(t1, t2.get$_setValue(), t2.get$_setError());
+      return;
+    }
+    this.future_8._setError$1($.StateError$("firstMatch ended without match"));
   },
   $isFunction: true
 };
@@ -3996,6 +4098,20 @@ $$.IterableBase = {"": "Object;",
   get$isEmpty: function(_) {
     return this.get$iterator(this).moveNext$0() !== true;
   },
+  firstWhere$2$orElse: function(_, test, orElse) {
+    var t1, element;
+    for (t1 = this.get$iterator(this); t1.moveNext$0() === true;) {
+      element = t1.get$current();
+      if (test.call$1(element) === true)
+        return element;
+    }
+    if (orElse != null)
+      return orElse.call$0();
+    throw $.wrapException($.StateError$("No matching element"));
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(_, index) {
     var t1, remaining, element;
     if (typeof index !== "number")
@@ -4271,6 +4387,38 @@ $$.ListMixin = {"": "Object;",
       throw $.wrapException($.StateError$("No elements"));
     return this.$index(receiver, $.$sub$n(this.get$length(receiver), 1));
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    var $length, i, element;
+    $length = this.get$length(receiver);
+    if (typeof $length !== "number")
+      return this.firstWhere$2$orElse$bailout(1, test, orElse, receiver, $length);
+    for (i = 0; i < $length; ++i) {
+      element = this.$index(receiver, i);
+      if (test.call$1(element) === true)
+        return element;
+      if ($length !== this.get$length(receiver))
+        throw $.wrapException($.ConcurrentModificationError$(receiver));
+    }
+    if (orElse != null)
+      return orElse.call$0();
+    throw $.wrapException($.StateError$("No matching element"));
+  },
+  firstWhere$2$orElse$bailout: function(state0, test, orElse, receiver, $length) {
+    var t1, i, element;
+    for (t1 = $.getInterceptor($length), i = 0; $.JSNumber_methods.$lt(i, $length); ++i) {
+      element = this.$index(receiver, i);
+      if (test.call$1(element) === true)
+        return element;
+      if (!t1.$eq($length, this.get$length(receiver)))
+        throw $.wrapException($.ConcurrentModificationError$(receiver));
+    }
+    if (orElse != null)
+      return orElse.call$0();
+    throw $.wrapException($.StateError$("No matching element"));
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   where$1: function(receiver, test) {
     var $arguments, arguments0, t1;
     $arguments = receiver.$asListMixin;
@@ -4361,6 +4509,9 @@ $$.ListMixin = {"": "Object;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    $.ListMixin__filter(receiver, test, false);
   },
   clear$0: function(receiver) {
     this.set$length(receiver, 0);
@@ -4531,6 +4682,9 @@ $$.ListMixin = {"": "Object;",
           for (t1 = $.getInterceptor$ns(start), i = 0; $.JSNumber_methods.$lt(i, $length); ++i)
             this.$indexSet(receiver, t1.$add(start, i), t4.$index(otherList, t2.$add(otherStart, i)));
     }
+  },
+  setRange$3: function($receiver, start, end, iterable) {
+    return this.setRange$4($receiver, start, end, iterable, 0);
   },
   indexOf$2: function(receiver, element, startIndex) {
     var i;
@@ -4745,6 +4899,28 @@ $$.ListQueue = {"": "IterableBase;_table,_head,_tail,_modificationCount",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  _filterWhere$2: function(test, removeMatching) {
+    var index, modificationCount, i, t1;
+    index = this._head;
+    modificationCount = this._modificationCount;
+    for (i = index; !$.$eq(i, this._tail);) {
+      t1 = this._table;
+      if (i >>> 0 !== i || i >= t1.length)
+        throw $.ioore(i);
+      t1 = test.call$1(t1[i]);
+      if (modificationCount !== this._modificationCount)
+        $.throwExpression($.ConcurrentModificationError$(this));
+      if (removeMatching === t1) {
+        i = this._liblib$_remove$1(this, i);
+        modificationCount = this._modificationCount + 1;
+        this._modificationCount = modificationCount;
+      } else
+        i = (i + 1 & this._table.length - 1) >>> 0;
+    }
+  },
+  removeWhere$1: function(_, test) {
+    this._filterWhere$2(test, true);
   },
   clear$0: function(_) {
     var i, t1, t2;
@@ -5753,6 +5929,9 @@ $$.Object = {"": ";",
   call$2$onError: function($0, $1) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("call", "call$2$onError", 0, [$0, $1], ["onError"]));
   },
+  call$2$orElse: function($0, $1) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("call", "call$2$orElse", 0, [$0, $1], ["orElse"]));
+  },
   call$3$async: function($0, $1, $2) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("call", "call$3$async", 0, [$0, $1, $2], ["async"]));
   },
@@ -5794,6 +5973,12 @@ $$.Object = {"": ";",
   },
   endsWith$1: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("endsWith", "endsWith$1", 0, [$0], []));
+  },
+  firstWhere$1: function($receiver, $0) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("firstWhere", "firstWhere$1", 0, [$0], []));
+  },
+  firstWhere$2$orElse: function($receiver, $0, $1) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("firstWhere", "firstWhere$2$orElse", 0, [$0, $1], ["orElse"]));
   },
   forEach$1: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("forEach", "forEach$1", 0, [$0], []));
@@ -5971,6 +6156,9 @@ $$.Object = {"": ";",
   },
   removeLast$0: function($receiver) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("removeLast", "removeLast$0", 0, [], []));
+  },
+  removeWhere$1: function($receiver, $0) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("removeWhere", "removeWhere$1", 0, [$0], []));
   },
   replaceAll$2: function($receiver, $0, $1) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("replaceAll", "replaceAll$2", 0, [$0, $1], []));
@@ -6220,6 +6408,9 @@ $$._ChildrenElementList = {"": "ListBase;_element,_childElements",
   setRange$4: function(_, start, end, iterable, skipCount) {
     throw $.wrapException($.UnimplementedError$(null));
   },
+  setRange$3: function($receiver, start, end, iterable) {
+    return this.setRange$4($receiver, start, end, iterable, 0);
+  },
   remove$1: function(_, object) {
     var t1;
     if (typeof object === "object" && object !== null && !!$.getInterceptor(object).$isElement) {
@@ -6456,6 +6647,19 @@ $$._ChildNodeListLazy = {"": "ListBase;_this",
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
   },
+  _filter$2: function(test, removeMatching) {
+    var t1, child, nextChild;
+    t1 = this._this;
+    child = t1.firstChild;
+    for (; child != null; child = nextChild) {
+      nextChild = child.nextSibling;
+      if ($.$eq(test.call$1(child), removeMatching))
+        t1.removeChild(child);
+    }
+  },
+  removeWhere$1: function(_, test) {
+    this._filter$2(test, true);
+  },
   clear$0: function(_) {
     this._this.textContent = "";
   },
@@ -6475,6 +6679,9 @@ $$._ChildNodeListLazy = {"": "ListBase;_this",
   },
   setRange$4: function(_, start, end, iterable, skipCount) {
     throw $.wrapException($.UnsupportedError$("Cannot setRange on Node list"));
+  },
+  setRange$3: function($receiver, start, end, iterable) {
+    return this.setRange$4($receiver, start, end, iterable, 0);
   },
   get$length: function(_) {
     return this._this.childNodes.length;
@@ -6728,6 +6935,9 @@ $$.ImmutableListMixin = {"": "Object;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   setRange$4: function(receiver, start, end, iterable, skipCount) {
     throw $.wrapException($.UnsupportedError$("Cannot setRange on immutable List."));
@@ -7375,6 +7585,9 @@ $$._WrappedList = {"": "ListBase;_list",
   setRange$4: function(_, start, end, iterable, skipCount) {
     $.setRange$4$ax(this._list, start, end, iterable, skipCount);
   },
+  setRange$3: function($receiver, start, end, iterable) {
+    return this.setRange$4($receiver, start, end, iterable, 0);
+  },
   $asListBase: null,
   $asList: null,
   $asIterable: null
@@ -7876,6 +8089,9 @@ $$.FilteredElementList = {"": "ListBase;_node,_childNodes",
   },
   setRange$4: function(_, start, end, iterable, skipCount) {
     throw $.wrapException($.UnsupportedError$("Cannot setRange on filtered list"));
+  },
+  setRange$3: function($receiver, start, end, iterable) {
+    return this.setRange$4($receiver, start, end, iterable, 0);
   },
   removeRange$2: function(_, start, end) {
     $.IterableMixinWorkaround_forEach($.JSArray_methods.sublist$2(this.get$_filtered(), start, end), new $.FilteredElementList_removeRange_closure());
@@ -8518,6 +8734,46 @@ $$.populateGeneralDialogFooterAddGroup__closure = {"": "Closure;groupNameInput_0
   $isFunction: true
 };
 
+$$.deleteContact_closure = {"": "Closure;index_0",
+  call$1: function(e) {
+    return $.$eq($.$index$asx(e, "_id"), this.index_0);
+  },
+  $isFunction: true
+};
+
+$$.deleteContact_closure0 = {"": "Closure;index_1",
+  call$1: function(e) {
+    return $.$eq($.$index$asx(e, "_id"), this.index_1);
+  },
+  $isFunction: true
+};
+
+$$.deleteContact_closure1 = {"": "Closure;index_2",
+  call$1: function(e) {
+    return $.$eq($.$index$asx(e, "_id"), this.index_2);
+  },
+  $isFunction: true
+};
+
+$$.deleteContact_closure2 = {"": "Closure;groupName_3,contactsList_4,request_5",
+  call$1: function(_) {
+    var t1, t2;
+    t1 = this.request_5;
+    if (t1.readyState === 4) {
+      t2 = t1.status;
+      t2 = t2 === 200 || t2 === 0;
+    } else
+      t2 = false;
+    if (t2)
+      if ($.startsWith$1$s(t1.responseText, "saved")) {
+        t1 = $.get$contactsBook();
+        t1.$indexSet(t1, this.groupName_3, this.contactsList_4);
+        $.dispatch();
+      }
+  },
+  $isFunction: true
+};
+
 $$.populateGeneralDialogForEditContact_closure = {"": "Closure;",
   call$1: function(e) {
     var cellPhoneLE, t1, comment, network, number;
@@ -8720,11 +8976,11 @@ $$.init_autogenerated_closure = {"": "Closure;",
 
 $$.init_autogenerated_closure0 = {"": "Closure;__html0_1,__html1_2,__html2_3,__html3_4,__html4_5,__html5_6,__html6_7,__html7_8,__html8_9",
   call$1: function(__t) {
-    var __e25, t1;
-    __e25 = $.clone$1$x(this.__html0_1, true);
+    var __e26, t1;
+    __e26 = $.clone$1$x(this.__html0_1, true);
     t1 = $.getInterceptor$x(__t);
-    t1.loop$3(__t, __e25, new $.init_autogenerated__closure(), new $.init_autogenerated__closure0(this.__html1_2, this.__html2_3, this.__html3_4, this.__html4_5, this.__html5_6, this.__html6_7, this.__html7_8, this.__html8_9));
-    t1.addAll$1(__t, [document.createTextNode("\n        "), __e25, document.createTextNode("\n      ")]);
+    t1.loop$3(__t, __e26, new $.init_autogenerated__closure(), new $.init_autogenerated__closure0(this.__html1_2, this.__html2_3, this.__html3_4, this.__html4_5, this.__html5_6, this.__html6_7, this.__html7_8, this.__html8_9));
+    t1.addAll$1(__t, [document.createTextNode("\n        "), __e26, document.createTextNode("\n      ")]);
   },
   $isFunction: true
 };
@@ -8742,20 +8998,20 @@ $$.init_autogenerated__closure0 = {"": "Closure;__html1_10,__html2_11,__html3_12
     var t1, groupName, __e1, __binding0, t2;
     t1 = {};
     groupName = $.$index$asx($$list, $$index);
-    t1.__e23_0 = null;
-    t1.__e24_1 = null;
-    t1.__e24_1 = $.clone$1$x(this.__html1_10, true);
-    __e1 = $.$index$asx($.get$nodes$x(t1.__e24_1), 1);
+    t1.__e24_0 = null;
+    t1.__e25_1 = null;
+    t1.__e25_1 = $.clone$1$x(this.__html1_10, true);
+    __e1 = $.$index$asx($.get$nodes$x(t1.__e25_1), 1);
     __binding0 = __t.contentBind$2(new $.init_autogenerated___closure(groupName), false);
     t2 = $.getInterceptor$x(__e1);
     $.add$1$ax(t2.get$nodes(__e1), __binding0);
     __t.listen$2(t2.get$onClick(__e1), new $.init_autogenerated___closure0(groupName));
-    t1.__e23_0 = $.$index$asx($.get$nodes$x(t1.__e24_1), 3);
+    t1.__e24_0 = $.$index$asx($.get$nodes$x(t1.__e25_1), 3);
     t2 = $.getInterceptor$x(__t);
     t2.bind$3(__t, new $.init_autogenerated___closure1(groupName), new $.init_autogenerated___closure2(t1), false);
-    __t.loopIterateAttr$3(t1.__e23_0, new $.init_autogenerated___closure3(groupName), new $.init_autogenerated___closure4(this.__html2_11, this.__html3_12, this.__html4_13, this.__html5_14, this.__html6_15, this.__html7_16, this.__html8_17, groupName));
+    __t.loopIterateAttr$3(t1.__e24_0, new $.init_autogenerated___closure3(groupName), new $.init_autogenerated___closure4(this.__html2_11, this.__html3_12, this.__html4_13, this.__html5_14, this.__html6_15, this.__html7_16, this.__html8_17, groupName));
     t2.bind$3(__t, new $.init_autogenerated___closure5(groupName), new $.init_autogenerated___closure6(t1), false);
-    t2.addAll$1(__t, [document.createTextNode("\n          "), t1.__e24_1, document.createTextNode("\n        ")]);
+    t2.addAll$1(__t, [document.createTextNode("\n          "), t1.__e25_1, document.createTextNode("\n        ")]);
   },
   $isFunction: true
 };
@@ -8783,7 +9039,7 @@ $$.init_autogenerated___closure1 = {"": "Closure;groupName_20",
 
 $$.init_autogenerated___closure2 = {"": "Closure;box_0",
   call$1: function(__e) {
-    $.set$id$x(this.box_0.__e23_0, $.S($.get$newValue$x(__e)) + "_contacts_list");
+    $.set$id$x(this.box_0.__e24_0, $.S($.get$newValue$x(__e)) + "_contacts_list");
   },
   $isFunction: true
 };
@@ -8801,24 +9057,25 @@ $$.init_autogenerated___closure3 = {"": "Closure;groupName_21",
 
 $$.init_autogenerated___closure4 = {"": "Closure;__html2_22,__html3_23,__html4_24,__html5_25,__html6_26,__html7_27,__html8_28,groupName_29",
   call$3: function($$list, $$index, __t) {
-    var contact, __e22, t1, __e3, __binding2, t2, t3, __e5, __binding4;
+    var contact, __e23, t1, __e3, __binding2, t2, t3, __e5, __binding4;
     contact = $.$index$asx($$list, $$index);
-    __e22 = $.clone$1$x(this.__html2_22, true);
-    t1 = $.getInterceptor$x(__e22);
-    __e3 = $.$index$asx(t1.get$nodes(__e22), 1);
+    __e23 = $.clone$1$x(this.__html2_22, true);
+    t1 = $.getInterceptor$x(__e23);
+    __e3 = $.$index$asx(t1.get$nodes(__e23), 1);
     __binding2 = __t.contentBind$2(new $.init_autogenerated____closure(contact), false);
     t2 = $.getInterceptor$x(__e3);
     $.addAll$1$ax(t2.get$nodes(__e3), [document.createTextNode("\n                  "), __binding2, document.createTextNode("\n                ")]);
     t3 = this.groupName_29;
     __t.listen$2(t2.get$onClick(__e3), new $.init_autogenerated____closure0(t3, contact));
-    __e5 = $.$index$asx(t1.get$nodes(__e22), 3);
+    __e5 = $.$index$asx(t1.get$nodes(__e23), 3);
     __binding4 = __t.contentBind$2(new $.init_autogenerated____closure1(contact), false);
     $.add$1$ax($.get$nodes$x(__e5), __binding4);
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e22), 5), new $.init_autogenerated____closure2(contact), new $.init_autogenerated____closure3(this.__html3_23, this.__html4_24, contact));
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e22), 7), new $.init_autogenerated____closure4(contact), new $.init_autogenerated____closure5(this.__html5_25, this.__html6_26, contact));
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e22), 9), new $.init_autogenerated____closure6(contact), new $.init_autogenerated____closure7(this.__html7_27, this.__html8_28, contact));
-    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e22), 11)), new $.init_autogenerated____closure8(t3, contact));
-    $.addAll$1$ax(__t, [document.createTextNode("\n              "), __e22, document.createTextNode(" \n            ")]);
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e23), 5), new $.init_autogenerated____closure2(contact), new $.init_autogenerated____closure3(this.__html3_23, this.__html4_24, contact));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e23), 7), new $.init_autogenerated____closure4(contact), new $.init_autogenerated____closure5(this.__html5_25, this.__html6_26, contact));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e23), 9), new $.init_autogenerated____closure6(contact), new $.init_autogenerated____closure7(this.__html7_27, this.__html8_28, contact));
+    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e23), 11)), new $.init_autogenerated____closure8(t3, contact));
+    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e23), 13)), new $.init_autogenerated____closure9(t3, contact));
+    $.addAll$1$ax(__t, [document.createTextNode("\n              "), __e23, document.createTextNode(" \n            ")]);
   },
   $isFunction: true
 };
@@ -8887,7 +9144,7 @@ $$.init_autogenerated______closure1 = {"": "Closure;cellPhone_40",
     var t1, t2;
     t1 = this.cellPhone_40;
     t2 = $.getInterceptor$asx(t1);
-    return $.$add$ns($.$add$ns(t2.$index(t1, "network"), "-"), t2.$index(t1, "number"));
+    return $.$add$ns($.$add$ns(t2.$index(t1, "network"), " "), t2.$index(t1, "number"));
   },
   $isFunction: true
 };
@@ -8932,7 +9189,7 @@ $$.init_autogenerated______closure0 = {"": "Closure;landLine_47",
     var t1, t2;
     t1 = this.landLine_47;
     t2 = $.getInterceptor$asx(t1);
-    return $.$add$ns($.$add$ns($.$add$ns($.$add$ns(t2.$index(t1, "country"), "-"), t2.$index(t1, "areaCode")), "-"), t2.$index(t1, "number"));
+    return $.$add$ns($.$add$ns($.$add$ns($.$add$ns(t2.$index(t1, "country"), " "), t2.$index(t1, "areaCode")), " "), t2.$index(t1, "number"));
   },
   $isFunction: true
 };
@@ -8986,16 +9243,23 @@ $$.init_autogenerated____closure8 = {"": "Closure;groupName_55,contact_56",
   $isFunction: true
 };
 
-$$.init_autogenerated___closure5 = {"": "Closure;groupName_57",
+$$.init_autogenerated____closure9 = {"": "Closure;groupName_57,contact_58",
+  call$1: function($$event) {
+    $.deleteContact($.S(this.groupName_57), $.$index$asx(this.contact_58, "_id"));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated___closure5 = {"": "Closure;groupName_59",
   call$0: function() {
-    return this.groupName_57;
+    return this.groupName_59;
   },
   $isFunction: true
 };
 
 $$.init_autogenerated___closure6 = {"": "Closure;box_0",
   call$1: function(__e) {
-    $.set$id$x(this.box_0.__e24_1, $.S($.get$newValue$x(__e)) + "_group");
+    $.set$id$x(this.box_0.__e25_1, $.S($.get$newValue$x(__e)) + "_group");
   },
   $isFunction: true
 };
@@ -9075,6 +9339,12 @@ $$.JsonObject = {"": "Object;_jsonString,_objectData,isExtendable",
   },
   toList$0: function($receiver) {
     return this.toList$1$growable($receiver, true);
+  },
+  firstWhere$2$orElse: function(_, test, orElse) {
+    return $.firstWhere$2$orElse$ax(this.toIterable$0(), test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
   },
   containsKey$1: function(_, value) {
     var t1 = this._objectData;
@@ -12735,6 +13005,12 @@ $$.Float32List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -12766,6 +13042,9 @@ $$.Float32List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -12862,6 +13141,12 @@ $$.Float64List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -12893,6 +13178,9 @@ $$.Float64List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -12989,6 +13277,12 @@ $$.Int16List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -13020,6 +13314,9 @@ $$.Int16List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -13116,6 +13413,12 @@ $$.Int32List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -13147,6 +13450,9 @@ $$.Int32List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -13243,6 +13549,12 @@ $$.Int8List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -13274,6 +13586,9 @@ $$.Int8List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -13370,6 +13685,12 @@ $$.Uint16List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -13401,6 +13722,9 @@ $$.Uint16List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -13497,6 +13821,12 @@ $$.Uint32List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -13528,6 +13858,9 @@ $$.Uint32List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -13621,6 +13954,12 @@ $$.Uint8ClampedList = {"": "Uint8List;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -13652,6 +13991,9 @@ $$.Uint8ClampedList = {"": "Uint8List;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -13748,6 +14090,12 @@ $$.Uint8List = {"": "TypedData;",
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
+  firstWhere$2$orElse: function(receiver, test, orElse) {
+    return $.IterableMixinWorkaround_firstWhere(receiver, test, orElse);
+  },
+  firstWhere$1: function($receiver, test) {
+    return this.firstWhere$2$orElse($receiver, test, null);
+  },
   elementAt$1: function(receiver, index) {
     if (index >>> 0 !== index || index >= receiver.length)
       throw $.ioore(index);
@@ -13779,6 +14127,9 @@ $$.Uint8List = {"": "TypedData;",
   },
   get$remove: function(receiver) {
     return new $.BoundClosure$i1(this, "remove$1", receiver);
+  },
+  removeWhere$1: function(receiver, test) {
+    throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
   sublist$2: function(receiver, start, end) {
     if (end == null)
@@ -14172,6 +14523,66 @@ $.IterableMixinWorkaround_forEach = function(iterable, f) {
   var t1;
   for (t1 = $.get$iterator$ax(iterable); t1.moveNext$0() === true;)
     f.call$1(t1.get$current());
+};
+
+$.IterableMixinWorkaround_removeWhereList = function(list, test) {
+  var retained, $length, i, element, t1, t2;
+  if (typeof list !== "object" || list === null || (list.constructor !== Array || !!list.immutable$list) && !$.getInterceptor(list).$isJavaScriptIndexingBehavior)
+    return $.IterableMixinWorkaround_removeWhereList$bailout(1, list, test);
+  retained = [];
+  $length = list.length;
+  for (i = 0; i < $length; ++i) {
+    if (i >= list.length)
+      throw $.ioore(i);
+    element = list[i];
+    if (test.call$1(element) !== true)
+      retained.push(element);
+    if ($length !== list.length)
+      throw $.wrapException($.ConcurrentModificationError$(list));
+  }
+  t1 = retained.length;
+  if (t1 === $length)
+    return;
+  $.JSArray_methods.set$length(list, t1);
+  for (t1 = list.length, i = 0; i < retained.length; ++i) {
+    t2 = retained[i];
+    if (i >= t1)
+      throw $.ioore(i);
+    list[i] = t2;
+  }
+};
+
+$.IterableMixinWorkaround_removeWhereList$bailout = function(state0, list, test) {
+  var retained, $length, i, element, t1;
+  retained = [];
+  $length = list.length;
+  for (i = 0; i < $length; ++i) {
+    if (i >= list.length)
+      throw $.ioore(i);
+    element = list[i];
+    if (test.call$1(element) !== true)
+      retained.push(element);
+    if ($length !== list.length)
+      throw $.wrapException($.ConcurrentModificationError$(list));
+  }
+  t1 = retained.length;
+  if (t1 === $length)
+    return;
+  $.JSArray_methods.set$length(list, t1);
+  for (i = 0; i < retained.length; ++i)
+    $.JSArray_methods.$indexSet(list, i, retained[i]);
+};
+
+$.IterableMixinWorkaround_firstWhere = function(iterable, test, orElse) {
+  var t1, element;
+  for (t1 = $.get$iterator$ax(iterable); t1.moveNext$0() === true;) {
+    element = t1.get$current();
+    if (test.call$1(element) === true)
+      return element;
+  }
+  if (orElse != null)
+    return orElse.call$0();
+  throw $.wrapException($.StateError$("No matching element"));
 };
 
 $.IterableMixinWorkaround__rangeCheck = function(list, start, end) {
@@ -16392,6 +16803,41 @@ $.LinkedHashMap$ = function(K, V) {
   return t1;
 };
 
+$.ListMixin__filter = function(source, test, retainMatching) {
+  var retained, t1, $length, i, element;
+  retained = [];
+  t1 = $.getInterceptor$asx(source);
+  $length = t1.get$length(source);
+  if (typeof $length !== "number")
+    return $.ListMixin__filter$bailout(1, source, test, retainMatching, retained, t1, $length);
+  for (i = 0; i < $length; ++i) {
+    element = t1.$index(source, i);
+    if ($.$eq(test.call$1(element), retainMatching))
+      retained.push(element);
+    if ($length !== t1.get$length(source))
+      throw $.wrapException($.ConcurrentModificationError$(source));
+  }
+  if (retained.length !== t1.get$length(source)) {
+    t1.setRange$3(source, 0, retained.length, retained);
+    t1.set$length(source, retained.length);
+  }
+};
+
+$.ListMixin__filter$bailout = function(state0, source, test, retainMatching, retained, t1, $length) {
+  var t2, i, element;
+  for (t2 = $.getInterceptor($length), i = 0; $.JSNumber_methods.$lt(i, $length); ++i) {
+    element = t1.$index(source, i);
+    if ($.$eq(test.call$1(element), retainMatching))
+      retained.push(element);
+    if (!t2.$eq($length, t1.get$length(source)))
+      throw $.wrapException($.ConcurrentModificationError$(source));
+  }
+  if (retained.length !== t1.get$length(source)) {
+    t1.setRange$3(source, 0, retained.length, retained);
+    t1.set$length(source, retained.length);
+  }
+};
+
 $.Queue_Queue = function(E) {
   return $.ListQueue$(null, E);
 };
@@ -17988,8 +18434,14 @@ $.addContactSaveOperation = function(e, caller, id) {
     contact.$indexSet(contact, "_id", id);
     $.$indexSet$ax(contactsList, id, contact);
   } else {
-    t2 = $.getInterceptor$asx(contactsList);
-    contact.$indexSet(contact, "_id", t2.get$length(contactsList));
+    for (t2 = $.getInterceptor$ax(contactsList), t3 = t2.get$iterator(contactsList), id = 0; t3.moveNext$0() === true;) {
+      item = t3.get$current();
+      t4 = $.getInterceptor$asx(item);
+      if ($.$gt$n(t4.$index(item, "_id"), id) === true)
+        id = t4.$index(item, "_id");
+    }
+    t3 = $.getInterceptor(id);
+    contact.$indexSet(contact, "_id", t3.$eq(id, 0) ? 0 : t3.$add(id, 1));
     t2.add$1(contactsList, contact);
   }
   $.sort$1$ax(contactsList, new $.addContactSaveOperation_closure());
@@ -18026,6 +18478,26 @@ $.populateGeneralDialogFooterAddGroup = function() {
   createGroupBtn.textContent = $.getPropertyValue("create");
   t1.get$onClick(createGroupBtn).listen$1(new $.populateGeneralDialogFooterAddGroup_closure());
   dialogFooter.appendChild(createGroupBtn);
+};
+
+$.deleteContact = function(groupName, index) {
+  var t1, contactsList, requestData, request, output;
+  t1 = $.get$contactsBook()._objectData;
+  contactsList = $.toList$0$ax(t1.$index(t1, groupName));
+  t1 = $.getInterceptor$ax(contactsList);
+  if (window.confirm($.$add$ns($.$add$ns($.$add$ns($.$add$ns($.getPropertyValue("contactDelMsg"), "\n"), $.$index$asx(t1.firstWhere$1(contactsList, new $.deleteContact_closure(index)), "name")), "\n"), $.$index$asx(t1.firstWhere$1(contactsList, new $.deleteContact_closure0(index)), "comments"))) === true) {
+    t1.removeWhere$1(contactsList, new $.deleteContact_closure1(index));
+    requestData = $.JsonObject$(null);
+    requestData.$indexSet(requestData, "groupName", groupName);
+    requestData.$indexSet(requestData, "contactsList", contactsList);
+    request = new XMLHttpRequest();
+    t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
+    $._EventStreamSubscription$(t1._target, t1._eventType, new $.deleteContact_closure2(groupName, contactsList, request), t1._useCapture);
+    $.HttpRequest_methods.open$3$async(request, "POST", $.JSString_methods.$add($.baseURL, "addSingleContact"), true);
+    output = $.StringBuffer$("");
+    $._JsonStringifier$(output).stringifyValue$1(requestData);
+    request.send(output._contents);
+  }
 };
 
 $.populateGeneralDialogForEditContact = function(groupName, index) {
@@ -18326,7 +18798,7 @@ $.init_autogenerated = function() {
   __root = document.body;
   __html0 = document.createElement("template");
   __html1 = $._ElementFactoryProvider_createElement_html("<details>\n            <summary></summary>\n            <ul></ul>\n          </details>");
-  __html2 = $._ElementFactoryProvider_createElement_html("<li>\n                <a name=\"contact_name\" href=\"#\"></a>\n                <span name=\"contact_comments\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span name=\"edit_contact_btn\">\u270e</span>\n              </li>");
+  __html2 = $._ElementFactoryProvider_createElement_html("<li>\n                <a name=\"contact_name\" href=\"#\"></a>\n                <span name=\"contact_comments\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span name=\"edit_contact_btn\">\u270e</span>\n                <span name=\"delete_contact_btn\">\u2717</span>\n              </li>");
   __html3 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['cellPhoneList'] != null\">\n                  <span name=\"contact_cell_phones\"></span>\n                </span>");
   __html4 = $._ElementFactoryProvider_createElement_html("<span name=\"cell_phone_item\"></span>");
   __html5 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['landLinesList'] != null\">\n                  <span name=\"contact_land_lines\"></span>\n                </span>");
@@ -19050,6 +19522,9 @@ $.elementAt$1$ax = function(receiver, a0) {
 };
 $.endsWith$1$s = function(receiver, a0) {
   return $.getInterceptor$s(receiver).endsWith$1(receiver, a0);
+};
+$.firstWhere$2$orElse$ax = function(receiver, a0, a1) {
+  return $.getInterceptor$ax(receiver).firstWhere$2$orElse(receiver, a0, a1);
 };
 $.forEach$1$ax = function(receiver, a0) {
   return $.getInterceptor$ax(receiver).forEach$1(receiver, a0);

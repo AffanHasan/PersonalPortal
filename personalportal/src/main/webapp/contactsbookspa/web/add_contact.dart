@@ -334,12 +334,17 @@ void addContactSaveOperation(Event e, [String caller, int id]){
   }
   //Assigning this contact an id for this group
   print('Caller is');print(caller);
-  if(caller == 'edit_contact'){
+  if(caller == 'edit_contact'){//If editing a contact
     contact['_id'] = id;
     contactsList[id] = contact;
   }
-  else{
-    contact['_id'] = contactsList.length;
+  else{//If adding a new contact
+    int id = 0;
+    for(JsonObject item in contactsList){//Get the biggest id value
+      if(item['_id'] > id)
+        id = item['_id'];
+    }
+    contact['_id'] = id == 0 ? 0 : ++id;
     contactsList.add(contact);
   }
   contactsList.sort(//Sorting the contacts list by name

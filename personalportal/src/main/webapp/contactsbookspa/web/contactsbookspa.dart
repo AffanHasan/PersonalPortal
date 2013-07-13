@@ -12,6 +12,7 @@ part "add_contact.dart";
 part "add_group.dart";
 part "view_contact.dart";
 part "edit_contact.dart";
+part "delete_contact.dart";
 
 /**
  * Holds the contacts book state

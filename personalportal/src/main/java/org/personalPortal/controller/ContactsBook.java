@@ -23,7 +23,6 @@ import org.personalPortal.model.PersonalPortalDBCollections;
 import org.personalPortal.model.PortalUser;
 import org.personalPortal.services.DocumentCRUDService;
 
-import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
