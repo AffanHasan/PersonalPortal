@@ -8518,6 +8518,120 @@ $$.populateGeneralDialogFooterAddGroup__closure = {"": "Closure;groupNameInput_0
   $isFunction: true
 };
 
+$$.populateGeneralDialogForEditContact_closure = {"": "Closure;",
+  call$1: function(e) {
+    var cellPhoneLE, t1, comment, network, number;
+    cellPhoneLE = document.createElement("li");
+    t1 = $.getInterceptor$x(cellPhoneLE);
+    t1.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+    comment = $.InputElement_InputElement(null);
+    $.set$name$x(comment, "cell_comment");
+    cellPhoneLE.appendChild(comment);
+    t1.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("network")), ": </label>"));
+    network = $.InputElement_InputElement("tel");
+    $.set$name$x(network, "cell_network");
+    cellPhoneLE.appendChild(network);
+    t1.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("number")), ": </label>"));
+    number = $.InputElement_InputElement("tel");
+    $.set$name$x(number, "cell_number");
+    cellPhoneLE.appendChild(number);
+    document.querySelector("#cell_phones_list").appendChild(cellPhoneLE);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogForEditContact_closure0 = {"": "Closure;",
+  call$1: function(e) {
+    var landLineLE, t1, comment, country, areaCode, number;
+    landLineLE = document.createElement("li");
+    t1 = $.getInterceptor$x(landLineLE);
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+    comment = $.InputElement_InputElement(null);
+    $.set$name$x(comment, "land_line_comment");
+    landLineLE.appendChild(comment);
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("country")), ": </label>"));
+    country = $.InputElement_InputElement("tel");
+    $.set$name$x(country, "line_country");
+    landLineLE.appendChild(country);
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("cityAreacode")), ": </label>"));
+    areaCode = $.InputElement_InputElement("tel");
+    $.set$name$x(areaCode, "area_code");
+    landLineLE.appendChild(areaCode);
+    t1.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("number")), ": </label>"));
+    number = $.InputElement_InputElement("tel");
+    $.set$name$x(number, "line_number");
+    landLineLE.appendChild(number);
+    document.querySelector("#land_lines_list").appendChild(landLineLE);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogForEditContact_closure1 = {"": "Closure;",
+  call$1: function(e) {
+    var addressLE, t1, address, comment;
+    addressLE = document.createElement("li");
+    t1 = $.getInterceptor$x(addressLE);
+    t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("address")), ": </label>"));
+    address = document.createElement("textarea");
+    $.set$height$x(address.style, "70px");
+    $.set$width$x(address.style, "500px");
+    $.set$name$x(address, "address_txt");
+    addressLE.appendChild(address);
+    t1.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+    comment = $.InputElement_InputElement(null);
+    $.set$name$x(comment, "address_comment");
+    addressLE.appendChild(comment);
+    document.querySelector("#addresses_list").appendChild(addressLE);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogForEditContact_closure2 = {"": "Closure;",
+  call$1: function(e) {
+    var emailInput = $.InputElement_InputElement("email");
+    $.set$name$x(emailInput, "email_input");
+    $.appendHtml$1$x(document.querySelector("#emails_div"), $.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("addEmail")), ": "), "</label>"));
+    document.querySelector("#emails_div").appendChild(emailInput);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogForEditContact_closure3 = {"": "Closure;",
+  call$1: function(e) {
+    var skypeInput = $.InputElement_InputElement(null);
+    $.set$name$x(skypeInput, "skype_input");
+    $.appendHtml$1$x(document.querySelector("#skype_div"), $.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("skypeId")), ": "), "</label>"));
+    document.querySelector("#skype_div").appendChild(skypeInput);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogForEditContact_closure4 = {"": "Closure;additionalInfoDiv_0",
+  call$1: function(e) {
+    var additionalInfoItem, additionalInfoFieldName, additionalInfoText;
+    $.appendHtml$1$x(this.additionalInfoDiv_0, "</br>");
+    additionalInfoItem = document.createElement("li");
+    additionalInfoFieldName = $.InputElement_InputElement(null);
+    $.set$name$x(additionalInfoFieldName, "additional_info_field_name");
+    additionalInfoText = document.createElement("textarea");
+    $.set$name$x(additionalInfoText, "additional_info_txt");
+    $.appendHtml$1$x(additionalInfoItem, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("fieldName")), ": </label>"));
+    additionalInfoItem.appendChild(additionalInfoFieldName);
+    additionalInfoItem.appendChild(additionalInfoText);
+    document.querySelector("#additional_info_list").appendChild(additionalInfoItem);
+  },
+  $isFunction: true
+};
+
+$$.populateGeneralDialogForEditContact_closure5 = {"": "Closure;index_1",
+  call$1: function(e) {
+    var t1 = this.index_1;
+    $.Primitives_printString("Calling addContactSaveOperation params null, edit_contact, " + $.S(t1));
+    $.addContactSaveOperation(null, "edit_contact", t1);
+  },
+  $isFunction: true
+};
+
 $$.loadDataContainerOnFirstLoad_closure = {"": "Closure;",
   call$1: function(responseText) {
     var groupList, t1, groupName, t2;
@@ -8606,11 +8720,11 @@ $$.init_autogenerated_closure = {"": "Closure;",
 
 $$.init_autogenerated_closure0 = {"": "Closure;__html0_1,__html1_2,__html2_3,__html3_4,__html4_5,__html5_6,__html6_7,__html7_8,__html8_9",
   call$1: function(__t) {
-    var __e24, t1;
-    __e24 = $.clone$1$x(this.__html0_1, true);
+    var __e25, t1;
+    __e25 = $.clone$1$x(this.__html0_1, true);
     t1 = $.getInterceptor$x(__t);
-    t1.loop$3(__t, __e24, new $.init_autogenerated__closure(), new $.init_autogenerated__closure0(this.__html1_2, this.__html2_3, this.__html3_4, this.__html4_5, this.__html5_6, this.__html6_7, this.__html7_8, this.__html8_9));
-    t1.addAll$1(__t, [document.createTextNode("\n        "), __e24, document.createTextNode("\n      ")]);
+    t1.loop$3(__t, __e25, new $.init_autogenerated__closure(), new $.init_autogenerated__closure0(this.__html1_2, this.__html2_3, this.__html3_4, this.__html4_5, this.__html5_6, this.__html6_7, this.__html7_8, this.__html8_9));
+    t1.addAll$1(__t, [document.createTextNode("\n        "), __e25, document.createTextNode("\n      ")]);
   },
   $isFunction: true
 };
@@ -8628,20 +8742,20 @@ $$.init_autogenerated__closure0 = {"": "Closure;__html1_10,__html2_11,__html3_12
     var t1, groupName, __e1, __binding0, t2;
     t1 = {};
     groupName = $.$index$asx($$list, $$index);
-    t1.__e22_0 = null;
-    t1.__e23_1 = null;
-    t1.__e23_1 = $.clone$1$x(this.__html1_10, true);
-    __e1 = $.$index$asx($.get$nodes$x(t1.__e23_1), 1);
+    t1.__e23_0 = null;
+    t1.__e24_1 = null;
+    t1.__e24_1 = $.clone$1$x(this.__html1_10, true);
+    __e1 = $.$index$asx($.get$nodes$x(t1.__e24_1), 1);
     __binding0 = __t.contentBind$2(new $.init_autogenerated___closure(groupName), false);
     t2 = $.getInterceptor$x(__e1);
     $.add$1$ax(t2.get$nodes(__e1), __binding0);
     __t.listen$2(t2.get$onClick(__e1), new $.init_autogenerated___closure0(groupName));
-    t1.__e22_0 = $.$index$asx($.get$nodes$x(t1.__e23_1), 3);
+    t1.__e23_0 = $.$index$asx($.get$nodes$x(t1.__e24_1), 3);
     t2 = $.getInterceptor$x(__t);
     t2.bind$3(__t, new $.init_autogenerated___closure1(groupName), new $.init_autogenerated___closure2(t1), false);
-    __t.loopIterateAttr$3(t1.__e22_0, new $.init_autogenerated___closure3(groupName), new $.init_autogenerated___closure4(this.__html2_11, this.__html3_12, this.__html4_13, this.__html5_14, this.__html6_15, this.__html7_16, this.__html8_17, groupName));
+    __t.loopIterateAttr$3(t1.__e23_0, new $.init_autogenerated___closure3(groupName), new $.init_autogenerated___closure4(this.__html2_11, this.__html3_12, this.__html4_13, this.__html5_14, this.__html6_15, this.__html7_16, this.__html8_17, groupName));
     t2.bind$3(__t, new $.init_autogenerated___closure5(groupName), new $.init_autogenerated___closure6(t1), false);
-    t2.addAll$1(__t, [document.createTextNode("\n          "), t1.__e23_1, document.createTextNode("\n        ")]);
+    t2.addAll$1(__t, [document.createTextNode("\n          "), t1.__e24_1, document.createTextNode("\n        ")]);
   },
   $isFunction: true
 };
@@ -8669,7 +8783,7 @@ $$.init_autogenerated___closure1 = {"": "Closure;groupName_20",
 
 $$.init_autogenerated___closure2 = {"": "Closure;box_0",
   call$1: function(__e) {
-    $.set$id$x(this.box_0.__e22_0, $.S($.get$newValue$x(__e)) + "_contacts_list");
+    $.set$id$x(this.box_0.__e23_0, $.S($.get$newValue$x(__e)) + "_contacts_list");
   },
   $isFunction: true
 };
@@ -8687,22 +8801,24 @@ $$.init_autogenerated___closure3 = {"": "Closure;groupName_21",
 
 $$.init_autogenerated___closure4 = {"": "Closure;__html2_22,__html3_23,__html4_24,__html5_25,__html6_26,__html7_27,__html8_28,groupName_29",
   call$3: function($$list, $$index, __t) {
-    var contact, __e21, t1, __e3, __binding2, t2, __e5, __binding4;
+    var contact, __e22, t1, __e3, __binding2, t2, t3, __e5, __binding4;
     contact = $.$index$asx($$list, $$index);
-    __e21 = $.clone$1$x(this.__html2_22, true);
-    t1 = $.getInterceptor$x(__e21);
-    __e3 = $.$index$asx(t1.get$nodes(__e21), 1);
+    __e22 = $.clone$1$x(this.__html2_22, true);
+    t1 = $.getInterceptor$x(__e22);
+    __e3 = $.$index$asx(t1.get$nodes(__e22), 1);
     __binding2 = __t.contentBind$2(new $.init_autogenerated____closure(contact), false);
     t2 = $.getInterceptor$x(__e3);
     $.addAll$1$ax(t2.get$nodes(__e3), [document.createTextNode("\n                  "), __binding2, document.createTextNode("\n                ")]);
-    __t.listen$2(t2.get$onClick(__e3), new $.init_autogenerated____closure0(this.groupName_29, contact));
-    __e5 = $.$index$asx(t1.get$nodes(__e21), 3);
+    t3 = this.groupName_29;
+    __t.listen$2(t2.get$onClick(__e3), new $.init_autogenerated____closure0(t3, contact));
+    __e5 = $.$index$asx(t1.get$nodes(__e22), 3);
     __binding4 = __t.contentBind$2(new $.init_autogenerated____closure1(contact), false);
     $.add$1$ax($.get$nodes$x(__e5), __binding4);
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e21), 5), new $.init_autogenerated____closure2(contact), new $.init_autogenerated____closure3(this.__html3_23, this.__html4_24, contact));
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e21), 7), new $.init_autogenerated____closure4(contact), new $.init_autogenerated____closure5(this.__html5_25, this.__html6_26, contact));
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e21), 9), new $.init_autogenerated____closure6(contact), new $.init_autogenerated____closure7(this.__html7_27, this.__html8_28, contact));
-    $.addAll$1$ax(__t, [document.createTextNode("\n              "), __e21, document.createTextNode(" \n            ")]);
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e22), 5), new $.init_autogenerated____closure2(contact), new $.init_autogenerated____closure3(this.__html3_23, this.__html4_24, contact));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e22), 7), new $.init_autogenerated____closure4(contact), new $.init_autogenerated____closure5(this.__html5_25, this.__html6_26, contact));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e22), 9), new $.init_autogenerated____closure6(contact), new $.init_autogenerated____closure7(this.__html7_27, this.__html8_28, contact));
+    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e22), 11)), new $.init_autogenerated____closure8(t3, contact));
+    $.addAll$1$ax(__t, [document.createTextNode("\n              "), __e22, document.createTextNode(" \n            ")]);
   },
   $isFunction: true
 };
@@ -8863,16 +8979,23 @@ $$.init_autogenerated______closure = {"": "Closure;address_54",
   $isFunction: true
 };
 
-$$.init_autogenerated___closure5 = {"": "Closure;groupName_55",
+$$.init_autogenerated____closure8 = {"": "Closure;groupName_55,contact_56",
+  call$1: function($$event) {
+    $.populateGeneralDialogForEditContact($.S(this.groupName_55), $.$index$asx(this.contact_56, "_id"));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated___closure5 = {"": "Closure;groupName_57",
   call$0: function() {
-    return this.groupName_55;
+    return this.groupName_57;
   },
   $isFunction: true
 };
 
 $$.init_autogenerated___closure6 = {"": "Closure;box_0",
   call$1: function(__e) {
-    $.set$id$x(this.box_0.__e23_1, $.S($.get$newValue$x(__e)) + "_group");
+    $.set$id$x(this.box_0.__e24_1, $.S($.get$newValue$x(__e)) + "_group");
   },
   $isFunction: true
 };
@@ -8880,13 +9003,6 @@ $$.init_autogenerated___closure6 = {"": "Closure;box_0",
 $$.init_autogenerated_closure1 = {"": "Closure;",
   call$1: function($$event) {
     $.closeGeneralDialog();
-  },
-  $isFunction: true
-};
-
-$$.populateGeneralDialogWithContactDetails_closure = {"": "Closure;",
-  call$2: function(a, b) {
-    return $.compareTo$1$ns($.$index$asx(a, "_id"), $.$index$asx(b, "_id"));
   },
   $isFunction: true
 };
@@ -13913,7 +14029,14 @@ $$.Closure$resolveInputs = {"": "Closure;call$1,$name"};
 
 $$.Closure$deliverChangeRecords = {"": "Closure;call$0,$name"};
 
-$$.Closure$addContactSaveOperation = {"": "Closure;call$1,$name"};
+$$.Closure$addContactSaveOperation = {"": "Closure;call$3,$name",
+  call$1: function(e) {
+    return this.call$3(e, null, null);
+  },
+  call$2: function(e, caller) {
+    return this.call$3(e, caller, null);
+  }
+};
 
 $$.Closure$main = {"": "Closure;call$0,$name"};
 
@@ -17704,7 +17827,7 @@ $.populateGeneralDialogForAddContact = function() {
   dialogFooter.appendChild(addContactSaveBtn);
 };
 
-$.addContactSaveOperation = function(e) {
+$.addContactSaveOperation = function(e, caller, id) {
   var contact, fieldInput, t1, cellPhonesList, cell, cellPhone, t2, cellInput, t3, landLinesList, landLine, landLinePhone, landLineInput, addressesList, address, addressObject, input, emailInputs, email, skypeIdInputs, skypeId, addInfoItemList, item, input2, requestData, groupInput, t4, contactsList, request, output;
   contact = $.JsonObject$(null);
   contact.set$name(contact, $.get$value$x(document.querySelector("#contact_name")));
@@ -17858,10 +17981,18 @@ $.addContactSaveOperation = function(e) {
     t2 = t2._objectData;
     contactsList = $.toList$0$ax(t2.$index(t2, t3));
   }
-  t2 = $.getInterceptor$asx(contactsList);
-  contact.$indexSet(contact, "_id", t2.get$length(contactsList));
-  t2.add$1(contactsList, contact);
-  t2.sort$1(contactsList, new $.addContactSaveOperation_closure());
+  $.Primitives_printString("Caller is");
+  t2 = $.getInterceptor(caller);
+  $.Primitives_printString(t2.toString$0(caller));
+  if (t2.$eq(caller, "edit_contact")) {
+    contact.$indexSet(contact, "_id", id);
+    $.$indexSet$ax(contactsList, id, contact);
+  } else {
+    t2 = $.getInterceptor$asx(contactsList);
+    contact.$indexSet(contact, "_id", t2.get$length(contactsList));
+    t2.add$1(contactsList, contact);
+  }
+  $.sort$1$ax(contactsList, new $.addContactSaveOperation_closure());
   requestData.$indexSet(requestData, "contactsList", contactsList);
   t2 = $.get$contactsBook();
   t2.$indexSet(t2, t1.get$value(groupInput), contactsList);
@@ -17895,6 +18026,257 @@ $.populateGeneralDialogFooterAddGroup = function() {
   createGroupBtn.textContent = $.getPropertyValue("create");
   t1.get$onClick(createGroupBtn).listen$1(new $.populateGeneralDialogFooterAddGroup_closure());
   dialogFooter.appendChild(createGroupBtn);
+};
+
+$.populateGeneralDialogForEditContact = function(groupName, index) {
+  var t1, contact, item, bodySection, groupSelection, t2, t3, t4, t5, nameCommentDiv, namefield, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, emailBTN, skypeBTN, additionalInfoDiv, additionalInfoBTN, dialogFooter, addContactSaveBtn, cellPhoneItem, cellPhoneLE, comment, t6, network, number, landLineItem, landLineLE, country, areaCode, addressItem, addressLE, address, emailItem, emailInput, skypeId, skypeInput, keyItem, additionalInfoItem, additionalInfoFieldName, additionalInfoText;
+  $.set$display$x(document.querySelector("#overlay_shield").style, "inline");
+  $.set$display$x(document.querySelector("#general_dialog").style, "inline");
+  t1 = $.get$contactsBook()._objectData;
+  for (t1 = $.get$iterator$ax($.toList$0$ax(t1.$index(t1, groupName))); contact = null, t1.moveNext$0() === true;) {
+    item = t1.get$current();
+    if ($.$eq($.$index$asx(item, "_id"), index)) {
+      contact = item;
+      break;
+    }
+  }
+  t1 = $.getInterceptor$asx(contact);
+  $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.toUpperCase$0$s(t1.$index(contact, "name"))), "</h1>"));
+  bodySection = document.querySelector("#general_dialog_body");
+  groupSelection = document.createElement("select");
+  t2 = $.getInterceptor$x(groupSelection);
+  t2.set$id(groupSelection, "add_contact_group_selection");
+  t3 = t2.get$children(groupSelection);
+  t3.add$1(t3, $.OptionElement_OptionElement(groupName, $, $, $));
+  for (t3 = $.get$contactsBook()._objectData, t3 = t3.get$keys(t3), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
+    item = t3.get$current();
+    if (!$.$eq(item, groupName)) {
+      t4 = t2.get$children(groupSelection);
+      t4.add$1(t4, $.OptionElement_OptionElement(item, $, $, $));
+    }
+  }
+  t3 = $.get$contactsBook();
+  t4 = $.getPropertyValue("uncategorizedGroup");
+  t5 = t3._objectData;
+  if (!t5.containsKey$1(t5, t3._symbolToString$1(t4))) {
+    t2 = t2.get$children(groupSelection);
+    t2.add$1(t2, $.OptionElement_OptionElement($.getPropertyValue("uncategorizedGroup"), $.getPropertyValue("uncategorizedGroup"), true, true));
+  }
+  $.appendHtml$1$x(bodySection, "<label for='add_contact_group_selection'>Group: </label>");
+  bodySection.appendChild(groupSelection);
+  nameCommentDiv = document.createElement("div");
+  t2 = $.getInterceptor$x(nameCommentDiv);
+  t2.set$id(nameCommentDiv, "name_comment_div");
+  namefield = $.InputElement_InputElement("text");
+  t3 = $.getInterceptor$x(namefield);
+  t3.set$id(namefield, "contact_name");
+  t3.set$value(namefield, t1.$index(contact, "name"));
+  t2.appendHtml$1(nameCommentDiv, $.JSString_methods.$add($.JSString_methods.$add("<label for='contact_name'>", $.getPropertyValue0("name")), ": </label>"));
+  nameCommentDiv.appendChild(namefield);
+  contactCommentsTextArea = document.createElement("textarea");
+  t3 = $.getInterceptor$x(contactCommentsTextArea);
+  t3.set$id(contactCommentsTextArea, "contact_comments");
+  t3.set$value(contactCommentsTextArea, t1.$index(contact, "comments") == null ? "" : t1.$index(contact, "comments"));
+  t2.appendHtml$1(nameCommentDiv, $.JSString_methods.$add($.JSString_methods.$add("<label for='contact_comments'>", $.getPropertyValue("comments")), ": </label>"));
+  nameCommentDiv.appendChild(contactCommentsTextArea);
+  phonesDiv = document.createElement("div");
+  $.set$id$x(phonesDiv, "phones_div");
+  phonesFieldSet = document.createElement("fieldset");
+  phonesFiledSetLegend = document.createElement("legend");
+  addCellPhoneBtn = document.createElement("button");
+  t2 = $.getInterceptor$x(addCellPhoneBtn);
+  t2.set$id(addCellPhoneBtn, "add_cell_phone_btn");
+  addCellPhoneBtn.textContent = "\ud83d\udcf6";
+  t2.set$title(addCellPhoneBtn, $.getPropertyValue("addCell"));
+  t2.get$onClick(addCellPhoneBtn).listen$1(new $.populateGeneralDialogForEditContact_closure());
+  addLandLineBtn = document.createElement("button");
+  t2 = $.getInterceptor$x(addLandLineBtn);
+  t2.set$id(addLandLineBtn, "add_land_line_btn");
+  addLandLineBtn.textContent = "\u260e";
+  t2.set$title(addLandLineBtn, $.getPropertyValue("addLandLine"));
+  t2.get$onClick(addLandLineBtn).listen$1(new $.populateGeneralDialogForEditContact_closure0());
+  phonesFiledSetLegend.appendChild(addCellPhoneBtn);
+  phonesFiledSetLegend.appendChild(addLandLineBtn);
+  t2 = $.getInterceptor$x(phonesFieldSet);
+  phonesFieldSet.appendChild(phonesFiledSetLegend);
+  t2.appendHtml$1(phonesFieldSet, "<ul id='cell_phones_list'></ul>");
+  t2.appendHtml$1(phonesFieldSet, "</br><ul id='land_lines_list'></ul>");
+  phonesDiv.appendChild(phonesFieldSet);
+  addressDiv = document.createElement("div");
+  $.set$id$x(addressDiv, "addresses_div");
+  addressesFieldlSet = document.createElement("fieldset");
+  addressesFieldSetLegend = document.createElement("legend");
+  addressesFieldSetLegendBTN = document.createElement("button");
+  t2 = $.getInterceptor$x(addressesFieldSetLegendBTN);
+  addressesFieldSetLegendBTN.textContent = "\u2302";
+  t2.set$title(addressesFieldSetLegendBTN, $.getPropertyValue("address"));
+  t2.get$onClick(addressesFieldSetLegendBTN).listen$1(new $.populateGeneralDialogForEditContact_closure1());
+  addressesFieldSetLegend.appendChild(addressesFieldSetLegendBTN);
+  addressesFieldlSet.appendChild(addressesFieldSetLegend);
+  $.appendHtml$1$x(addressesFieldlSet, "<ul id='addresses_list'></ul>");
+  addressDiv.appendChild(addressesFieldlSet);
+  emailSkypeDiv = document.createElement("div");
+  $.set$id$x(emailSkypeDiv, "email_skype_div");
+  emailSkypeFieldSet = document.createElement("fieldset");
+  emailSkypeFieldSetLegend = document.createElement("legend");
+  emailBTN = document.createElement("button");
+  t2 = $.getInterceptor$x(emailBTN);
+  t2.set$id(emailBTN, "add_email_btn");
+  emailBTN.textContent = "@";
+  t2.set$title(emailBTN, $.getPropertyValue("addEmail"));
+  t2.get$onClick(emailBTN).listen$1(new $.populateGeneralDialogForEditContact_closure2());
+  skypeBTN = document.createElement("button");
+  t2 = $.getInterceptor$x(skypeBTN);
+  t2.set$id(skypeBTN, "add_skype_btn");
+  skypeBTN.textContent = $.getPropertyValue("skypeId");
+  t2.get$onClick(skypeBTN).listen$1(new $.populateGeneralDialogForEditContact_closure3());
+  emailSkypeFieldSetLegend.appendChild(emailBTN);
+  emailSkypeFieldSetLegend.appendChild(skypeBTN);
+  t2 = $.getInterceptor$x(emailSkypeFieldSet);
+  emailSkypeFieldSet.appendChild(emailSkypeFieldSetLegend);
+  t2.appendHtml$1(emailSkypeFieldSet, "<div id='emails_div'></div>");
+  t2.appendHtml$1(emailSkypeFieldSet, "<div id='skype_div'></div>");
+  emailSkypeDiv.appendChild(emailSkypeFieldSet);
+  additionalInfoDiv = document.createElement("div");
+  t2 = $.getInterceptor$x(additionalInfoDiv);
+  t2.set$id(additionalInfoDiv, "additional_info_div");
+  additionalInfoBTN = document.createElement("button");
+  t3 = $.getInterceptor$x(additionalInfoBTN);
+  t3.set$id(additionalInfoBTN, "additional_infoBTN");
+  additionalInfoBTN.textContent = $.getPropertyValue("additionalInfo");
+  t3.get$onClick(additionalInfoBTN).listen$1(new $.populateGeneralDialogForEditContact_closure4(additionalInfoDiv));
+  additionalInfoDiv.appendChild(additionalInfoBTN);
+  t2.appendHtml$1(additionalInfoDiv, "<ul id='additional_info_list'></ul>");
+  bodySection.appendChild(nameCommentDiv);
+  bodySection.appendChild(phonesDiv);
+  bodySection.appendChild(addressDiv);
+  bodySection.appendChild(emailSkypeDiv);
+  bodySection.appendChild(additionalInfoDiv);
+  dialogFooter = document.querySelector("#general_dialog_footer");
+  addContactSaveBtn = document.createElement("button");
+  t3 = $.getInterceptor$x(addContactSaveBtn);
+  t3.set$id(addContactSaveBtn, "add_contact_save_btn");
+  addContactSaveBtn.textContent = "Save";
+  t3.get$onClick(addContactSaveBtn).listen$1(new $.populateGeneralDialogForEditContact_closure5(index));
+  dialogFooter.appendChild(addContactSaveBtn);
+  if (t1.$index(contact, "cellPhoneList") != null)
+    for (t3 = $.get$iterator$ax(t1.$index(contact, "cellPhoneList")); t3.moveNext$0() === true;) {
+      cellPhoneItem = t3.get$current();
+      cellPhoneLE = document.createElement("li");
+      t4 = $.getInterceptor$x(cellPhoneLE);
+      t4.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+      comment = $.InputElement_InputElement(null);
+      t5 = $.getInterceptor$x(comment);
+      t5.set$name(comment, "cell_comment");
+      t6 = $.getInterceptor$asx(cellPhoneItem);
+      t5.set$value(comment, t6.$index(cellPhoneItem, "comment") == null ? "" : t6.$index(cellPhoneItem, "comment"));
+      cellPhoneLE.appendChild(comment);
+      t4.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("network")), ": </label>"));
+      network = $.InputElement_InputElement("tel");
+      t5 = $.getInterceptor$x(network);
+      t5.set$name(network, "cell_network");
+      t5.set$value(network, t6.$index(cellPhoneItem, "network"));
+      cellPhoneLE.appendChild(network);
+      t4.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("number")), ": </label>"));
+      number = $.InputElement_InputElement("tel");
+      t4 = $.getInterceptor$x(number);
+      t4.set$name(number, "cell_number");
+      t4.set$value(number, t6.$index(cellPhoneItem, "number"));
+      cellPhoneLE.appendChild(number);
+      document.querySelector("#cell_phones_list").appendChild(cellPhoneLE);
+    }
+  if (t1.$index(contact, "landLinesList") != null)
+    for (t3 = $.get$iterator$ax(t1.$index(contact, "landLinesList")); t3.moveNext$0() === true;) {
+      landLineItem = t3.get$current();
+      landLineLE = document.createElement("li");
+      t4 = $.getInterceptor$x(landLineLE);
+      t4.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+      comment = $.InputElement_InputElement(null);
+      t5 = $.getInterceptor$x(comment);
+      t5.set$name(comment, "land_line_comment");
+      t6 = $.getInterceptor$asx(landLineItem);
+      t5.set$value(comment, t6.$index(landLineItem, "comment") == null ? "" : t6.$index(landLineItem, "comment"));
+      landLineLE.appendChild(comment);
+      t4.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("country")), ": </label>"));
+      country = $.InputElement_InputElement("tel");
+      t5 = $.getInterceptor$x(country);
+      t5.set$name(country, "line_country");
+      t5.set$value(country, t6.$index(landLineItem, "country"));
+      landLineLE.appendChild(country);
+      t4.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("cityAreacode")), ": </label>"));
+      areaCode = $.InputElement_InputElement("tel");
+      t5 = $.getInterceptor$x(areaCode);
+      t5.set$name(areaCode, "area_code");
+      t5.set$value(areaCode, t6.$index(landLineItem, "areaCode"));
+      landLineLE.appendChild(areaCode);
+      t4.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("number")), ": </label>"));
+      number = $.InputElement_InputElement("tel");
+      t4 = $.getInterceptor$x(number);
+      t4.set$name(number, "line_number");
+      t4.set$value(number, t6.$index(landLineItem, "number"));
+      landLineLE.appendChild(number);
+      document.querySelector("#land_lines_list").appendChild(landLineLE);
+    }
+  if (t1.$index(contact, "addressesList") != null)
+    for (t3 = $.get$iterator$ax(t1.$index(contact, "addressesList")); t3.moveNext$0() === true;) {
+      addressItem = t3.get$current();
+      addressLE = document.createElement("li");
+      t4 = $.getInterceptor$x(addressLE);
+      t4.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>   ", $.getPropertyValue("address")), ": </label>"));
+      address = document.createElement("textarea");
+      t5 = $.getInterceptor$x(address);
+      $.set$height$x(address.style, "70px");
+      $.set$width$x(address.style, "500px");
+      t5.set$name(address, "address_txt");
+      t6 = $.getInterceptor$asx(addressItem);
+      t5.set$value(address, t6.$index(addressItem, "address"));
+      addressLE.appendChild(address);
+      t4.appendHtml$1(addressLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
+      comment = $.InputElement_InputElement(null);
+      t4 = $.getInterceptor$x(comment);
+      t4.set$name(comment, "address_comment");
+      t4.set$value(comment, t6.$index(addressItem, "comment") == null ? "" : t6.$index(addressItem, "comment"));
+      addressLE.appendChild(comment);
+      document.querySelector("#addresses_list").appendChild(addressLE);
+    }
+  if (t1.$index(contact, "emailAddressesList") != null)
+    for (t3 = $.get$iterator$ax(t1.$index(contact, "emailAddressesList")); t3.moveNext$0() === true;) {
+      emailItem = t3.get$current();
+      emailInput = $.InputElement_InputElement("email");
+      t4 = $.getInterceptor$x(emailInput);
+      t4.set$name(emailInput, "email_input");
+      t4.set$value(emailInput, emailItem);
+      $.appendHtml$1$x(document.querySelector("#emails_div"), $.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("addEmail")), ": "), "</label>"));
+      document.querySelector("#emails_div").appendChild(emailInput);
+    }
+  if (t1.$index(contact, "skypeIdsList") != null)
+    for (t3 = $.get$iterator$ax(t1.$index(contact, "skypeIdsList")); t3.moveNext$0() === true;) {
+      skypeId = t3.get$current();
+      skypeInput = $.InputElement_InputElement(null);
+      t4 = $.getInterceptor$x(skypeInput);
+      t4.set$name(skypeInput, "skype_input");
+      t4.set$value(skypeInput, skypeId);
+      $.appendHtml$1$x(document.querySelector("#skype_div"), $.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("skypeId")), ": "), "</label>"));
+      document.querySelector("#skype_div").appendChild(skypeInput);
+    }
+  if (t1.containsKey$1(contact, "additionalInfo") === true)
+    for (t3 = $.get$iterator$ax($.get$keys$x(t1.$index(contact, "additionalInfo"))); t3.moveNext$0() === true;) {
+      keyItem = t3.get$current();
+      t2.appendHtml$1(additionalInfoDiv, "</br>");
+      additionalInfoItem = document.createElement("li");
+      additionalInfoFieldName = $.InputElement_InputElement(null);
+      t4 = $.getInterceptor$x(additionalInfoFieldName);
+      t4.set$name(additionalInfoFieldName, "additional_info_field_name");
+      t4.set$value(additionalInfoFieldName, keyItem);
+      additionalInfoText = document.createElement("textarea");
+      t4 = $.getInterceptor$x(additionalInfoText);
+      t4.set$name(additionalInfoText, "additional_info_txt");
+      t4.set$value(additionalInfoText, $.$index$asx(t1.$index(contact, "additionalInfo"), keyItem));
+      $.appendHtml$1$x(additionalInfoItem, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("fieldName")), ": </label>"));
+      additionalInfoItem.appendChild(additionalInfoFieldName);
+      additionalInfoItem.appendChild(additionalInfoText);
+      document.querySelector("#additional_info_list").appendChild(additionalInfoItem);
+    }
 };
 
 $.loadDataContainerOnFirstLoad = function() {
@@ -17944,7 +18326,7 @@ $.init_autogenerated = function() {
   __root = document.body;
   __html0 = document.createElement("template");
   __html1 = $._ElementFactoryProvider_createElement_html("<details>\n            <summary></summary>\n            <ul></ul>\n          </details>");
-  __html2 = $._ElementFactoryProvider_createElement_html("<li>\n                <a name=\"contact_name\" href=\"#\"></a>\n                <span name=\"contact_comments\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n              </li>");
+  __html2 = $._ElementFactoryProvider_createElement_html("<li>\n                <a name=\"contact_name\" href=\"#\"></a>\n                <span name=\"contact_comments\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span name=\"edit_contact_btn\">\u270e</span>\n              </li>");
   __html3 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['cellPhoneList'] != null\">\n                  <span name=\"contact_cell_phones\"></span>\n                </span>");
   __html4 = $._ElementFactoryProvider_createElement_html("<span name=\"cell_phone_item\"></span>");
   __html5 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['landLinesList'] != null\">\n                  <span name=\"contact_land_lines\"></span>\n                </span>");
@@ -17970,17 +18352,18 @@ $.main = function() {
 };
 
 $.populateGeneralDialogWithContactDetails = function(groupName, index) {
-  var t1, contactsList, contact, bodySection, groupSelection, t2, t3, t4, t5, item, nameCommentDiv, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addressDiv, addressesFieldlSet, addressesFieldSetLegend, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, additionalInfoDiv, cellPhoneItem, cellPhoneLE, landLineItem, landLineLE, addressItem, addressLE, emailItem, skypeId, keyItem;
+  var t1, contact, item, bodySection, groupSelection, t2, t3, t4, t5, nameCommentDiv, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addressDiv, addressesFieldlSet, addressesFieldSetLegend, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, additionalInfoDiv, cellPhoneItem, cellPhoneLE, landLineItem, landLineLE, addressItem, addressLE, emailItem, skypeId, keyItem;
   $.set$display$x(document.querySelector("#overlay_shield").style, "inline");
   $.set$display$x(document.querySelector("#general_dialog").style, "inline");
   t1 = $.get$contactsBook()._objectData;
-  contactsList = $.toList$0$ax(t1.$index(t1, groupName));
-  t1 = $.getInterceptor$ax(contactsList);
-  t1.sort$1(contactsList, new $.populateGeneralDialogWithContactDetails_closure());
-  contact = t1.$index(contactsList, index);
-  $.Primitives_printString($.JSString_methods.$add("Index : ", $.toString$0(index)));
-  t1 = $.getInterceptor(contact);
-  $.Primitives_printString($.toString$0(t1.toString$0(contact)));
+  for (t1 = $.get$iterator$ax($.toList$0$ax(t1.$index(t1, groupName))); contact = null, t1.moveNext$0() === true;) {
+    item = t1.get$current();
+    if ($.$eq($.$index$asx(item, "_id"), index)) {
+      contact = item;
+      break;
+    }
+  }
+  t1 = $.getInterceptor$asx(contact);
   $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.toUpperCase$0$s(t1.$index(contact, "name"))), "</h1>"));
   bodySection = document.querySelector("#general_dialog_body");
   groupSelection = document.createElement("select");
@@ -18049,26 +18432,26 @@ $.populateGeneralDialogWithContactDetails = function(groupName, index) {
     for (t2 = $.get$iterator$ax(t1.$index(contact, "cellPhoneList")); t2.moveNext$0() === true;) {
       cellPhoneItem = t2.get$current();
       cellPhoneLE = document.createElement("li");
-      t3 = $.getInterceptor$x(cellPhoneItem);
+      t3 = $.getInterceptor$asx(cellPhoneItem);
+      t4 = $.getInterceptor$x(cellPhoneLE);
+      t4.appendText$1(cellPhoneLE, $.$add$ns($.$add$ns(t3.$index(cellPhoneItem, "network"), " "), t3.$index(cellPhoneItem, "number")));
       if (t3.containsKey$1(cellPhoneItem, "comment") === true) {
-        t4 = $.getInterceptor$x(cellPhoneLE);
         t4.appendHtml$1(cellPhoneLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
         t4.appendText$1(cellPhoneLE, t3.$index(cellPhoneItem, "comment"));
       }
-      $.appendText$1$x(cellPhoneLE, $.$add$ns($.$add$ns(t3.$index(cellPhoneItem, "network"), " "), t3.$index(cellPhoneItem, "number")));
       document.querySelector("#cell_phones_list").appendChild(cellPhoneLE);
     }
   if (t1.$index(contact, "landLinesList") != null)
     for (t2 = $.get$iterator$ax(t1.$index(contact, "landLinesList")); t2.moveNext$0() === true;) {
       landLineItem = t2.get$current();
       landLineLE = document.createElement("li");
-      t3 = $.getInterceptor$x(landLineItem);
+      t3 = $.getInterceptor$asx(landLineItem);
+      t4 = $.getInterceptor$x(landLineLE);
+      t4.appendText$1(landLineLE, $.$add$ns($.$add$ns($.$add$ns($.$add$ns(t3.$index(landLineItem, "country"), " "), t3.$index(landLineItem, "areaCode")), " "), t3.$index(landLineItem, "number")));
       if (t3.containsKey$1(landLineItem, "comment") === true) {
-        t4 = $.getInterceptor$x(landLineLE);
         t4.appendHtml$1(landLineLE, $.JSString_methods.$add($.JSString_methods.$add("<label>", $.getPropertyValue("comments")), ": </label>"));
         t4.appendText$1(landLineLE, t3.$index(landLineItem, "comment"));
       }
-      $.appendText$1$x(landLineLE, $.$add$ns($.$add$ns($.$add$ns($.$add$ns(t3.$index(landLineItem, "country"), " "), t3.$index(landLineItem, "areaCode")), " "), t3.$index(landLineItem, "number")));
       document.querySelector("#land_lines_list").appendChild(landLineLE);
     }
   if (t1.$index(contact, "addressesList") != null)

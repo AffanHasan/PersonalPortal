@@ -11,6 +11,7 @@ import "package:pp_commons/pp_common_ui.dart" as pp_comm_ui;
 part "add_contact.dart";
 part "add_group.dart";
 part "view_contact.dart";
+part "edit_contact.dart";
 
 /**
  * Holds the contacts book state

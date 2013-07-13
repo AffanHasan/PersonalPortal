@@ -6,16 +6,13 @@ part of contacts_book_spa;
 void populateGeneralDialogWithContactDetails(String groupName, int index){
   launchGeneralDialog();
   List<JsonObject> contactsList = contactsBook[groupName].toList();
-  contactsList.sort(//Sorting the contacts list by name
-      (a, b){
-        int name1 = a['_id'];
-        int name2 = b['_id'];
-        return name1.compareTo(name2);
-      }
-  );
-  JsonObject contact = contactsList[index];
-  print("Index : " + index.toString());
-  print(contact.toString());
+  JsonObject contact;
+  for(JsonObject item in contactsList){
+    if(item['_id'] == index){
+      contact = item;
+      break;
+    }
+  }
   query("#general_dialog_header_content").appendHtml("<h1>" + contact['name'].toUpperCase() +"</h1>");
   HtmlElement bodySection = query("#general_dialog_body");
   SelectElement groupSelection = new SelectElement();
@@ -77,21 +74,21 @@ void populateGeneralDialogWithContactDetails(String groupName, int index){
   if(contact['cellPhoneList'] != null)
     for(JsonObject cellPhoneItem in contact['cellPhoneList']){
       LIElement cellPhoneLE = new LIElement();//Create a list element
+      cellPhoneLE.appendText(cellPhoneItem['network'] + ' ' + cellPhoneItem['number']);
       if(cellPhoneItem.containsKey('comment')){
         cellPhoneLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
         cellPhoneLE.appendText(cellPhoneItem['comment']);
       }
-      cellPhoneLE.appendText(cellPhoneItem['network'] + ' ' + cellPhoneItem['number']);
       query("#cell_phones_list").append(cellPhoneLE);//Appending this li to the unordered cell phones list
     }
   if(contact['landLinesList'] != null)
     for(JsonObject landLineItem in contact['landLinesList']){
       LIElement landLineLE = new LIElement();//Create a list element
+      landLineLE.appendText(landLineItem['country'] +' '+ landLineItem['areaCode']+' '+landLineItem['number']);
       if(landLineItem.containsKey('comment')){
         landLineLE.appendHtml("<label>"+cb_locale_data.getPropertyValue("comments")+": </label>");
         landLineLE.appendText(landLineItem['comment']);
       }
-      landLineLE.appendText(landLineItem['country'] +' '+ landLineItem['areaCode']+' '+landLineItem['number']);
       query("#land_lines_list").append(landLineLE);//Appending this li to the unordered cell phones list
     }
   if(contact['addressesList'] != null)

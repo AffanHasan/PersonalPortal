@@ -51,4 +51,7 @@ h1 {
   float: left;
   width: 97%;
 }
+span[name=edit_contact_btn] {
+  color: #a52a2a;
+}
 
