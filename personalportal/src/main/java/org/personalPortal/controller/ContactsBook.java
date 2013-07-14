@@ -83,10 +83,20 @@ public class ContactsBook extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter responseWriter = response.getWriter();
+		DBObject contactsBook = null;
 		if(request.getParameter("action") != null && this.loggedInUser != null)
 		switch (request.getParameter("action")) {
+		case "getContactsBookForTheLoggedInUser" :
+			contactsBook = this.documentCRUDService.findOneById(PersonalPortalDBCollections.contactsBooks.name(), 
+					BasicDBObject.class, this.loggedInUser.getId());
+			contactsBook.removeField("_id");
+			//Writing the response
+			response.setContentType("application/json");
+			responseWriter.println(contactsBook.toString());//Return a list of contacts groups
+			responseWriter.close();
+			break;
 		case "getContactsGroupList":
-			DBObject contactsBook = this.documentCRUDService.findOneById(PersonalPortalDBCollections.contactsBooks.name(), 
+			contactsBook = this.documentCRUDService.findOneById(PersonalPortalDBCollections.contactsBooks.name(), 
 					BasicDBObject.class, this.loggedInUser.getId());
 			//Checking if the contacts book for this user exist or not
 			if(contactsBook == null){//If contacts book do not exist

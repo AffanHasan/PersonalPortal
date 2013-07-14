@@ -20,9 +20,28 @@ part "delete_contact.dart";
 JsonObject contactsBook = new JsonObject();
 ButtonElement addGroupBtn = new ButtonElement();
 
+String searchFilter='';
 String baseURL = "/personalportal/ContactsBook?action=";
-bool showCCG = true;//Initially on application start up collapsable_contacts_grouping will be rendered
-bool showCS = false;//contacts_search will be enabled only when user starts typing in the text bar
+bool isBookFullyLoaded = false;
+bool get showCCG{//Initially on application start up collapsable_contacts_grouping will be rendered
+  print(searchFilter);
+  if(searchFilter.isEmpty){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+bool get showCS{//contacts_search will be enabled only when user starts typing in the text bar
+  print(searchFilter);
+  if(searchFilter.isEmpty){
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+  
 
 /**
  * Learn about the Web UI package by visiting
@@ -43,7 +62,7 @@ void main() {
  * To render the basic user interface div on application start up
  */
 void renderBasicUIOnFirstLoad(){
-  query("#application_header").appendHtml("<h1>" + cb_locale_data.getPropertyValue("contactsBook") +"</h1>");
+  //query("#application_header").appendHtml("<h1>" + cb_locale_data.getPropertyValue("contactsBook") +"</h1>");
   renderControlsPanelOnFirstLoad();
 }
 
@@ -129,6 +148,30 @@ void loadContactsListForGroup(String groupName, bool asynchronous, Event event){
       request.send();
     }
   }
+}
+
+void loadFullContactsBook(){
+  if(!isBookFullyLoaded){
+    print('Not fully lodaded');
+    HttpRequest.getString(baseURL + "getContactsBookForTheLoggedInUser").then(
+        (String responseText){
+          contactsBook = json.parse(responseText);
+          isBookFullyLoaded = true;
+          watchers.dispatch();
+        }
+    );
+  }
+}
+
+bool matchCriteria(JsonObject contact){
+  if((contact['name']).toLowerCase().contains(searchFilter.toLowerCase())){
+    return true;
+  } 
+  if(contact['comments'] != null)
+    if((contact['comments']).toLowerCase().contains(searchFilter.toLowerCase())){
+      return true;
+    }
+  return false;
 }
 
 /**

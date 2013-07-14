@@ -39,6 +39,29 @@ $$.ListIterable = {"": "IterableBase;",
   get$isEmpty: function(_) {
     return $.$eq(this.get$length(this), 0);
   },
+  contains$1: function(_, element) {
+    var $length, i;
+    $length = this.get$length(this);
+    if (typeof $length !== "number")
+      return this.contains$1$bailout1(1, element, $length);
+    for (i = 0; i < $length; ++i) {
+      if ($.$eq(this.elementAt$1(this, i), element))
+        return true;
+      if ($length !== this.get$length(this))
+        throw $.wrapException($.ConcurrentModificationError$(this));
+    }
+    return false;
+  },
+  contains$1$bailout1: function(state0, element, $length) {
+    var t1, i;
+    for (t1 = $.getInterceptor($length), i = 0; $.JSNumber_methods.$lt(i, $length); ++i) {
+      if ($.$eq(this.elementAt$1(this, i), element))
+        return true;
+      if (!t1.$eq($length, this.get$length(this)))
+        throw $.wrapException($.ConcurrentModificationError$(this));
+    }
+    return false;
+  },
   firstWhere$2$orElse: function(_, test, orElse) {
     var $length, i, element;
     $length = this.get$length(this);
@@ -415,6 +438,10 @@ $$.HashMapKeyIterable = {"": "IterableBase;_liblib$_map",
     var t1 = this._liblib$_map;
     return $.HashMapKeyIterator$(t1, t1._computeKeys$0());
   },
+  contains$1: function(_, element) {
+    var t1 = this._liblib$_map;
+    return t1.containsKey$1(t1, element);
+  },
   forEach$1: function(_, f) {
     var t1, keys, $length, i;
     t1 = this._liblib$_map;
@@ -477,6 +504,10 @@ $$.LinkedHashMapKeyIterable = {"": "IterableBase;_liblib$_map",
   get$iterator: function(_) {
     var t1 = this._liblib$_map;
     return $.LinkedHashMapKeyIterator$(t1, t1._modifications);
+  },
+  contains$1: function(_, element) {
+    var t1 = this._liblib$_map;
+    return t1.containsKey$1(t1, element);
   },
   forEach$1: function(_, f) {
     var t1, cell, modifications;
@@ -1676,6 +1707,13 @@ $$.JSArray = {"": "List/Interceptor;",
   indexOf$1: function($receiver, element) {
     return this.indexOf$2($receiver, element, 0);
   },
+  contains$1: function(receiver, other) {
+    var t1, i;
+    for (t1 = $.getInterceptor(other), i = 0; i < receiver.length; ++i)
+      if (t1.$eq(other, receiver[i]))
+        return true;
+    return false;
+  },
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
@@ -2134,6 +2172,9 @@ $$.JSString = {"": "String/Interceptor;",
       $.throwExpression($.ArgumentError$(null));
     return $.stringContainsUnchecked(receiver, other, startIndex);
   },
+  contains$1: function($receiver, other) {
+    return this.contains$2($receiver, other, 0);
+  },
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
@@ -2209,6 +2250,8 @@ $$._convertJsonToDart_walk = {"": "Closure;revive_0",
 $$.JSSyntaxRegExp = {"": "Object;_pattern,_isMultiLine,_isCaseSensitive,_nativeRegExp",
   firstMatch$1: function(str) {
     var m, matchStart, t1;
+    if (typeof str !== "string")
+      $.throwExpression($.ArgumentError$(str));
     m = this._nativeRegExp.exec(str);
     if (m == null)
       return;
@@ -2676,6 +2719,14 @@ $$.Stream = {"": "Object;",
     t1 = $arguments == null ? null : $arguments[0];
     return $._MapStream$(this, convert, t1, null);
   },
+  contains$1: function(_, match) {
+    var t1, future;
+    t1 = {};
+    future = $._FutureImpl$($.JSBool);
+    t1.subscription_0 = null;
+    t1.subscription_0 = this.listen$4$cancelOnError$onDone$onError(new $.Stream_contains_closure(t1, match, future), true, new $.Stream_contains_closure0(future), future.get$_setError());
+    return future;
+  },
   forEach$1: function(_, action) {
     var t1, future;
     t1 = {};
@@ -2751,6 +2802,42 @@ $$.Stream = {"": "Object;",
     t1.subscription_1 = this.listen$4$cancelOnError$onDone$onError(new $.Stream_elementAt_closure(t1, future), true, new $.Stream_elementAt_closure0(future), future.get$_setError());
     return future;
   }
+};
+
+$$.Stream_contains_closure = {"": "Closure;box_0,match_1,future_2",
+  call$1: function(element) {
+    var t1, t2;
+    t1 = this.box_0;
+    t2 = this.future_2;
+    $._runUserCode(new $.Stream_contains__closure(this.match_1, element), new $.Stream_contains__closure0(t1, t2), $._cancelAndError(t1.subscription_0, t2));
+  },
+  $isFunction: true
+};
+
+$$.Stream_contains__closure = {"": "Closure;match_3,element_4",
+  call$0: function() {
+    return $.$eq(this.element_4, this.match_3);
+  },
+  $isFunction: true
+};
+
+$$.Stream_contains__closure0 = {"": "Closure;box_0,future_5",
+  call$1: function(isMatch) {
+    var t1;
+    if (isMatch === true) {
+      t1 = this.box_0.subscription_0;
+      t1.cancel$0(t1);
+      this.future_5._setValue$1(true);
+    }
+  },
+  $isFunction: true
+};
+
+$$.Stream_contains_closure0 = {"": "Closure;future_6",
+  call$0: function() {
+    this.future_6._setValue$1(false);
+  },
+  $isFunction: true
 };
 
 $$.Stream_forEach_closure = {"": "Closure;box_0,action_1,future_2",
@@ -4032,6 +4119,13 @@ $$.IterableBase = {"": "Object;",
     t1 = $arguments == null ? null : $arguments[0];
     return $.WhereIterable$(this, f, t1);
   },
+  contains$1: function(_, element) {
+    var t1;
+    for (t1 = this.get$iterator(this); t1.moveNext$0() === true;)
+      if ($.$eq(t1.get$current(), element))
+        return true;
+    return false;
+  },
   forEach$1: function(_, f) {
     var t1;
     for (t1 = this.get$iterator(this); t1.moveNext$0() === true;)
@@ -4396,6 +4490,29 @@ $$.ListMixin = {"": "Object;",
     if ($.$eq(this.get$length(receiver), 0))
       throw $.wrapException($.StateError$("No elements"));
     return this.$index(receiver, $.$sub$n(this.get$length(receiver), 1));
+  },
+  contains$1: function(receiver, element) {
+    var $length, i;
+    $length = this.get$length(receiver);
+    if (typeof $length !== "number")
+      return this.contains$1$bailout(1, element, receiver, $length);
+    for (i = 0; i < $length; ++i) {
+      if ($.$eq(this.$index(receiver, i), element))
+        return true;
+      if ($length !== this.get$length(receiver))
+        throw $.wrapException($.ConcurrentModificationError$(receiver));
+    }
+    return false;
+  },
+  contains$1$bailout: function(state0, element, receiver, $length) {
+    var t1, i;
+    for (t1 = $.getInterceptor($length), i = 0; $.JSNumber_methods.$lt(i, $length); ++i) {
+      if ($.$eq(this.$index(receiver, i), element))
+        return true;
+      if (!t1.$eq($length, this.get$length(receiver)))
+        throw $.wrapException($.ConcurrentModificationError$(receiver));
+    }
+    return false;
   },
   firstWhere$2$orElse: function(receiver, test, orElse) {
     var $length, i, element;
@@ -5969,6 +6086,9 @@ $$.Object = {"": ";",
   compareTo$1: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("compareTo", "compareTo$1", 0, [$0], []));
   },
+  contains$1: function($receiver, $0) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("contains", "contains$1", 0, [$0], []));
+  },
   contains$2: function($receiver, $0, $1) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("contains", "contains$2", 0, [$0, $1], []));
   },
@@ -6085,6 +6205,12 @@ $$.Object = {"": ";",
   },
   get$onClick: function($receiver) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("onClick", "get$onClick", 1, [], []));
+  },
+  get$onInput: function($receiver) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("onInput", "get$onInput", 1, [], []));
+  },
+  get$onKeyUp: function($receiver) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("onKeyUp", "get$onKeyUp", 1, [], []));
   },
   get$parentNode: function($receiver) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("parentNode", "get$parentNode", 1, [], []));
@@ -6245,6 +6371,9 @@ $$.Object = {"": ";",
   setValueWorkaround$2: function($0, $1) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("setValueWorkaround", "setValueWorkaround$2", 0, [$0, $1], []));
   },
+  setter$1: function($0) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("setter", "setter$1", 0, [$0], []));
+  },
   sort$1: function($receiver, $0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("sort", "sort$1", 0, [$0], []));
   },
@@ -6383,6 +6512,9 @@ $$.Interceptor_ListMixin = {"": "Interceptor+ListMixin;", $isList: true, $asList
 $$.Interceptor_ListMixin_ImmutableListMixin = {"": "Interceptor_ListMixin+ImmutableListMixin;", $isList: true, $asList: function() { return [$.JSString]; }, $isIterable: true, $asIterable: function() { return [$.JSString]; }};
 
 $$._ChildrenElementList = {"": "ListBase;_element,_childElements",
+  contains$1: function(_, element) {
+    return $.contains$1$asx(this._childElements, element);
+  },
   get$isEmpty: function(_) {
     return this._element.firstElementChild == null;
   },
@@ -7558,6 +7690,12 @@ $$._TemplateIterator = {"": "Object;_templateElement,terminators,inputs<,iterate
   }
 };
 
+$$._WrappedEvent = {"": "Object;wrapped",
+  get$type: function(_) {
+    return $.get$type$x(this.wrapped);
+  }
+};
+
 $$._WrappedList = {"": "ListBase;_list",
   get$iterator: function(_) {
     return $._WrappedIterator$($.get$iterator$ax(this._list));
@@ -7622,6 +7760,24 @@ $$._WrappedIterator = {"": "Object;_liblib3$_iterator",
 };
 
 $$._DOMWindowCrossFrame = {"": "Object;_window"};
+
+$$.KeyEvent = {"": "_WrappedEvent;_parent,_shadowAltKey,_shadowCharCode,_shadowKeyCode,wrapped",
+  get$_realKeyCode: function() {
+    return this._parent.keyCode;
+  },
+  get$_realCharCode: function() {
+    return this._parent.charCode;
+  },
+  get$_realAltKey: function() {
+    return this._parent.altKey;
+  },
+  KeyEvent$1: function($parent) {
+    this._parent = $parent;
+    this._shadowAltKey = this.get$_realAltKey();
+    this._shadowCharCode = this.get$_realCharCode();
+    this._shadowKeyCode = this.get$_realKeyCode();
+  }
+};
 
 $$.FixedSizeListIterator = {"": "Object;_array,_liblib3$_length,_liblib3$_position,_liblib3$_current",
   moveNext$0: function() {
@@ -8103,6 +8259,9 @@ $$.FilteredElementList = {"": "ListBase;_node,_childNodes",
     for (t1 = $.get$iterator$ax(iterable), t2 = this._childNodes._this; t1.moveNext$0() === true;)
       t2.appendChild(t1.get$current());
   },
+  contains$1: function(_, element) {
+    return element != null && $.$eq($.get$parentNode$x(element), this._node);
+  },
   sort$1: function(_, compare) {
     throw $.wrapException($.UnsupportedError$("Cannot sort filtered list"));
   },
@@ -8557,6 +8716,91 @@ $$.Interceptor_ListMixin_ImmutableListMixin23 = {"": "Interceptor_ListMixin23+Im
 
 $$.Endianness = {"": "Object;_littleEndian"};
 
+$$.Uri = {"": "Object;scheme,userInfo,domain,port,path,query,fragment",
+  toString$0: function(_) {
+    var sb, t1, str, t2;
+    sb = $.StringBuffer$("");
+    t1 = this.scheme;
+    if ("" !== t1) {
+      str = t1 == null ? "null" : t1;
+      str = typeof str === "string" ? str : $.S(str);
+      sb._contents = sb._contents + str;
+      t2 = ":";
+      sb._contents = sb._contents + t2;
+    }
+    t2 = this.userInfo;
+    if (!$.$eq(t2, "") || !$.$eq(this.domain, "") || !$.$eq(this.port, 0) || $.$eq(t1, "file")) {
+      sb._contents = sb._contents + "//";
+      if ("" !== t2) {
+        str = t2 == null ? "null" : t2;
+        str = typeof str === "string" ? str : $.S(str);
+        sb._contents = sb._contents + str;
+        t1 = "@";
+        sb._contents = sb._contents + t1;
+      }
+      t1 = this.domain;
+      if (t1 == null)
+        str = "null";
+      else {
+        if ($.contains$1$asx(t1, ":") === true)
+          t1 = "[" + $.S(t1) + "]";
+        str = t1;
+      }
+      str = typeof str === "string" ? str : $.S(str);
+      sb._contents = sb._contents + str;
+      t1 = this.port;
+      if (!$.$eq(t1, 0)) {
+        sb._contents = sb._contents + ":";
+        str = $.toString$0(t1);
+        str = typeof str === "string" ? str : $.S(str);
+        sb._contents = sb._contents + str;
+      }
+    }
+    t1 = this.path;
+    str = t1 == null ? "null" : t1;
+    str = typeof str === "string" ? str : $.S(str);
+    sb._contents = sb._contents + str;
+    t1 = this.query;
+    if ("" !== t1) {
+      t2 = "?";
+      sb._contents = sb._contents + t2;
+      str = t1 == null ? "null" : t1;
+      str = typeof str === "string" ? str : $.S(str);
+      sb._contents = sb._contents + str;
+    }
+    t1 = this.fragment;
+    if ("" !== t1) {
+      t2 = "#";
+      sb._contents = sb._contents + t2;
+      str = t1 == null ? "null" : t1;
+      str = typeof str === "string" ? str : $.S(str);
+      sb._contents = sb._contents + str;
+    }
+    return sb._contents;
+  },
+  $eq: function(_, other) {
+    if (other == null)
+      return false;
+    if (typeof other !== "object" || other === null || !$.getInterceptor(other).$isUri)
+      return false;
+    else
+      other;
+    return $.$eq(this.scheme, other.scheme) && $.$eq(this.userInfo, other.userInfo) && $.$eq(this.domain, other.domain) && $.$eq(this.port, other.port) && $.$eq(this.path, other.path) && $.$eq(this.query, other.query) && $.$eq(this.fragment, other.fragment);
+  },
+  get$hashCode: function(_) {
+    var t1 = new $.Uri_hashCode_combine();
+    return t1.call$2(this.scheme, t1.call$2(this.userInfo, t1.call$2(this.domain, t1.call$2(this.port, t1.call$2(this.path, t1.call$2(this.query, t1.call$2(this.fragment, 1)))))));
+  },
+  $isUri: true
+};
+
+$$.Uri_hashCode_combine = {"": "Closure;",
+  call$2: function(part, current) {
+    return $.$and$n($.$add$ns($.$mul$n(current, 31), $.get$hashCode$(part)), 1073741823);
+  },
+  $isFunction: true
+};
+
 $$.Interceptor_ListMixin24 = {"": "Interceptor+ListMixin;", $isList: true, $asList: function() { return [$.Map]; }, $isIterable: true, $asIterable: function() { return [$.Map]; }};
 
 $$.Interceptor_ListMixin_ImmutableListMixin24 = {"": "Interceptor_ListMixin24+ImmutableListMixin;", $isList: true, $asList: function() { return [$.Map]; }, $isIterable: true, $asIterable: function() { return [$.Map]; }};
@@ -8700,18 +8944,15 @@ $$.addContactSaveOperation_closure1 = {"": "Closure;request_1",
 
 $$.populateGeneralDialogForAddGroup_closure = {"": "Closure;groupNameInput_0",
   call$1: function(e) {
-    var t1, t2, t3, t4, t5;
-    t1 = $.get$contactsBook();
-    t2 = this.groupNameInput_0;
-    t3 = $.getInterceptor$x(t2);
-    t4 = t3.get$value(t2);
-    t5 = t1._objectData;
-    if (t5.containsKey$1(t5, t1._symbolToString$1(t4))) {
+    var t1, t2;
+    t1 = this.groupNameInput_0;
+    t2 = $.getInterceptor$x(t1);
+    if ($.containsKey$1$x($.get$contactsBook(), t2.get$value(t1)) === true) {
       window.alert($.getPropertyValue("alreadyExist"));
-      t3.set$value(t2, "");
+      t2.set$value(t1, "");
       $.set$innerHtml$x(document.querySelector("#general_dialog_footer"), "");
     } else {
-      if ($.get$isEmpty$asx($.trim$0$s(t3.get$value(t2))) !== true) {
+      if ($.get$isEmpty$asx($.trim$0$s(t2.get$value(t1))) !== true) {
         $.set$innerHtml$x(document.querySelector("#general_dialog_footer"), "");
         $.populateGeneralDialogFooterAddGroup();
         return;
@@ -8751,8 +8992,7 @@ $$.populateGeneralDialogFooterAddGroup__closure = {"": "Closure;groupNameInput_0
       t2 = false;
     if (t2)
       if ($.startsWith$1$s(t1.responseText, "saved")) {
-        t1 = $.get$contactsBook();
-        t1.$indexSet(t1, $.get$value$x(this.groupNameInput_0), "");
+        $.$indexSet$ax($.get$contactsBook(), $.get$value$x(this.groupNameInput_0), "");
         $.dispatch();
         $.closeGeneralDialog();
       }
@@ -8785,8 +9025,7 @@ $$.deleteContact_closure1 = {"": "Closure;groupName_2,contactsList_3,request_4",
       t2 = false;
     if (t2)
       if ($.startsWith$1$s(t1.responseText, "saved")) {
-        t1 = $.get$contactsBook();
-        t1.$indexSet(t1, this.groupName_2, this.contactsList_3);
+        $.$indexSet$ax($.get$contactsBook(), this.groupName_2, this.contactsList_3);
         $.dispatch();
       }
   },
@@ -8909,7 +9148,7 @@ $$.populateGeneralDialogForEditContact_closure5 = {"": "Closure;index_1",
 
 $$.loadDataContainerOnFirstLoad_closure = {"": "Closure;",
   call$1: function(responseText) {
-    var groupList, t1, groupName, t2;
+    var groupList, t1, groupName;
     document.createElement("details");
     groupList = $.parse(responseText, null);
     t1 = $.getInterceptor$asx(groupList);
@@ -8918,8 +9157,7 @@ $$.loadDataContainerOnFirstLoad_closure = {"": "Closure;",
     else
       for (t1 = t1.get$iterator(groupList); t1.moveNext$0() === true;) {
         groupName = t1.get$current();
-        t2 = $.get$contactsBook();
-        t2.$indexSet(t2, groupName, "");
+        $.$indexSet$ax($.get$contactsBook(), groupName, "");
         $.dispatch();
       }
   },
@@ -8956,7 +9194,7 @@ $$.loadContactsListForGroup_closure = {"": "Closure;box_0,groupName_1",
       t1.$builtinTypeInfo = [$.JsonObject];
     } else
       t1 = t1.contactsList_0;
-    t2.$indexSet(t2, this.groupName_1, t1);
+    $.$indexSet$ax(t2, this.groupName_1, t1);
     $.dispatch();
   },
   $isFunction: true
@@ -8979,311 +9217,609 @@ $$.loadContactsListForGroup_closure0 = {"": "Closure;groupName_2,request_3",
         t2.$builtinTypeInfo = [$.JsonObject];
       } else
         t2 = contactsList;
-      t1.$indexSet(t1, this.groupName_2, t2);
+      $.$indexSet$ax(t1, this.groupName_2, t2);
       $.dispatch();
     }
   },
   $isFunction: true
 };
 
+$$.loadFullContactsBook_closure = {"": "Closure;",
+  call$1: function(responseText) {
+    $.contactsBook = $.parse(responseText, null);
+    $.isBookFullyLoaded = true;
+    $.dispatch();
+  },
+  $isFunction: true
+};
+
 $$.init_autogenerated_closure = {"": "Closure;",
   call$0: function() {
-    return $.showCCG;
+    return $.getPropertyValue("contactsBook");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_closure0 = {"": "Closure;__html0_1,__html1_2,__html2_3,__html3_4,__html4_5,__html5_6,__html6_7,__html7_8,__html8_9",
-  call$1: function(__t) {
-    var __e26, t1;
-    __e26 = $.clone$1$x(this.__html0_1, true);
-    t1 = $.getInterceptor$x(__t);
-    t1.loop$3(__t, __e26, new $.init_autogenerated__closure(), new $.init_autogenerated__closure0(this.__html1_2, this.__html2_3, this.__html3_4, this.__html4_5, this.__html5_6, this.__html6_7, this.__html7_8, this.__html8_9));
-    t1.addAll$1(__t, [document.createTextNode("\n        "), __e26, document.createTextNode("\n      ")]);
+$$.init_autogenerated_closure0 = {"": "Closure;box_1",
+  call$1: function($$event) {
+    $.searchFilter = $.get$value$x(this.box_1.__e2_2);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated__closure = {"": "Closure;",
+$$.init_autogenerated_closure1 = {"": "Closure;",
+  call$1: function($$event) {
+    $.KeyEvent$($$event);
+    $.loadFullContactsBook();
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_closure2 = {"": "Closure;",
   call$0: function() {
-    var t1 = $.get$contactsBook()._objectData;
-    return t1.get$keys(t1);
+    return $.searchFilter;
   },
   $isFunction: true
 };
 
-$$.init_autogenerated__closure0 = {"": "Closure;__html1_10,__html2_11,__html3_12,__html4_13,__html5_14,__html6_15,__html7_16,__html8_17",
+$$.init_autogenerated_closure3 = {"": "Closure;box_1",
+  call$1: function(e) {
+    var t1 = this.box_1;
+    if (!$.$eq($.get$value$x(t1.__e2_2), e))
+      $.set$value$x(t1.__e2_2, e);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_closure4 = {"": "Closure;",
+  call$0: function() {
+    return $.showCCG();
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_closure5 = {"": "Closure;__html0_2,__html1_3,__html2_4,__html3_5,__html4_6,__html5_7,__html6_8,__html7_9,__html8_10",
+  call$1: function(__t) {
+    var __e29, t1;
+    __e29 = $.clone$1$x(this.__html0_2, true);
+    t1 = $.getInterceptor$x(__t);
+    t1.loop$3(__t, __e29, new $.init_autogenerated__closure1(), new $.init_autogenerated__closure2(this.__html1_3, this.__html2_4, this.__html3_5, this.__html4_6, this.__html5_7, this.__html6_8, this.__html7_9, this.__html8_10));
+    t1.addAll$1(__t, [document.createTextNode("\n        "), __e29, document.createTextNode("\n      ")]);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated__closure1 = {"": "Closure;",
+  call$0: function() {
+    return $.get$keys$x($.get$contactsBook());
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated__closure2 = {"": "Closure;__html1_11,__html2_12,__html3_13,__html4_14,__html5_15,__html6_16,__html7_17,__html8_18",
   call$3: function($$list, $$index, __t) {
-    var t1, groupName, __e1, __binding0, t2;
+    var t1, groupName, __e4, __binding3, t2;
     t1 = {};
     groupName = $.$index$asx($$list, $$index);
-    t1.__e24_0 = null;
-    t1.__e25_1 = null;
-    t1.__e25_1 = $.clone$1$x(this.__html1_10, true);
-    __e1 = $.$index$asx($.get$nodes$x(t1.__e25_1), 1);
-    __binding0 = __t.contentBind$2(new $.init_autogenerated___closure(groupName), false);
-    t2 = $.getInterceptor$x(__e1);
-    $.add$1$ax(t2.get$nodes(__e1), __binding0);
-    __t.listen$2(t2.get$onClick(__e1), new $.init_autogenerated___closure0(groupName));
-    t1.__e24_0 = $.$index$asx($.get$nodes$x(t1.__e25_1), 3);
+    t1.__e27_0 = null;
+    t1.__e28_1 = null;
+    t1.__e28_1 = $.clone$1$x(this.__html1_11, true);
+    __e4 = $.$index$asx($.get$nodes$x(t1.__e28_1), 1);
+    __binding3 = __t.contentBind$2(new $.init_autogenerated___closure1(groupName), false);
+    t2 = $.getInterceptor$x(__e4);
+    $.add$1$ax(t2.get$nodes(__e4), __binding3);
+    __t.listen$2(t2.get$onClick(__e4), new $.init_autogenerated___closure2(groupName));
+    t1.__e27_0 = $.$index$asx($.get$nodes$x(t1.__e28_1), 3);
     t2 = $.getInterceptor$x(__t);
-    t2.bind$3(__t, new $.init_autogenerated___closure1(groupName), new $.init_autogenerated___closure2(t1), false);
-    __t.loopIterateAttr$3(t1.__e24_0, new $.init_autogenerated___closure3(groupName), new $.init_autogenerated___closure4(this.__html2_11, this.__html3_12, this.__html4_13, this.__html5_14, this.__html6_15, this.__html7_16, this.__html8_17, groupName));
-    t2.bind$3(__t, new $.init_autogenerated___closure5(groupName), new $.init_autogenerated___closure6(t1), false);
-    t2.addAll$1(__t, [document.createTextNode("\n          "), t1.__e25_1, document.createTextNode("\n        ")]);
+    t2.bind$3(__t, new $.init_autogenerated___closure3(groupName), new $.init_autogenerated___closure4(t1), false);
+    __t.loopIterateAttr$3(t1.__e27_0, new $.init_autogenerated___closure5(groupName), new $.init_autogenerated___closure6(this.__html2_12, this.__html3_13, this.__html4_14, this.__html5_15, this.__html6_16, this.__html7_17, this.__html8_18, groupName));
+    t2.bind$3(__t, new $.init_autogenerated___closure7(groupName), new $.init_autogenerated___closure8(t1), false);
+    t2.addAll$1(__t, [document.createTextNode("\n          "), t1.__e28_1, document.createTextNode("\n        ")]);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated___closure = {"": "Closure;groupName_18",
+$$.init_autogenerated___closure1 = {"": "Closure;groupName_19",
   call$0: function() {
-    return this.groupName_18;
+    return this.groupName_19;
   },
   $isFunction: true
 };
 
-$$.init_autogenerated___closure0 = {"": "Closure;groupName_19",
+$$.init_autogenerated___closure2 = {"": "Closure;groupName_20",
   call$1: function($$event) {
-    $.loadContactsListForGroup($.S(this.groupName_19), true, $$event);
-  },
-  $isFunction: true
-};
-
-$$.init_autogenerated___closure1 = {"": "Closure;groupName_20",
-  call$0: function() {
-    return this.groupName_20;
-  },
-  $isFunction: true
-};
-
-$$.init_autogenerated___closure2 = {"": "Closure;box_0",
-  call$1: function(__e) {
-    $.set$id$x(this.box_0.__e24_0, $.S($.get$newValue$x(__e)) + "_contacts_list");
+    $.loadContactsListForGroup($.S(this.groupName_20), true, $$event);
   },
   $isFunction: true
 };
 
 $$.init_autogenerated___closure3 = {"": "Closure;groupName_21",
   call$0: function() {
-    var t1, t2;
-    t1 = $.get$contactsBook();
-    t2 = $.S(this.groupName_21);
-    t1 = t1._objectData;
-    return t1.$index(t1, t2);
+    return this.groupName_21;
   },
   $isFunction: true
 };
 
-$$.init_autogenerated___closure4 = {"": "Closure;__html2_22,__html3_23,__html4_24,__html5_25,__html6_26,__html7_27,__html8_28,groupName_29",
+$$.init_autogenerated___closure4 = {"": "Closure;box_0",
+  call$1: function(__e) {
+    $.set$id$x(this.box_0.__e27_0, $.S($.get$newValue$x(__e)) + "_contacts_list");
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated___closure5 = {"": "Closure;groupName_22",
+  call$0: function() {
+    return $.$index$asx($.get$contactsBook(), $.S(this.groupName_22));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated___closure6 = {"": "Closure;__html2_23,__html3_24,__html4_25,__html5_26,__html6_27,__html7_28,__html8_29,groupName_30",
   call$3: function($$list, $$index, __t) {
-    var contact, __e23, t1, __e3, __binding2, t2, t3, __e5, __binding4;
+    var contact, __e26, t1, __e6, __binding5, t2, t3, __e8, __binding7;
     contact = $.$index$asx($$list, $$index);
-    __e23 = $.clone$1$x(this.__html2_22, true);
-    t1 = $.getInterceptor$x(__e23);
-    __e3 = $.$index$asx(t1.get$nodes(__e23), 1);
-    __binding2 = __t.contentBind$2(new $.init_autogenerated____closure(contact), false);
-    t2 = $.getInterceptor$x(__e3);
-    $.addAll$1$ax(t2.get$nodes(__e3), [document.createTextNode("\n                  "), __binding2, document.createTextNode("\n                ")]);
-    t3 = this.groupName_29;
-    __t.listen$2(t2.get$onClick(__e3), new $.init_autogenerated____closure0(t3, contact));
-    __e5 = $.$index$asx(t1.get$nodes(__e23), 3);
-    __binding4 = __t.contentBind$2(new $.init_autogenerated____closure1(contact), false);
-    $.add$1$ax($.get$nodes$x(__e5), __binding4);
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e23), 5), new $.init_autogenerated____closure2(contact), new $.init_autogenerated____closure3(this.__html3_23, this.__html4_24, contact));
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e23), 7), new $.init_autogenerated____closure4(contact), new $.init_autogenerated____closure5(this.__html5_25, this.__html6_26, contact));
-    __t.conditional$3($.$index$asx(t1.get$nodes(__e23), 9), new $.init_autogenerated____closure6(contact), new $.init_autogenerated____closure7(this.__html7_27, this.__html8_28, contact));
-    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e23), 11)), new $.init_autogenerated____closure8(t3, contact));
-    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e23), 13)), new $.init_autogenerated____closure9(t3, contact));
-    $.addAll$1$ax(__t, [document.createTextNode("\n              "), __e23, document.createTextNode(" \n            ")]);
+    __e26 = $.clone$1$x(this.__html2_23, true);
+    t1 = $.getInterceptor$x(__e26);
+    __e6 = $.$index$asx(t1.get$nodes(__e26), 1);
+    __binding5 = __t.contentBind$2(new $.init_autogenerated____closure1(contact), false);
+    t2 = $.getInterceptor$x(__e6);
+    $.addAll$1$ax(t2.get$nodes(__e6), [document.createTextNode("\n                  "), __binding5, document.createTextNode("\n                ")]);
+    t3 = this.groupName_30;
+    __t.listen$2(t2.get$onClick(__e6), new $.init_autogenerated____closure2(t3, contact));
+    __e8 = $.$index$asx(t1.get$nodes(__e26), 3);
+    __binding7 = __t.contentBind$2(new $.init_autogenerated____closure3(contact), false);
+    $.add$1$ax($.get$nodes$x(__e8), __binding7);
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e26), 5), new $.init_autogenerated____closure4(contact), new $.init_autogenerated____closure5(this.__html3_24, this.__html4_25, contact));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e26), 7), new $.init_autogenerated____closure6(contact), new $.init_autogenerated____closure7(this.__html5_26, this.__html6_27, contact));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e26), 9), new $.init_autogenerated____closure8(contact), new $.init_autogenerated____closure9(this.__html7_28, this.__html8_29, contact));
+    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e26), 11)), new $.init_autogenerated____closure10(t3, contact));
+    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e26), 13)), new $.init_autogenerated____closure11(t3, contact));
+    $.addAll$1$ax(__t, [document.createTextNode("\n              "), __e26, document.createTextNode("\n            ")]);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure = {"": "Closure;contact_30",
+$$.init_autogenerated____closure1 = {"": "Closure;contact_31",
   call$0: function() {
-    return $.$index$asx(this.contact_30, "name");
+    return $.$index$asx(this.contact_31, "name");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure0 = {"": "Closure;groupName_31,contact_32",
+$$.init_autogenerated____closure2 = {"": "Closure;groupName_32,contact_33",
   call$1: function($$event) {
-    $.populateGeneralDialogWithContactDetails($.S(this.groupName_31), $.$index$asx(this.contact_32, "_id"));
+    $.populateGeneralDialogWithContactDetails($.S(this.groupName_32), $.$index$asx(this.contact_33, "_id"));
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure1 = {"": "Closure;contact_33",
+$$.init_autogenerated____closure3 = {"": "Closure;contact_34",
   call$0: function() {
     var t1, t2;
-    t1 = this.contact_33;
+    t1 = this.contact_34;
     t2 = $.getInterceptor$asx(t1);
     return t2.$index(t1, "comments") == null ? "" : t2.$index(t1, "comments");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure2 = {"": "Closure;contact_34",
+$$.init_autogenerated____closure4 = {"": "Closure;contact_35",
   call$0: function() {
-    return $.$index$asx(this.contact_34, "cellPhoneList") != null;
+    return $.$index$asx(this.contact_35, "cellPhoneList") != null;
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure3 = {"": "Closure;__html3_35,__html4_36,contact_37",
+$$.init_autogenerated____closure5 = {"": "Closure;__html3_36,__html4_37,contact_38",
   call$1: function(__t) {
-    var __e9 = $.clone$1$x(this.__html3_35, true);
-    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e9), 1), new $.init_autogenerated_____closure3(this.contact_37), new $.init_autogenerated_____closure4(this.__html4_36));
-    $.add$1$ax(__t, __e9);
+    var __e12 = $.clone$1$x(this.__html3_36, true);
+    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e12), 1), new $.init_autogenerated_____closure14(this.contact_38), new $.init_autogenerated_____closure15(this.__html4_37));
+    $.add$1$ax(__t, __e12);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_____closure3 = {"": "Closure;contact_38",
+$$.init_autogenerated_____closure14 = {"": "Closure;contact_39",
   call$0: function() {
-    return $.$index$asx(this.contact_38, "cellPhoneList");
+    return $.$index$asx(this.contact_39, "cellPhoneList");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_____closure4 = {"": "Closure;__html4_39",
+$$.init_autogenerated_____closure15 = {"": "Closure;__html4_40",
   call$3: function($$list, $$index, __t) {
-    var cellPhone, __e7, __binding6;
+    var cellPhone, __e10, __binding9;
     cellPhone = $.$index$asx($$list, $$index);
-    __e7 = $.clone$1$x(this.__html4_39, true);
-    __binding6 = __t.contentBind$2(new $.init_autogenerated______closure1(cellPhone), false);
-    $.addAll$1$ax($.get$nodes$x(__e7), [document.createTextNode("\n                        "), __binding6, document.createTextNode("\n                      ")]);
-    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e7, document.createTextNode("\n                  ")]);
+    __e10 = $.clone$1$x(this.__html4_40, true);
+    __binding9 = __t.contentBind$2(new $.init_autogenerated______closure7(cellPhone), false);
+    $.addAll$1$ax($.get$nodes$x(__e10), [document.createTextNode("\n                        "), __binding9, document.createTextNode("\n                      ")]);
+    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e10, document.createTextNode("\n                  ")]);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated______closure1 = {"": "Closure;cellPhone_40",
+$$.init_autogenerated______closure7 = {"": "Closure;cellPhone_41",
   call$0: function() {
     var t1, t2;
-    t1 = this.cellPhone_40;
+    t1 = this.cellPhone_41;
     t2 = $.getInterceptor$asx(t1);
     return $.$add$ns($.$add$ns(t2.$index(t1, "network"), " "), t2.$index(t1, "number"));
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure4 = {"": "Closure;contact_41",
+$$.init_autogenerated____closure6 = {"": "Closure;contact_42",
   call$0: function() {
-    return $.$index$asx(this.contact_41, "landLinesList") != null;
+    return $.$index$asx(this.contact_42, "landLinesList") != null;
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure5 = {"": "Closure;__html5_42,__html6_43,contact_44",
+$$.init_autogenerated____closure7 = {"": "Closure;__html5_43,__html6_44,contact_45",
   call$1: function(__t) {
-    var __e14 = $.clone$1$x(this.__html5_42, true);
-    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e14), 1), new $.init_autogenerated_____closure1(this.contact_44), new $.init_autogenerated_____closure2(this.__html6_43));
-    $.add$1$ax(__t, __e14);
+    var __e17 = $.clone$1$x(this.__html5_43, true);
+    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e17), 1), new $.init_autogenerated_____closure12(this.contact_45), new $.init_autogenerated_____closure13(this.__html6_44));
+    $.add$1$ax(__t, __e17);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_____closure1 = {"": "Closure;contact_45",
+$$.init_autogenerated_____closure12 = {"": "Closure;contact_46",
   call$0: function() {
-    return $.$index$asx(this.contact_45, "landLinesList");
+    return $.$index$asx(this.contact_46, "landLinesList");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_____closure2 = {"": "Closure;__html6_46",
+$$.init_autogenerated_____closure13 = {"": "Closure;__html6_47",
   call$3: function($$list, $$index, __t) {
-    var landLine, __e12, __binding11;
+    var landLine, __e15, __binding14;
     landLine = $.$index$asx($$list, $$index);
-    __e12 = $.clone$1$x(this.__html6_46, true);
-    __binding11 = __t.contentBind$2(new $.init_autogenerated______closure0(landLine), false);
-    $.addAll$1$ax($.get$nodes$x(__e12), [document.createTextNode("\n                        "), __binding11, document.createTextNode("\n                      ")]);
-    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e12, document.createTextNode("\n                  ")]);
+    __e15 = $.clone$1$x(this.__html6_47, true);
+    __binding14 = __t.contentBind$2(new $.init_autogenerated______closure6(landLine), false);
+    $.addAll$1$ax($.get$nodes$x(__e15), [document.createTextNode("\n                        "), __binding14, document.createTextNode("\n                      ")]);
+    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e15, document.createTextNode("\n                  ")]);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated______closure0 = {"": "Closure;landLine_47",
+$$.init_autogenerated______closure6 = {"": "Closure;landLine_48",
   call$0: function() {
     var t1, t2;
-    t1 = this.landLine_47;
+    t1 = this.landLine_48;
     t2 = $.getInterceptor$asx(t1);
     return $.$add$ns($.$add$ns($.$add$ns($.$add$ns(t2.$index(t1, "country"), " "), t2.$index(t1, "areaCode")), " "), t2.$index(t1, "number"));
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure6 = {"": "Closure;contact_48",
+$$.init_autogenerated____closure8 = {"": "Closure;contact_49",
   call$0: function() {
-    return $.$index$asx(this.contact_48, "addressesList") != null;
+    return $.$index$asx(this.contact_49, "addressesList") != null;
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure7 = {"": "Closure;__html7_49,__html8_50,contact_51",
+$$.init_autogenerated____closure9 = {"": "Closure;__html7_50,__html8_51,contact_52",
   call$1: function(__t) {
-    var __e19 = $.clone$1$x(this.__html7_49, true);
-    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e19), 1), new $.init_autogenerated_____closure(this.contact_51), new $.init_autogenerated_____closure0(this.__html8_50));
-    $.add$1$ax(__t, __e19);
+    var __e22 = $.clone$1$x(this.__html7_50, true);
+    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e22), 1), new $.init_autogenerated_____closure10(this.contact_52), new $.init_autogenerated_____closure11(this.__html8_51));
+    $.add$1$ax(__t, __e22);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_____closure = {"": "Closure;contact_52",
+$$.init_autogenerated_____closure10 = {"": "Closure;contact_53",
   call$0: function() {
-    return $.$index$asx(this.contact_52, "addressesList");
+    return $.$index$asx(this.contact_53, "addressesList");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_____closure0 = {"": "Closure;__html8_53",
+$$.init_autogenerated_____closure11 = {"": "Closure;__html8_54",
   call$3: function($$list, $$index, __t) {
-    var address, __e17, __binding16;
+    var address, __e20, __binding19;
     address = $.$index$asx($$list, $$index);
-    __e17 = $.clone$1$x(this.__html8_53, true);
-    __binding16 = __t.contentBind$2(new $.init_autogenerated______closure(address), false);
-    $.addAll$1$ax($.get$nodes$x(__e17), [document.createTextNode("\n                        "), __binding16, document.createTextNode("\n                      ")]);
-    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e17, document.createTextNode("\n                  ")]);
+    __e20 = $.clone$1$x(this.__html8_54, true);
+    __binding19 = __t.contentBind$2(new $.init_autogenerated______closure5(address), false);
+    $.addAll$1$ax($.get$nodes$x(__e20), [document.createTextNode("\n                        "), __binding19, document.createTextNode("\n                      ")]);
+    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e20, document.createTextNode("\n                  ")]);
   },
   $isFunction: true
 };
 
-$$.init_autogenerated______closure = {"": "Closure;address_54",
+$$.init_autogenerated______closure5 = {"": "Closure;address_55",
   call$0: function() {
-    return $.$index$asx(this.address_54, "address");
+    return $.$index$asx(this.address_55, "address");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure8 = {"": "Closure;groupName_55,contact_56",
+$$.init_autogenerated____closure10 = {"": "Closure;groupName_56,contact_57",
   call$1: function($$event) {
-    $.populateGeneralDialogForEditContact($.S(this.groupName_55), $.$index$asx(this.contact_56, "_id"));
+    $.populateGeneralDialogForEditContact($.S(this.groupName_56), $.$index$asx(this.contact_57, "_id"));
   },
   $isFunction: true
 };
 
-$$.init_autogenerated____closure9 = {"": "Closure;groupName_57,contact_58",
+$$.init_autogenerated____closure11 = {"": "Closure;groupName_58,contact_59",
   call$1: function($$event) {
-    $.deleteContact($.S(this.groupName_57), $.$index$asx(this.contact_58, "_id"));
+    $.deleteContact($.S(this.groupName_58), $.$index$asx(this.contact_59, "_id"));
   },
   $isFunction: true
 };
 
-$$.init_autogenerated___closure5 = {"": "Closure;groupName_59",
+$$.init_autogenerated___closure7 = {"": "Closure;groupName_60",
   call$0: function() {
-    return this.groupName_59;
+    return this.groupName_60;
   },
   $isFunction: true
 };
 
-$$.init_autogenerated___closure6 = {"": "Closure;box_0",
+$$.init_autogenerated___closure8 = {"": "Closure;box_0",
   call$1: function(__e) {
-    $.set$id$x(this.box_0.__e25_1, $.S($.get$newValue$x(__e)) + "_group");
+    $.set$id$x(this.box_0.__e28_1, $.S($.get$newValue$x(__e)) + "_group");
   },
   $isFunction: true
 };
 
-$$.init_autogenerated_closure1 = {"": "Closure;",
+$$.init_autogenerated_closure6 = {"": "Closure;",
+  call$0: function() {
+    return $.showCS();
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_closure7 = {"": "Closure;__html10_61,__html11_62,__html12_63,__html13_64,__html14_65,__html15_66,__html16_67,__html17_68,__html18_69,__html9_70",
+  call$1: function(__t) {
+    var __e55, t1;
+    __e55 = $.clone$1$x(this.__html9_70, true);
+    t1 = $.getInterceptor$x(__t);
+    t1.loop$3(__t, __e55, new $.init_autogenerated__closure(), new $.init_autogenerated__closure0(this.__html10_61, this.__html11_62, this.__html12_63, this.__html13_64, this.__html14_65, this.__html15_66, this.__html16_67, this.__html17_68, this.__html18_69));
+    t1.addAll$1(__t, [document.createTextNode("\n        "), __e55, document.createTextNode("\n      ")]);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated__closure = {"": "Closure;",
+  call$0: function() {
+    return $.get$keys$x($.get$contactsBook());
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated__closure0 = {"": "Closure;__html10_71,__html11_72,__html12_73,__html13_74,__html14_75,__html15_76,__html16_77,__html17_78,__html18_79",
+  call$3: function($$list, $$index, __t) {
+    var groupName, __e54;
+    groupName = $.$index$asx($$list, $$index);
+    __e54 = $.clone$1$x(this.__html10_71, true);
+    __t.loopIterateAttr$3(__e54, new $.init_autogenerated___closure(groupName), new $.init_autogenerated___closure0(this.__html11_72, this.__html12_73, this.__html13_74, this.__html14_75, this.__html15_76, this.__html16_77, this.__html17_78, this.__html18_79, groupName));
+    $.addAll$1$ax(__t, [document.createTextNode("\n          "), __e54, document.createTextNode("\n        ")]);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated___closure = {"": "Closure;groupName_80",
+  call$0: function() {
+    return $.$index$asx($.get$contactsBook(), $.S(this.groupName_80));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated___closure0 = {"": "Closure;__html11_81,__html12_82,__html13_83,__html14_84,__html15_85,__html16_86,__html17_87,__html18_88,groupName_89",
+  call$3: function($$list, $$index, __t) {
+    var contact, __e53;
+    contact = $.$index$asx($$list, $$index);
+    __e53 = $.clone$1$x(this.__html11_81, true);
+    __t.conditional$3(__e53, new $.init_autogenerated____closure(contact), new $.init_autogenerated____closure0(this.__html12_82, this.__html13_83, this.__html14_84, this.__html15_85, this.__html16_86, this.__html17_87, this.__html18_88, this.groupName_89, contact));
+    $.addAll$1$ax(__t, [document.createTextNode("\n              "), __e53, document.createTextNode("\n          ")]);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated____closure = {"": "Closure;contact_90",
+  call$0: function() {
+    return $.matchCriteria(this.contact_90);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated____closure0 = {"": "Closure;__html12_91,__html13_92,__html14_93,__html15_94,__html16_95,__html17_96,__html18_97,groupName_98,contact_99",
+  call$1: function(__t) {
+    var __e52, t1, __e32, t2, __binding31, t3, t4, __e34, __binding33;
+    __e52 = $.clone$1$x(this.__html12_91, true);
+    t1 = $.getInterceptor$x(__e52);
+    __e32 = $.$index$asx(t1.get$nodes(__e52), 1);
+    t2 = this.contact_99;
+    __binding31 = __t.contentBind$2(new $.init_autogenerated_____closure(t2), false);
+    t3 = $.getInterceptor$x(__e32);
+    $.addAll$1$ax(t3.get$nodes(__e32), [document.createTextNode("\n                  "), __binding31, document.createTextNode("\n                ")]);
+    t4 = this.groupName_98;
+    __t.listen$2(t3.get$onClick(__e32), new $.init_autogenerated_____closure0(t4, t2));
+    __e34 = $.$index$asx(t1.get$nodes(__e52), 3);
+    __binding33 = __t.contentBind$2(new $.init_autogenerated_____closure1(t2), false);
+    $.add$1$ax($.get$nodes$x(__e34), __binding33);
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e52), 5), new $.init_autogenerated_____closure2(t2), new $.init_autogenerated_____closure3(this.__html13_92, this.__html14_93, t2));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e52), 7), new $.init_autogenerated_____closure4(t2), new $.init_autogenerated_____closure5(this.__html15_94, this.__html16_95, t2));
+    __t.conditional$3($.$index$asx(t1.get$nodes(__e52), 9), new $.init_autogenerated_____closure6(t2), new $.init_autogenerated_____closure7(this.__html17_96, this.__html18_97, t2));
+    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e52), 11)), new $.init_autogenerated_____closure8(t4, t2));
+    __t.listen$2($.get$onClick$x($.$index$asx(t1.get$nodes(__e52), 13)), new $.init_autogenerated_____closure9(t4, t2));
+    $.add$1$ax(__t, __e52);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure = {"": "Closure;contact_100",
+  call$0: function() {
+    return $.$index$asx(this.contact_100, "name");
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure0 = {"": "Closure;groupName_101,contact_102",
+  call$1: function($$event) {
+    $.populateGeneralDialogWithContactDetails($.S(this.groupName_101), $.$index$asx(this.contact_102, "_id"));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure1 = {"": "Closure;contact_103",
+  call$0: function() {
+    var t1, t2;
+    t1 = this.contact_103;
+    t2 = $.getInterceptor$asx(t1);
+    return t2.$index(t1, "comments") == null ? "" : t2.$index(t1, "comments");
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure2 = {"": "Closure;contact_104",
+  call$0: function() {
+    return $.$index$asx(this.contact_104, "cellPhoneList") != null;
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure3 = {"": "Closure;__html13_105,__html14_106,contact_107",
+  call$1: function(__t) {
+    var __e38 = $.clone$1$x(this.__html13_105, true);
+    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e38), 1), new $.init_autogenerated______closure3(this.contact_107), new $.init_autogenerated______closure4(this.__html14_106));
+    $.add$1$ax(__t, __e38);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated______closure3 = {"": "Closure;contact_108",
+  call$0: function() {
+    return $.$index$asx(this.contact_108, "cellPhoneList");
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated______closure4 = {"": "Closure;__html14_109",
+  call$3: function($$list, $$index, __t) {
+    var cellPhone, __e36, __binding35;
+    cellPhone = $.$index$asx($$list, $$index);
+    __e36 = $.clone$1$x(this.__html14_109, true);
+    __binding35 = __t.contentBind$2(new $.init_autogenerated_______closure1(cellPhone), false);
+    $.addAll$1$ax($.get$nodes$x(__e36), [document.createTextNode("\n                        "), __binding35, document.createTextNode("\n                      ")]);
+    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e36, document.createTextNode("\n                  ")]);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_______closure1 = {"": "Closure;cellPhone_110",
+  call$0: function() {
+    var t1, t2;
+    t1 = this.cellPhone_110;
+    t2 = $.getInterceptor$asx(t1);
+    return $.$add$ns($.$add$ns(t2.$index(t1, "network"), " "), t2.$index(t1, "number"));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure4 = {"": "Closure;contact_111",
+  call$0: function() {
+    return $.$index$asx(this.contact_111, "landLinesList") != null;
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure5 = {"": "Closure;__html15_112,__html16_113,contact_114",
+  call$1: function(__t) {
+    var __e43 = $.clone$1$x(this.__html15_112, true);
+    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e43), 1), new $.init_autogenerated______closure1(this.contact_114), new $.init_autogenerated______closure2(this.__html16_113));
+    $.add$1$ax(__t, __e43);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated______closure1 = {"": "Closure;contact_115",
+  call$0: function() {
+    return $.$index$asx(this.contact_115, "landLinesList");
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated______closure2 = {"": "Closure;__html16_116",
+  call$3: function($$list, $$index, __t) {
+    var landLine, __e41, __binding40;
+    landLine = $.$index$asx($$list, $$index);
+    __e41 = $.clone$1$x(this.__html16_116, true);
+    __binding40 = __t.contentBind$2(new $.init_autogenerated_______closure0(landLine), false);
+    $.addAll$1$ax($.get$nodes$x(__e41), [document.createTextNode("\n                        "), __binding40, document.createTextNode("\n                      ")]);
+    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e41, document.createTextNode("\n                  ")]);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_______closure0 = {"": "Closure;landLine_117",
+  call$0: function() {
+    var t1, t2;
+    t1 = this.landLine_117;
+    t2 = $.getInterceptor$asx(t1);
+    return $.$add$ns($.$add$ns($.$add$ns($.$add$ns(t2.$index(t1, "country"), " "), t2.$index(t1, "areaCode")), " "), t2.$index(t1, "number"));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure6 = {"": "Closure;contact_118",
+  call$0: function() {
+    return $.$index$asx(this.contact_118, "addressesList") != null;
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure7 = {"": "Closure;__html17_119,__html18_120,contact_121",
+  call$1: function(__t) {
+    var __e48 = $.clone$1$x(this.__html17_119, true);
+    __t.loopIterateAttr$3($.$index$asx($.get$nodes$x(__e48), 1), new $.init_autogenerated______closure(this.contact_121), new $.init_autogenerated______closure0(this.__html18_120));
+    $.add$1$ax(__t, __e48);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated______closure = {"": "Closure;contact_122",
+  call$0: function() {
+    return $.$index$asx(this.contact_122, "addressesList");
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated______closure0 = {"": "Closure;__html18_123",
+  call$3: function($$list, $$index, __t) {
+    var address, __e46, __binding45;
+    address = $.$index$asx($$list, $$index);
+    __e46 = $.clone$1$x(this.__html18_123, true);
+    __binding45 = __t.contentBind$2(new $.init_autogenerated_______closure(address), false);
+    $.addAll$1$ax($.get$nodes$x(__e46), [document.createTextNode("\n                        "), __binding45, document.createTextNode("\n                      ")]);
+    $.addAll$1$ax(__t, [document.createTextNode("\n                      "), __e46, document.createTextNode("\n                  ")]);
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_______closure = {"": "Closure;address_124",
+  call$0: function() {
+    return $.$index$asx(this.address_124, "address");
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure8 = {"": "Closure;groupName_125,contact_126",
+  call$1: function($$event) {
+    $.populateGeneralDialogForEditContact($.S(this.groupName_125), $.$index$asx(this.contact_126, "_id"));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_____closure9 = {"": "Closure;groupName_127,contact_128",
+  call$1: function($$event) {
+    $.deleteContact($.S(this.groupName_127), $.$index$asx(this.contact_128, "_id"));
+  },
+  $isFunction: true
+};
+
+$$.init_autogenerated_closure8 = {"": "Closure;",
   call$1: function($$event) {
     $.closeGeneralDialog();
   },
@@ -9349,6 +9885,9 @@ $$.JsonObject = {"": "Object;_jsonString,_objectData,isExtendable",
   },
   where$1: function(_, f) {
     return $.where$1$ax(this.toIterable$0(), f);
+  },
+  contains$1: function(_, element) {
+    return $.contains$1$asx(this.toIterable$0(), element);
   },
   elementAt$1: function(_, index) {
     return $.elementAt$1$ax(this.toIterable$0(), index);
@@ -9885,6 +10424,48 @@ $$.Binding = {"": "TemplateItem;exp,action,isFinal,stopper",
   get$remove: function(receiver) {
     return new $.BoundClosure$i0(this, "remove$0", receiver);
   }
+};
+
+$$.DomPropertyBinding = {"": "TemplateItem;setter,getter,isUrl<,isFinal,stopper",
+  setter$1: function(arg0) {
+    return this.setter.call$1(arg0);
+  },
+  getter$0: function() {
+    return this.getter.call$0();
+  },
+  stopper$0: function() {
+    return this.stopper.call$0();
+  },
+  insert$0: function(_) {
+    var t1;
+    if (this.isFinal) {
+      t1 = this.getter$0();
+      this.setter$1(this.isUrl ? $.sanitizeUri(t1) : t1);
+    } else if (this.stopper != null)
+      throw $.wrapException($.StateError$("data binding already attached."));
+    else
+      this.stopper = $.watchAndInvoke(this.getter, new $.DomPropertyBinding_insert_closure(this), "dom-property-binding");
+  },
+  remove$0: function(_) {
+    if (!this.isFinal) {
+      this.stopper$0();
+      this.stopper = null;
+    }
+  },
+  get$remove: function(receiver) {
+    return new $.BoundClosure$i0(this, "remove$0", receiver);
+  }
+};
+
+$$.DomPropertyBinding_insert_closure = {"": "Closure;this_0",
+  call$1: function(e) {
+    var t1, t2;
+    t1 = this.this_0;
+    t2 = $.get$newValue$x(e);
+    t1.setter$1(t1.get$isUrl() === true ? $.sanitizeUri(t2) : t2);
+    return;
+  },
+  $isFunction: true
 };
 
 $$.Template = {"": "TemplateItem;node<,children>,nodes>",
@@ -10533,6 +11114,12 @@ $$.Document = {"": "Node;implementation=",
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
   },
+  get$onInput: function(receiver) {
+    return $.EventStreamProvider_input.forTarget$1(receiver);
+  },
+  get$onKeyUp: function(receiver) {
+    return $.EventStreamProvider_keyup.forTarget$1(receiver);
+  },
   queryAll$1: function(receiver, selectors) {
     return $._FrozenElementList$_wrap(receiver.querySelectorAll(selectors), null);
   }
@@ -10606,6 +11193,9 @@ $$.DomStringList = {"": "Interceptor_ListMixin_ImmutableListMixin;",
       throw $.ioore(index);
     return receiver[index];
   },
+  contains$1: function(receiver, string) {
+    return receiver.contains(string);
+  },
   $isList: true,
   $asList: function() { return [$.JSString]; },
   $isIterable: true,
@@ -10615,6 +11205,9 @@ $$.DomStringList = {"": "Interceptor_ListMixin_ImmutableListMixin;",
 };
 
 $$.DomTokenList = {"": "Interceptor;length=",
+  contains$1: function(receiver, token) {
+    return receiver.contains(token);
+  },
   toString$0: function(receiver) {
     return receiver.toString();
   }
@@ -10770,6 +11363,12 @@ $$.Element = {"": "Node;_templateIterator%,_templateInstanceRef},_templateConten
   },
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
+  },
+  get$onInput: function(receiver) {
+    return $.EventStreamProvider_input.forTarget$1(receiver);
+  },
+  get$onKeyUp: function(receiver) {
+    return $.EventStreamProvider_keyup.forTarget$1(receiver);
   },
   $isElement: true,
   $asElement: null
@@ -11320,6 +11919,9 @@ $$.Node = {"": "EventTarget;_templateInstance},$$dom_firstChild:firstChild=,$$do
   },
   clone$1: function(receiver, deep) {
     return receiver.cloneNode(deep);
+  },
+  contains$1: function(receiver, other) {
+    return receiver.contains(other);
   },
   insertBefore$2: function(receiver, newChild, refChild) {
     return receiver.insertBefore(newChild, refChild);
@@ -12015,6 +12617,12 @@ $$.Window = {"": "EventTarget;name}",
   },
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
+  },
+  get$onInput: function(receiver) {
+    return $.EventStreamProvider_input.forTarget$1(receiver);
+  },
+  get$onKeyUp: function(receiver) {
+    return $.EventStreamProvider_keyup.forTarget$1(receiver);
   }
 };
 
@@ -12522,6 +13130,12 @@ $$.ElementInstance = {"": "EventTarget;parentNode=",
   },
   get$onClick: function(receiver) {
     return $.EventStreamProvider_click.forTarget$1(receiver);
+  },
+  get$onInput: function(receiver) {
+    return $.EventStreamProvider_input.forTarget$1(receiver);
+  },
+  get$onKeyUp: function(receiver) {
+    return $.EventStreamProvider_keyup.forTarget$1(receiver);
   }
 };
 
@@ -13006,6 +13620,9 @@ $$.Float32List = {"": "TypedData;",
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
   },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
+  },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
   },
@@ -13144,6 +13761,9 @@ $$.Float64List = {"": "TypedData;",
   },
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
+  },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
   },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
@@ -13284,6 +13904,9 @@ $$.Int16List = {"": "TypedData;",
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
   },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
+  },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
   },
@@ -13422,6 +14045,9 @@ $$.Int32List = {"": "TypedData;",
   },
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
+  },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
   },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
@@ -13562,6 +14188,9 @@ $$.Int8List = {"": "TypedData;",
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
   },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
+  },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
   },
@@ -13700,6 +14329,9 @@ $$.Uint16List = {"": "TypedData;",
   },
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
+  },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
   },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
@@ -13840,6 +14472,9 @@ $$.Uint32List = {"": "TypedData;",
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
   },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
+  },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
   },
@@ -13975,6 +14610,9 @@ $$.Uint8ClampedList = {"": "Uint8List;",
   },
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
+  },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
   },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
@@ -14114,6 +14752,9 @@ $$.Uint8List = {"": "TypedData;",
   },
   get$iterator: function(receiver) {
     return $.ListIterator$(receiver);
+  },
+  contains$1: function(receiver, element) {
+    return $.IterableMixinWorkaround_contains(receiver, element);
   },
   forEach$1: function(receiver, f) {
     return $.IterableMixinWorkaround_forEach(receiver, f);
@@ -14563,6 +15204,14 @@ $.SkipIterator$ = function(_iterator, _skipCount) {
   var t1 = new $.SkipIterator(_iterator, _skipCount);
   t1.SkipIterator$2(_iterator, _skipCount);
   return t1;
+};
+
+$.IterableMixinWorkaround_contains = function(iterable, element) {
+  var t1, t2;
+  for (t1 = $.get$iterator$ax(iterable), t2 = $.getInterceptor(element); t1.moveNext$0();)
+    if (t2.$eq(element, t1.get$current()))
+      return true;
+  return false;
 };
 
 $.IterableMixinWorkaround_forEach = function(iterable, f) {
@@ -15747,6 +16396,8 @@ $.Primitives__throwFormatException = function(string) {
 
 $.Primitives_parseInt = function(source, radix, handleError) {
   var match, t1, maxCharCode, digitsPart, i;
+  if (handleError == null)
+    handleError = $.Primitives__throwFormatException$closure;
   if (typeof source !== "string")
     $.throwExpression($.ArgumentError$(source));
   match = /^\s*[+-]?((0x[a-f0-9]+)|(\d+)|([a-z0-9]+))\s*$/i.exec(source);
@@ -17101,6 +17752,10 @@ $.Object$ = function() {
   return new $.Object();
 };
 
+$.print = function(object) {
+  $.Primitives_printString($.toString$0(object));
+};
+
 $.RegExp_RegExp = function(pattern, caseSensitive, multiLine) {
   return $.JSSyntaxRegExp$(pattern, caseSensitive, multiLine);
 };
@@ -17903,6 +18558,12 @@ $._DOMWindowCrossFrame__createSafe = function(w) {
     return $._DOMWindowCrossFrame$(w);
 };
 
+$.KeyEvent$ = function($parent) {
+  var t1 = new $.KeyEvent(null, null, null, null, $parent);
+  t1.KeyEvent$1($parent);
+  return t1;
+};
+
 $.FixedSizeListIterator$ = function(array) {
   return new $.FixedSizeListIterator(array, $.get$length$asx(array), -1, null);
 };
@@ -18207,21 +18868,42 @@ $._Lists_getRange$bailout = function(state0, a, start, end, accumulator) {
   return accumulator;
 };
 
+$.Uri$ = function(uri) {
+  var t1 = $.get$Uri__splitRe().firstMatch$1(uri);
+  return new $.Uri($.Uri__emptyIfNull(t1.$index(t1, 1)), $.Uri__emptyIfNull(t1.$index(t1, 2)), $.Uri__eitherOf(t1.$index(t1, 3), t1.$index(t1, 4)), $.Uri__parseIntOrZero(t1.$index(t1, 5)), $.Uri__emptyIfNull(t1.$index(t1, 6)), $.Uri__emptyIfNull(t1.$index(t1, 7)), $.Uri__emptyIfNull(t1.$index(t1, 8)));
+};
+
+$.Uri__emptyIfNull = function(val) {
+  return val != null ? val : "";
+};
+
+$.Uri__parseIntOrZero = function(val) {
+  if (val != null && !$.$eq(val, ""))
+    return $.Primitives_parseInt(val, null, null);
+  else
+    return 0;
+};
+
+$.Uri__eitherOf = function(val1, val2) {
+  if (val1 != null)
+    return val1;
+  if (val2 != null)
+    return val2;
+  return "";
+};
+
 $.populateGeneralDialogForAddContact = function() {
-  var bodySection, groupSelection, t1, t2, t3, t4, item, nameCommentDiv, namefield, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, emailBTN, skypeBTN, additionalInfoDiv, additionalInfoBTN, dialogFooter, addContactSaveBtn;
+  var bodySection, groupSelection, t1, t2, item, t3, nameCommentDiv, namefield, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, emailBTN, skypeBTN, additionalInfoDiv, additionalInfoBTN, dialogFooter, addContactSaveBtn;
   $.appendHtml$1$x(document.querySelector("#general_dialog_header_content"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.toUpperCase$0$s($.getPropertyValue("addContact"))), "</h1>"));
   bodySection = document.querySelector("#general_dialog_body");
   groupSelection = document.createElement("select");
   t1 = $.getInterceptor$x(groupSelection);
   t1.set$id(groupSelection, "add_contact_group_selection");
-  t2 = $.get$contactsBook();
-  t3 = $.getPropertyValue("uncategorizedGroup");
-  t4 = t2._objectData;
-  if (!t4.containsKey$1(t4, t2._symbolToString$1(t3))) {
+  if ($.containsKey$1$x($.get$contactsBook(), $.getPropertyValue("uncategorizedGroup")) !== true) {
     t2 = t1.get$children(groupSelection);
     t2.add$1(t2, $.OptionElement_OptionElement($.getPropertyValue("uncategorizedGroup"), $.getPropertyValue("uncategorizedGroup"), true, true));
   }
-  for (t2 = $.get$contactsBook()._objectData, t2 = t2.get$keys(t2), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
+  for (t2 = $.get$iterator$ax($.get$keys$x($.get$contactsBook())); t2.moveNext$0() === true;) {
     item = t2.get$current();
     t3 = t1.get$children(groupSelection);
     t3.add$1(t3, $.OptionElement_OptionElement(item, $, $, $));
@@ -18326,7 +19008,7 @@ $.populateGeneralDialogForAddContact = function() {
 };
 
 $.addContactSaveOperation = function(e, caller, id) {
-  var contact, fieldInput, t1, cellPhonesList, cell, cellPhone, t2, cellInput, t3, landLinesList, landLine, landLinePhone, landLineInput, addressesList, address, addressObject, input, emailInputs, email, skypeIdInputs, skypeId, addInfoItemList, item, input2, requestData, groupInput, t4, contactsList, request, output;
+  var contact, fieldInput, t1, cellPhonesList, cell, cellPhone, t2, cellInput, t3, landLinesList, landLine, landLinePhone, landLineInput, addressesList, address, addressObject, input, emailInputs, email, skypeIdInputs, skypeId, addInfoItemList, item, input2, requestData, groupInput, contactsList, t4, request, output;
   contact = $.JsonObject$(null);
   contact.set$name(contact, $.get$value$x(document.querySelector("#contact_name")));
   fieldInput = document.querySelector("#contact_comments");
@@ -18456,28 +19138,14 @@ $.addContactSaveOperation = function(e, caller, id) {
   groupInput = document.querySelector("#add_contact_group_selection");
   t1 = $.getInterceptor$x(groupInput);
   requestData.$indexSet(requestData, "groupName", t1.get$value(groupInput));
-  t2 = $.get$contactsBook();
-  t3 = t1.get$value(groupInput);
-  t4 = t2._objectData;
-  if (!t4.containsKey$1(t4, t2._symbolToString$1(t3))) {
-    t2 = $.get$contactsBook();
-    t2.$indexSet(t2, t1.get$value(groupInput), "");
-  }
-  t2 = $.get$contactsBook();
-  t3 = t1.get$value(groupInput);
-  t2 = t2._objectData;
-  if ($.get$isEmpty$asx(t2.$index(t2, t3)) !== true) {
-    t2 = $.get$contactsBook();
-    t3 = t1.get$value(groupInput);
-    t2 = t2._objectData;
-    contactsList = $.toList$0$ax(t2.$index(t2, t3));
-  } else {
+  if ($.containsKey$1$x($.get$contactsBook(), t1.get$value(groupInput)) !== true)
+    $.$indexSet$ax($.get$contactsBook(), t1.get$value(groupInput), "");
+  if ($.get$isEmpty$asx($.$index$asx($.get$contactsBook(), t1.get$value(groupInput))) !== true)
+    contactsList = $.toList$0$ax($.$index$asx($.get$contactsBook(), t1.get$value(groupInput)));
+  else {
     $.Primitives_printString("Loading from server list is empty");
     $.loadContactsListForGroup(t1.get$value(groupInput), false, null);
-    t2 = $.get$contactsBook();
-    t3 = t1.get$value(groupInput);
-    t2 = t2._objectData;
-    contactsList = $.toList$0$ax(t2.$index(t2, t3));
+    contactsList = $.toList$0$ax($.$index$asx($.get$contactsBook(), t1.get$value(groupInput)));
   }
   $.Primitives_printString("Caller is");
   t2 = $.getInterceptor(caller);
@@ -18498,8 +19166,7 @@ $.addContactSaveOperation = function(e, caller, id) {
   }
   $.sort$1$ax(contactsList, new $.addContactSaveOperation_closure0());
   requestData.$indexSet(requestData, "contactsList", contactsList);
-  t2 = $.get$contactsBook();
-  t2.$indexSet(t2, t1.get$value(groupInput), contactsList);
+  $.$indexSet$ax($.get$contactsBook(), t1.get$value(groupInput), contactsList);
   request = new XMLHttpRequest();
   t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
   $._EventStreamSubscription$(t1._target, t1._eventType, new $.addContactSaveOperation_closure1(request), t1._useCapture);
@@ -18533,9 +19200,8 @@ $.populateGeneralDialogFooterAddGroup = function() {
 };
 
 $.deleteContact = function(groupName, index) {
-  var t1, contactsList, contact, t2, t3, message, requestData, request, output;
-  t1 = $.get$contactsBook()._objectData;
-  contactsList = $.toList$0$ax(t1.$index(t1, groupName));
+  var contactsList, t1, contact, t2, t3, message, requestData, request, output;
+  contactsList = $.toList$0$ax($.$index$asx($.get$contactsBook(), groupName));
   t1 = $.getInterceptor$ax(contactsList);
   contact = t1.firstWhere$1(contactsList, new $.deleteContact_closure(index));
   t2 = $.getInterceptor$asx(contact);
@@ -18557,11 +19223,10 @@ $.deleteContact = function(groupName, index) {
 };
 
 $.populateGeneralDialogForEditContact = function(groupName, index) {
-  var t1, contact, item, bodySection, groupSelection, t2, t3, t4, t5, nameCommentDiv, namefield, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, emailBTN, skypeBTN, additionalInfoDiv, additionalInfoBTN, dialogFooter, addContactSaveBtn, cellPhoneItem, cellPhoneLE, comment, t6, network, number, landLineItem, landLineLE, country, areaCode, addressItem, addressLE, address, emailItem, emailInput, skypeId, skypeInput, keyItem, additionalInfoItem, additionalInfoFieldName, additionalInfoText;
+  var t1, contact, item, bodySection, groupSelection, t2, t3, t4, nameCommentDiv, namefield, contactCommentsTextArea, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addCellPhoneBtn, addLandLineBtn, addressDiv, addressesFieldlSet, addressesFieldSetLegend, addressesFieldSetLegendBTN, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, emailBTN, skypeBTN, additionalInfoDiv, additionalInfoBTN, dialogFooter, addContactSaveBtn, cellPhoneItem, cellPhoneLE, comment, t5, t6, network, number, landLineItem, landLineLE, country, areaCode, addressItem, addressLE, address, emailItem, emailInput, skypeId, skypeInput, keyItem, additionalInfoItem, additionalInfoFieldName, additionalInfoText;
   $.set$display$x(document.querySelector("#overlay_shield").style, "inline");
   $.set$display$x(document.querySelector("#general_dialog").style, "inline");
-  t1 = $.get$contactsBook()._objectData;
-  for (t1 = $.get$iterator$ax($.toList$0$ax(t1.$index(t1, groupName))); contact = null, t1.moveNext$0() === true;) {
+  for (t1 = $.get$iterator$ax($.toList$0$ax($.$index$asx($.get$contactsBook(), groupName))); contact = null, t1.moveNext$0() === true;) {
     item = t1.get$current();
     if ($.$eq($.$index$asx(item, "_id"), index)) {
       contact = item;
@@ -18576,17 +19241,14 @@ $.populateGeneralDialogForEditContact = function(groupName, index) {
   t2.set$id(groupSelection, "add_contact_group_selection");
   t3 = t2.get$children(groupSelection);
   t3.add$1(t3, $.OptionElement_OptionElement(groupName, $, $, $));
-  for (t3 = $.get$contactsBook()._objectData, t3 = t3.get$keys(t3), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
+  for (t3 = $.get$iterator$ax($.get$keys$x($.get$contactsBook())); t3.moveNext$0() === true;) {
     item = t3.get$current();
     if (!$.$eq(item, groupName)) {
       t4 = t2.get$children(groupSelection);
       t4.add$1(t4, $.OptionElement_OptionElement(item, $, $, $));
     }
   }
-  t3 = $.get$contactsBook();
-  t4 = $.getPropertyValue("uncategorizedGroup");
-  t5 = t3._objectData;
-  if (!t5.containsKey$1(t5, t3._symbolToString$1(t4))) {
+  if ($.containsKey$1$x($.get$contactsBook(), $.getPropertyValue("uncategorizedGroup")) !== true) {
     t2 = t2.get$children(groupSelection);
     t2.add$1(t2, $.OptionElement_OptionElement($.getPropertyValue("uncategorizedGroup"), $.getPropertyValue("uncategorizedGroup"), true, true));
   }
@@ -18807,6 +19469,22 @@ $.populateGeneralDialogForEditContact = function(groupName, index) {
     }
 };
 
+$.showCCG = function() {
+  $.print($.searchFilter);
+  if ($.get$isEmpty$asx($.searchFilter) === true)
+    return true;
+  else
+    return false;
+};
+
+$.showCS = function() {
+  $.print($.searchFilter);
+  if ($.get$isEmpty$asx($.searchFilter) === true)
+    return false;
+  else
+    return true;
+};
+
 $.loadDataContainerOnFirstLoad = function() {
   $.HttpRequest_getString($.JSString_methods.$add($.baseURL, "getContactsGroupList"), null, null).then$1(new $.loadDataContainerOnFirstLoad_closure());
 };
@@ -18825,10 +19503,9 @@ $.renderControlsPanelOnFirstLoad = function() {
 };
 
 $.loadContactsListForGroup = function(groupName, asynchronous, $event) {
-  var t1, t2, request;
+  var t1, request;
   t1 = {};
-  t2 = $.get$contactsBook()._objectData;
-  if ($.get$isEmpty$asx(t2.$index(t2, groupName)) === true)
+  if ($.get$isEmpty$asx($.$index$asx($.get$contactsBook(), groupName)) === true)
     if (asynchronous) {
       t1.contactsList_0 = null;
       $.HttpRequest_getString($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.JSString_methods.$add($.baseURL, "getContactsListForAGroup"), "&"), "groupName="), groupName), null, null).then$1(new $.loadContactsListForGroup_closure(t1, groupName));
@@ -18841,6 +19518,23 @@ $.loadContactsListForGroup = function(groupName, asynchronous, $event) {
     }
 };
 
+$.loadFullContactsBook = function() {
+  if (!$.isBookFullyLoaded) {
+    $.Primitives_printString("Not fully lodaded");
+    $.HttpRequest_getString($.JSString_methods.$add($.baseURL, "getContactsBookForTheLoggedInUser"), null, null).then$1(new $.loadFullContactsBook_closure());
+  }
+};
+
+$.matchCriteria = function(contact) {
+  var t1 = $.getInterceptor$asx(contact);
+  if ($.contains$1$asx($.toLowerCase$0$s(t1.$index(contact, "name")), $.toLowerCase$0$s($.searchFilter)) === true)
+    return true;
+  if (t1.$index(contact, "comments") != null)
+    if ($.contains$1$asx($.toLowerCase$0$s(t1.$index(contact, "comments")), $.toLowerCase$0$s($.searchFilter)) === true)
+      return true;
+  return false;
+};
+
 $.closeGeneralDialog = function() {
   $.set$display$x(document.querySelector("#overlay_shield").style, "none");
   $.set$display$x(document.querySelector("#general_dialog").style, "none");
@@ -18850,10 +19544,20 @@ $.closeGeneralDialog = function() {
 };
 
 $.init_autogenerated = function() {
-  var __root, __html0, __html1, __html2, __html3, __html4, __html5, __html6, __html7, __html8, __t, t1, t2;
+  var t1, __root, __html0, __html1, __html10, __html11, __html12, __html13, __html14, __html15, __html16, __html17, __html18, __html2, __html3, __html4, __html5, __html6, __html7, __html8, __html9, __t, t2, t3, __e1, __binding0;
+  t1 = {};
   __root = document.body;
   __html0 = document.createElement("template");
   __html1 = $._ElementFactoryProvider_createElement_html("<details>\n            <summary></summary>\n            <ul></ul>\n          </details>");
+  __html10 = document.createElement("ul");
+  __html11 = $._ElementFactoryProvider_createElement_html("<li style=\"display:none\"></li>");
+  __html12 = $._ElementFactoryProvider_createElement_html("<li template=\"\" if=\"matchCriteria(contact)\">\n                <a name=\"contact_name\" href=\"#\"></a>\n                <span name=\"contact_comments\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span name=\"edit_contact_btn\">\u270e</span>\n                <span name=\"delete_contact_btn\">\u2717</span>\n              </li>");
+  __html13 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['cellPhoneList'] != null\">\n                  <span name=\"contact_cell_phones\"></span>\n                </span>");
+  __html14 = $._ElementFactoryProvider_createElement_html("<span name=\"cell_phone_item\"></span>");
+  __html15 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['landLinesList'] != null\">\n                  <span name=\"contact_land_lines\"></span>\n                </span>");
+  __html16 = $._ElementFactoryProvider_createElement_html("<span name=\"land_line_item\"></span>");
+  __html17 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['addressesList'] != null\">\n                  <span name=\"contact_addresses\"></span>\n                </span>");
+  __html18 = $._ElementFactoryProvider_createElement_html("<span name=\"address_item_item\"></span>");
   __html2 = $._ElementFactoryProvider_createElement_html("<li>\n                <a name=\"contact_name\" href=\"#\"></a>\n                <span name=\"contact_comments\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span style=\"display:none\"></span>\n                <span name=\"edit_contact_btn\">\u270e</span>\n                <span name=\"delete_contact_btn\">\u2717</span>\n              </li>");
   __html3 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['cellPhoneList'] != null\">\n                  <span name=\"contact_cell_phones\"></span>\n                </span>");
   __html4 = $._ElementFactoryProvider_createElement_html("<span name=\"cell_phone_item\"></span>");
@@ -18861,30 +19565,42 @@ $.init_autogenerated = function() {
   __html6 = $._ElementFactoryProvider_createElement_html("<span name=\"land_line_item\"></span>");
   __html7 = $._ElementFactoryProvider_createElement_html("<span template=\"\" if=\"contact['addressesList'] != null\">\n                  <span name=\"contact_addresses\"></span>\n                </span>");
   __html8 = $._ElementFactoryProvider_createElement_html("<span name=\"address_item_item\"></span>");
+  __html9 = document.createElement("template");
+  t1.__e2_2 = null;
   __t = $.Template$(__root);
-  t1 = $.getInterceptor$x(__root);
-  t2 = t1.get$nodes(__root);
-  __t.children.push($.ConditionalTemplate$($.$index$asx($.get$nodes$x(t2.$index(t2, 7)), 3), new $.init_autogenerated_closure(), new $.init_autogenerated_closure0(__html0, __html1, __html2, __html3, __html4, __html5, __html6, __html7, __html8)));
-  t1 = t1.get$nodes(__root);
-  __t.listen$2($.get$onClick$x($.$index$asx($.get$nodes$x($.$index$asx($.get$nodes$x(t1.$index(t1, 11)), 1)), 3)), new $.init_autogenerated_closure1());
+  t2 = $.getInterceptor$x(__root);
+  t3 = t2.get$nodes(__root);
+  __e1 = $.$index$asx($.get$nodes$x(t3.$index(t3, 1)), 1);
+  __binding0 = __t.contentBind$2(new $.init_autogenerated_closure(), false);
+  $.addAll$1$ax($.get$nodes$x(__e1), [document.createTextNode(" "), __binding0, document.createTextNode(" ")]);
+  t3 = t2.get$nodes(__root);
+  t1.__e2_2 = $.$index$asx($.get$nodes$x(t3.$index(t3, 1)), 3);
+  __t.listen$2($.get$onInput$x(t1.__e2_2), new $.init_autogenerated_closure0(t1));
+  __t.listen$2($.get$onKeyUp$x(t1.__e2_2), new $.init_autogenerated_closure1());
+  t3 = __t.children;
+  t3.push($.DomPropertyBinding$(new $.init_autogenerated_closure2(), new $.init_autogenerated_closure3(t1), false, false));
+  t1 = t2.get$nodes(__root);
+  t3.push($.ConditionalTemplate$($.$index$asx($.get$nodes$x(t1.$index(t1, 7)), 3), new $.init_autogenerated_closure4(), new $.init_autogenerated_closure5(__html0, __html1, __html2, __html3, __html4, __html5, __html6, __html7, __html8)));
+  t1 = t2.get$nodes(__root);
+  t3.push($.ConditionalTemplate$($.$index$asx($.get$nodes$x(t1.$index(t1, 7)), 7), new $.init_autogenerated_closure6(), new $.init_autogenerated_closure7(__html10, __html11, __html12, __html13, __html14, __html15, __html16, __html17, __html18, __html9)));
+  t2 = t2.get$nodes(__root);
+  __t.listen$2($.get$onClick$x($.$index$asx($.get$nodes$x($.$index$asx($.get$nodes$x(t2.$index(t2, 11)), 1)), 3)), new $.init_autogenerated_closure8());
   __t.create$0();
   __t.insert$0(__t);
 };
 
 $.main = function() {
   $.useObservers = false;
-  $.appendHtml$1$x(document.querySelector("#application_header"), $.JSString_methods.$add($.JSString_methods.$add("<h1>", $.getPropertyValue("contactsBook")), "</h1>"));
   $.renderControlsPanelOnFirstLoad();
   $.loadDataContainerOnFirstLoad();
   $.init_autogenerated();
 };
 
 $.populateGeneralDialogWithContactDetails = function(groupName, index) {
-  var t1, contact, item, bodySection, groupSelection, t2, t3, t4, t5, nameCommentDiv, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addressDiv, addressesFieldlSet, addressesFieldSetLegend, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, additionalInfoDiv, cellPhoneItem, cellPhoneLE, landLineItem, landLineLE, addressItem, addressLE, emailItem, skypeId, keyItem;
+  var t1, contact, item, bodySection, groupSelection, t2, t3, t4, nameCommentDiv, phonesDiv, phonesFieldSet, phonesFiledSetLegend, addressDiv, addressesFieldlSet, addressesFieldSetLegend, emailSkypeDiv, emailSkypeFieldSet, emailSkypeFieldSetLegend, additionalInfoDiv, cellPhoneItem, cellPhoneLE, landLineItem, landLineLE, addressItem, addressLE, emailItem, skypeId, keyItem;
   $.set$display$x(document.querySelector("#overlay_shield").style, "inline");
   $.set$display$x(document.querySelector("#general_dialog").style, "inline");
-  t1 = $.get$contactsBook()._objectData;
-  for (t1 = $.get$iterator$ax($.toList$0$ax(t1.$index(t1, groupName))); contact = null, t1.moveNext$0() === true;) {
+  for (t1 = $.get$iterator$ax($.toList$0$ax($.$index$asx($.get$contactsBook(), groupName))); contact = null, t1.moveNext$0() === true;) {
     item = t1.get$current();
     if ($.$eq($.$index$asx(item, "_id"), index)) {
       contact = item;
@@ -18897,14 +19613,11 @@ $.populateGeneralDialogWithContactDetails = function(groupName, index) {
   groupSelection = document.createElement("select");
   t2 = $.getInterceptor$x(groupSelection);
   t2.set$id(groupSelection, "add_contact_group_selection");
-  t3 = $.get$contactsBook();
-  t4 = $.getPropertyValue("uncategorizedGroup");
-  t5 = t3._objectData;
-  if (!t5.containsKey$1(t5, t3._symbolToString$1(t4))) {
+  if ($.containsKey$1$x($.get$contactsBook(), $.getPropertyValue("uncategorizedGroup")) !== true) {
     t3 = t2.get$children(groupSelection);
     t3.add$1(t3, $.OptionElement_OptionElement($.getPropertyValue("uncategorizedGroup"), $.getPropertyValue("uncategorizedGroup"), true, true));
   }
-  for (t3 = $.get$contactsBook()._objectData, t3 = t3.get$keys(t3), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
+  for (t3 = $.get$iterator$ax($.get$keys$x($.get$contactsBook())); t3.moveNext$0() === true;) {
     item = t3.get$current();
     t4 = t2.get$children(groupSelection);
     t4.add$1(t4, $.OptionElement_OptionElement(item, $, $, $));
@@ -19163,12 +19876,30 @@ $.updateBinding = function(value, node, stringValue) {
   return node;
 };
 
+$.sanitizeUri = function(uri) {
+  uri = $.toString$0(uri);
+  return $._isSafeUri(uri) ? uri : "#";
+};
+
+$._isSafeUri = function(uri) {
+  var scheme, t1;
+  scheme = $.Uri$(uri).scheme;
+  t1 = $.getInterceptor(scheme);
+  if (t1.$eq(scheme, ""))
+    return true;
+  return $.JSArray_methods.contains$1($.List_http_https_ftp_mailto, t1.toLowerCase$0(scheme)) || "MAILTO" === t1.toUpperCase$0(scheme);
+};
+
 $.Listener$ = function(eventStream, listener) {
   return new $.Listener(eventStream, null, listener);
 };
 
 $.Binding$ = function(exp, action, isFinal) {
   return new $.Binding(exp, action, isFinal, null);
+};
+
+$.DomPropertyBinding$ = function(getter, setter, isUrl, isFinal) {
+  return new $.DomPropertyBinding(setter, getter, isUrl, isFinal, null);
 };
 
 $.Template$ = function(node) {
@@ -19392,10 +20123,12 @@ $.JSString_methods = $.JSString.prototype;
 $._WatcherType_OTHER = new $._WatcherType("OTHER");
 $.List_8h5 = Isolate.makeConstantList(["body", "head", "caption", "td", "th", "colgroup", "col", "tr", "tbody", "tfoot", "thead", "track"]);
 $.Map_8h6qb = new $.ConstantMap(12, {body: "html", head: "html", caption: "table", td: "tr", th: "tr", colgroup: "table", col: "colgroup", tr: "tbody", tbody: "table", tfoot: "table", thead: "table", track: "audio"}, $.List_8h5);
-$.EventStreamProvider_click = new $.EventStreamProvider("click");
+$.List_http_https_ftp_mailto = Isolate.makeConstantList(["http", "https", "ftp", "mailto"]);
 $.NodeList_methods = $.NodeList.prototype;
+$.EventStreamProvider_click = new $.EventStreamProvider("click");
 $.EventStreamProvider_progress = new $.EventStreamProvider("progress");
 $.Duration_0 = new $.Duration(0);
+$.EventStreamProvider_keyup = new $.EventStreamProvider("keyup");
 $.JSNull_methods = $.JSNull.prototype;
 $.C_NullThrownError = new $.NullThrownError();
 $._WatcherType_HASH_MAP = new $._WatcherType("HASH_MAP");
@@ -19428,8 +20161,9 @@ $.TemplateElement__initStyles = null;
 $.Device__isOpera = null;
 $.Device__isIE = null;
 $._deliverCallbacks = null;
+$.searchFilter = "";
 $.baseURL = "/personalportal/ContactsBook?action=";
-$.showCCG = true;
+$.isBookFullyLoaded = false;
 $.enableJsonObjectDebugMessages = false;
 $.cbBaseURL = "/personalportal/ContactsBook?action=";
 $.commAccessURL = "/personalportal/CommonAccessPoint?action=";
@@ -19561,8 +20295,14 @@ $.clone$1$x = function(receiver, a0) {
 $.compareTo$1$ns = function(receiver, a0) {
   return $.getInterceptor$ns(receiver).compareTo$1(receiver, a0);
 };
+$.contains$1$asx = function(receiver, a0) {
+  return $.getInterceptor$asx(receiver).contains$1(receiver, a0);
+};
 $.contains$2$asx = function(receiver, a0, a1) {
   return $.getInterceptor$asx(receiver).contains$2(receiver, a0, a1);
+};
+$.containsKey$1$x = function(receiver, a0) {
+  return $.getInterceptor$x(receiver).containsKey$1(receiver, a0);
 };
 $.createDocumentFragment$0$x = function(receiver) {
   return $.getInterceptor$x(receiver).createDocumentFragment$0(receiver);
@@ -19654,6 +20394,12 @@ $.get$nodes$x = function(receiver) {
 $.get$onClick$x = function(receiver) {
   return $.getInterceptor$x(receiver).get$onClick(receiver);
 };
+$.get$onInput$x = function(receiver) {
+  return $.getInterceptor$x(receiver).get$onInput(receiver);
+};
+$.get$onKeyUp$x = function(receiver) {
+  return $.getInterceptor$x(receiver).get$onKeyUp(receiver);
+};
 $.get$parentNode$x = function(receiver) {
   return $.getInterceptor$x(receiver).get$parentNode(receiver);
 };
@@ -19680,6 +20426,9 @@ $.get$tHead$x = function(receiver) {
 };
 $.get$tagName$x = function(receiver) {
   return $.getInterceptor$x(receiver).get$tagName(receiver);
+};
+$.get$type$x = function(receiver) {
+  return $.getInterceptor$x(receiver).get$type(receiver);
 };
 $.get$value$x = function(receiver) {
   return $.getInterceptor$x(receiver).get$value(receiver);
@@ -19943,6 +20692,9 @@ Isolate.$lazy($, "_allTemplatesSelectors", "_Bindings__allTemplatesSelectors", "
   var t1 = $.Map_Ai46y.get$keys($.Map_Ai46y);
   t1 = t1.map$1(t1, new $.closure());
   return $.JSString_methods.$add("template, option[template], ", t1.join$1(t1, ", "));
+});
+Isolate.$lazy($, "_splitRe", "Uri__splitRe", "get$Uri__splitRe", function() {
+  return $.RegExp_RegExp("^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?(?:([\\w\\d\\-\\u0100-\\uffff.%]*)|\\[([A-Fa-f0-9:.]*)\\])(?::([0-9]+))?)?([^?#[]+)?(?:\\?([^#]*))?(?:#(.*))?$", true, false);
 });
 Isolate.$lazy($, "addContactBtn", "addContactBtn", "get$addContactBtn", function() {
   return $.ButtonElement_ButtonElement();
@@ -21121,7 +21873,7 @@ function init() {
         }
       }
     }
-    var objectClassObject = collectedClasses.Object, shortNames = "get$p,call$0,call$1,call$2,call$3,call$4,eval$1,get$sb,then$1,get$_id,create$0,get$_key,get$node,listen$1,listen$2,lookup$1,toJson$0,_cancel$1,_onData$1,changes$1,dispose$0,get$_name,get$_next,perform$1,process$0,set$_next,_handler$0,_onError$1,get$_state,get$_value,get$inputs,get$isText,get$number,moveNext$0,set$_state,set$_value,set$number,visitMap$1,_callback$2,_dispatch$1,_sendData$1,_sendDone$0,bodySetup$1,get$_values,get$address,get$binding,get$country,get$current,get$network,iterSetup$3,set$_handle,set$address,set$comment,set$country,set$network,unobserve$0,visitList$1,_sendError$1,_sendValue$1,catchError$1,get$_handler,get$areaCode,set$areaCode,set$comments,toSendPort$0,unregister$1,_needsEvent$1,_setGlobals$0,conditional$3,contentBind$2,get$_callback,get$_contents,get$_duration,get$_nextLink,get$_previous,get$_workerId,get$isBinding,get$isVisible,set$_contents,set$_nextLink,set$_previous,set$isVisible,_runCallback$1,get$_isolateId,runIteration$0,_checkReplyTo$1,get$_futurePort,visitSendPort$1,get$$$_observers,get$_liblib6$_id,get$_receivePort,get$skypeIdsList,set$$$_observers,set$skypeIdsList,visitPrimitive$1,get$_nextListener,get$_previousLink,get$addressesList,get$cellPhoneList,get$landLinesList,loopIterateAttr$3,set$_nextListener,set$_previousLink,set$addressesList,set$cellPhoneList,set$landLinesList,set$scheduleTimer,visitCloseToken$1,_scheduleResolve$0,_setUnsubscribed$0,compareAndNotify$0,get$_cancelOnError,get$_liblib2$_list,set$_liblib2$_head,set$_liblib2$_next,set$_liblib2$_tail,visitIsolateSink$1,get$_liblib2$_length,set$_liblib2$_length,_insertAdjacentHtml$2,deserializeSendPort$1,_toggleEventReceived$0,get$_resultOrListeners,get$emailAddressesList,set$_liblib2$_previous,set$emailAddressesList,deserializeCloseToken$1,get$_liblib6$_scheduled,set$_liblib6$_scheduled,_setPendingUnsubscribe$1,deserializeIsolateSink$1,get$_isPendingUnsubscribe,get$_liblib1$_subscription,set$_liblib1$_subscription".split(","), longNames = "p,call,call,call,call,call,eval,sb,then,_id,create,_key,node,listen,listen,lookup,toJson,_cancel,_onData,changes,dispose,_name,_next,perform,process,_next=,_handler,_onError,_state,_value,inputs,isText,number,moveNext,_state=,_value=,number=,visitMap,_callback,_dispatch,_sendData,_sendDone,bodySetup,_values,address,binding,country,current,network,iterSetup,_handle=,address=,comment=,country=,network=,unobserve,visitList,_sendError,_sendValue,catchError,_handler,areaCode,areaCode=,comments=,toSendPort,unregister,_needsEvent,_setGlobals,conditional,contentBind,_callback,_contents,_duration,_nextLink,_previous,_workerId,isBinding,isVisible,_contents=,_nextLink=,_previous=,isVisible=,_runCallback,_isolateId,runIteration,_checkReplyTo,_futurePort,visitSendPort,$_observers,_id,_receivePort,skypeIdsList,$_observers=,skypeIdsList=,visitPrimitive,_nextListener,_previousLink,addressesList,cellPhoneList,landLinesList,loopIterateAttr,_nextListener=,_previousLink=,addressesList=,cellPhoneList=,landLinesList=,scheduleTimer=,visitCloseToken,_scheduleResolve,_setUnsubscribed,compareAndNotify,_cancelOnError,_list,_head=,_next=,_tail=,visitIsolateSink,_length,_length=,_insertAdjacentHtml,deserializeSendPort,_toggleEventReceived,_resultOrListeners,emailAddressesList,_previous=,emailAddressesList=,deserializeCloseToken,_scheduled,_scheduled=,_setPendingUnsubscribe,deserializeIsolateSink,_isPendingUnsubscribe,_subscription,_subscription=".split(",");
+    var objectClassObject = collectedClasses.Object, shortNames = "get$p,call$0,call$1,call$2,call$3,call$4,eval$1,get$sb,then$1,get$_id,create$0,get$_key,get$node,listen$1,listen$2,lookup$1,toJson$0,_cancel$1,_onData$1,changes$1,dispose$0,get$_name,get$_next,get$isUrl,perform$1,process$0,set$_next,_handler$0,_onError$1,get$_state,get$_value,get$inputs,get$isText,get$number,moveNext$0,set$_state,set$_value,set$number,visitMap$1,_callback$2,_dispatch$1,_sendData$1,_sendDone$0,bodySetup$1,get$_values,get$address,get$binding,get$country,get$current,get$network,iterSetup$3,set$_handle,set$address,set$comment,set$country,set$network,unobserve$0,visitList$1,_sendError$1,_sendValue$1,catchError$1,get$_handler,get$areaCode,set$areaCode,set$comments,toSendPort$0,unregister$1,_needsEvent$1,_setGlobals$0,conditional$3,contentBind$2,get$_callback,get$_contents,get$_duration,get$_nextLink,get$_previous,get$_workerId,get$isBinding,get$isVisible,set$_contents,set$_nextLink,set$_previous,set$isVisible,_runCallback$1,get$_isolateId,runIteration$0,_checkReplyTo$1,get$_futurePort,visitSendPort$1,get$$$_observers,get$_liblib6$_id,get$_receivePort,get$skypeIdsList,set$$$_observers,set$skypeIdsList,visitPrimitive$1,get$_nextListener,get$_previousLink,get$addressesList,get$cellPhoneList,get$landLinesList,loopIterateAttr$3,set$_nextListener,set$_previousLink,set$addressesList,set$cellPhoneList,set$landLinesList,set$scheduleTimer,visitCloseToken$1,_scheduleResolve$0,_setUnsubscribed$0,compareAndNotify$0,get$_cancelOnError,get$_liblib2$_list,set$_liblib2$_head,set$_liblib2$_next,set$_liblib2$_tail,visitIsolateSink$1,get$_liblib2$_length,set$_liblib2$_length,_insertAdjacentHtml$2,deserializeSendPort$1,_toggleEventReceived$0,get$_resultOrListeners,get$emailAddressesList,set$_liblib2$_previous,set$emailAddressesList,deserializeCloseToken$1,get$_liblib6$_scheduled,set$_liblib6$_scheduled,_setPendingUnsubscribe$1,deserializeIsolateSink$1,get$_isPendingUnsubscribe,get$_liblib1$_subscription,set$_liblib1$_subscription".split(","), longNames = "p,call,call,call,call,call,eval,sb,then,_id,create,_key,node,listen,listen,lookup,toJson,_cancel,_onData,changes,dispose,_name,_next,isUrl,perform,process,_next=,_handler,_onError,_state,_value,inputs,isText,number,moveNext,_state=,_value=,number=,visitMap,_callback,_dispatch,_sendData,_sendDone,bodySetup,_values,address,binding,country,current,network,iterSetup,_handle=,address=,comment=,country=,network=,unobserve,visitList,_sendError,_sendValue,catchError,_handler,areaCode,areaCode=,comments=,toSendPort,unregister,_needsEvent,_setGlobals,conditional,contentBind,_callback,_contents,_duration,_nextLink,_previous,_workerId,isBinding,isVisible,_contents=,_nextLink=,_previous=,isVisible=,_runCallback,_isolateId,runIteration,_checkReplyTo,_futurePort,visitSendPort,$_observers,_id,_receivePort,skypeIdsList,$_observers=,skypeIdsList=,visitPrimitive,_nextListener,_previousLink,addressesList,cellPhoneList,landLinesList,loopIterateAttr,_nextListener=,_previousLink=,addressesList=,cellPhoneList=,landLinesList=,scheduleTimer=,visitCloseToken,_scheduleResolve,_setUnsubscribed,compareAndNotify,_cancelOnError,_list,_head=,_next=,_tail=,visitIsolateSink,_length,_length=,_insertAdjacentHtml,deserializeSendPort,_toggleEventReceived,_resultOrListeners,emailAddressesList,_previous=,emailAddressesList=,deserializeCloseToken,_scheduled,_scheduled=,_setPendingUnsubscribe,deserializeIsolateSink,_isPendingUnsubscribe,_subscription,_subscription=".split(",");
     for (var j = 0; j < shortNames.length; j++) {
       var type = 0;
       var short = shortNames[j];
