@@ -336,7 +336,7 @@ void addContactSaveOperation(Event e, [String caller, int id]){
   print('Caller is');print(caller);
   if(caller == 'edit_contact'){//If editing a contact
     contact['_id'] = id;
-    contactsList[id] = contact;
+    contactsList[contactsList.indexOf(contactsList.firstWhere((e){return e['_id'] == id;}))] = contact;
   }
   else{//If adding a new contact
     int id = 0;
@@ -344,7 +344,7 @@ void addContactSaveOperation(Event e, [String caller, int id]){
       if(item['_id'] > id)
         id = item['_id'];
     }
-    contact['_id'] = id == 0 ? 0 : ++id;
+    contact['_id'] = ++id;
     contactsList.add(contact);
   }
   contactsList.sort(//Sorting the contacts list by name

@@ -2,26 +2,11 @@ part of contacts_book_spa;
 
 void deleteContact(String groupName, int index){
   List<JsonObject> contactsList = contactsBook[groupName].toList();
-  
+  JsonObject contact = contactsList.firstWhere((e){return e['_id'] == index;});
+  String message =  "\n" + contact['name'] + "\n" + ((contact['comments'] == null ) ? "" : contact['comments']); 
   if(
       window.confirm(
-                      cb_locale_data.getPropertyValue("contactDelMsg")
-                      +
-                      '\n'
-                      +
-                      (contactsList.firstWhere(
-                          (e){
-                            return e['_id'] == index;
-                          }
-                      ))['name']
-                      +
-                      '\n'
-                      +
-                      (contactsList.firstWhere(
-                          (e){
-                            return e['_id'] == index;
-                          }
-                      ))['comments']
+                      cb_locale_data.getPropertyValue("contactDelMsg") + message
                     )
                    ){
     contactsList.removeWhere(

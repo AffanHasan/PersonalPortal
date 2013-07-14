@@ -1673,6 +1673,9 @@ $$.JSArray = {"": "List/Interceptor;",
   indexOf$2: function(receiver, element, start) {
     return $.Arrays_indexOf(receiver, element, start, receiver.length);
   },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
+  },
   get$isEmpty: function(receiver) {
     return receiver.length === 0;
   },
@@ -2111,13 +2114,20 @@ $$.JSString = {"": "String/Interceptor;",
     return receiver.trim();
   },
   indexOf$2: function(receiver, other, start) {
+    if (other == null)
+      $.throwExpression($.ArgumentError$(null));
     if (typeof start !== "number" || Math.floor(start) !== start)
       throw $.wrapException($.ArgumentError$(start));
     else
       start;
+    if (typeof other !== "string")
+      throw $.wrapException($.ArgumentError$(other));
     if (start < 0)
       return -1;
     return receiver.indexOf(other, start);
+  },
+  indexOf$1: function($receiver, other) {
+    return this.indexOf$2($receiver, other, 0);
   },
   contains$2: function(receiver, other, startIndex) {
     if (other == null)
@@ -4711,6 +4721,9 @@ $$.ListMixin = {"": "Object;",
         return i;
     return -1;
   },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
+  },
   toString$0: function(receiver) {
     var result = $.StringBuffer$("");
     $.ToString__emitValue(receiver, result, $.List_List($, null));
@@ -6126,6 +6139,9 @@ $$.Object = {"": ";",
   },
   getValueWorkaround$1: function($0) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("getValueWorkaround", "getValueWorkaround$1", 0, [$0], []));
+  },
+  indexOf$1: function($receiver, $0) {
+    return this.noSuchMethod$1(this, $.createInvocationMirror("indexOf", "indexOf$1", 0, [$0], []));
   },
   indexOf$2: function($receiver, $0, $1) {
     return this.noSuchMethod$1(this, $.createInvocationMirror("indexOf", "indexOf$2", 0, [$0, $1], []));
@@ -7582,6 +7598,9 @@ $$._WrappedList = {"": "ListBase;_list",
   indexOf$2: function(_, element, start) {
     return $.indexOf$2$asx(this._list, element, start);
   },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
+  },
   setRange$4: function(_, start, end, iterable, skipCount) {
     $.setRange$4$ax(this._list, start, end, iterable, skipCount);
   },
@@ -8647,17 +8666,24 @@ $$.populateGeneralDialogForAddContact_closure4 = {"": "Closure;additionalInfoDiv
   $isFunction: true
 };
 
-$$.addContactSaveOperation_closure = {"": "Closure;",
+$$.addContactSaveOperation_closure = {"": "Closure;id_0",
+  call$1: function(e) {
+    return $.$eq($.$index$asx(e, "_id"), this.id_0);
+  },
+  $isFunction: true
+};
+
+$$.addContactSaveOperation_closure0 = {"": "Closure;",
   call$2: function(a, b) {
     return $.compareTo$1$ns($.$index$asx(a, "name"), $.$index$asx(b, "name"));
   },
   $isFunction: true
 };
 
-$$.addContactSaveOperation_closure0 = {"": "Closure;request_0",
+$$.addContactSaveOperation_closure1 = {"": "Closure;request_1",
   call$1: function(_) {
     var t1, t2;
-    t1 = this.request_0;
+    t1 = this.request_1;
     if (t1.readyState === 4) {
       t2 = t1.status;
       t2 = t2 === 200 || t2 === 0;
@@ -8748,17 +8774,10 @@ $$.deleteContact_closure0 = {"": "Closure;index_1",
   $isFunction: true
 };
 
-$$.deleteContact_closure1 = {"": "Closure;index_2",
-  call$1: function(e) {
-    return $.$eq($.$index$asx(e, "_id"), this.index_2);
-  },
-  $isFunction: true
-};
-
-$$.deleteContact_closure2 = {"": "Closure;groupName_3,contactsList_4,request_5",
+$$.deleteContact_closure1 = {"": "Closure;groupName_2,contactsList_3,request_4",
   call$1: function(_) {
     var t1, t2;
-    t1 = this.request_5;
+    t1 = this.request_4;
     if (t1.readyState === 4) {
       t2 = t1.status;
       t2 = t2 === 200 || t2 === 0;
@@ -8767,7 +8786,7 @@ $$.deleteContact_closure2 = {"": "Closure;groupName_3,contactsList_4,request_5",
     if (t2)
       if ($.startsWith$1$s(t1.responseText, "saved")) {
         t1 = $.get$contactsBook();
-        t1.$indexSet(t1, this.groupName_3, this.contactsList_4);
+        t1.$indexSet(t1, this.groupName_2, this.contactsList_3);
         $.dispatch();
       }
   },
@@ -13034,6 +13053,9 @@ $$.Float32List = {"": "TypedData;",
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -13169,6 +13191,9 @@ $$.Float64List = {"": "TypedData;",
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
+  },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -13306,6 +13331,9 @@ $$.Int16List = {"": "TypedData;",
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -13441,6 +13469,9 @@ $$.Int32List = {"": "TypedData;",
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
+  },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -13578,6 +13609,9 @@ $$.Int8List = {"": "TypedData;",
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -13713,6 +13747,9 @@ $$.Uint16List = {"": "TypedData;",
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
+  },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -13850,6 +13887,9 @@ $$.Uint32List = {"": "TypedData;",
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
   },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
+  },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
   },
@@ -13982,6 +14022,9 @@ $$.Uint8ClampedList = {"": "Uint8List;",
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
+  },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -14118,6 +14161,9 @@ $$.Uint8List = {"": "TypedData;",
   },
   indexOf$2: function(receiver, element, start) {
     return $._Lists_indexOf(receiver, element, start, receiver.length);
+  },
+  indexOf$1: function($receiver, element) {
+    return this.indexOf$2($receiver, element, 0);
   },
   removeLast$0: function(receiver) {
     throw $.wrapException($.UnsupportedError$("Cannot remove from immutable List."));
@@ -18096,29 +18142,35 @@ $.deliverChangeRecords = function() {
 };
 
 $._Lists_indexOf = function(a, element, startIndex, endIndex) {
-  var t1, i;
+  var t1, i, t2;
   if (typeof startIndex !== "number")
-    return $._Lists_indexOf$bailout(1, a, startIndex, endIndex);
+    return $._Lists_indexOf$bailout(1, a, element, startIndex, endIndex);
   t1 = $.getInterceptor$asx(a);
   if ($.JSNumber_methods.$ge(startIndex, t1.get$length(a)))
     return -1;
   if (startIndex < 0)
     startIndex = 0;
-  for (i = startIndex; i < endIndex; ++i)
-    t1.$index(a, i);
+  for (i = startIndex; i < endIndex; ++i) {
+    t2 = t1.$index(a, i);
+    if (t2 == null ? element == null : t2 === element)
+      return i;
+  }
   return -1;
 };
 
-$._Lists_indexOf$bailout = function(state0, a, startIndex, endIndex) {
-  var t1, t2, i;
+$._Lists_indexOf$bailout = function(state0, a, element, startIndex, endIndex) {
+  var t1, t2, i, t3;
   t1 = $.getInterceptor$asx(a);
   t2 = $.getInterceptor$n(startIndex);
   if (t2.$ge(startIndex, t1.get$length(a)) === true)
     return -1;
   if (t2.$lt(startIndex, 0) === true)
     startIndex = 0;
-  for (i = startIndex; t2 = $.getInterceptor$n(i), t2.$lt(i, endIndex) === true; i = t2.$add(i, 1))
-    t1.$index(a, i);
+  for (i = startIndex; t2 = $.getInterceptor$n(i), t2.$lt(i, endIndex) === true; i = t2.$add(i, 1)) {
+    t3 = t1.$index(a, i);
+    if (t3 == null ? element == null : t3 === element)
+      return i;
+  }
   return -1;
 };
 
@@ -18432,7 +18484,8 @@ $.addContactSaveOperation = function(e, caller, id) {
   $.Primitives_printString(t2.toString$0(caller));
   if (t2.$eq(caller, "edit_contact")) {
     contact.$indexSet(contact, "_id", id);
-    $.$indexSet$ax(contactsList, id, contact);
+    t2 = $.getInterceptor$ax(contactsList);
+    t2.$indexSet(contactsList, t2.indexOf$1(contactsList, t2.firstWhere$1(contactsList, new $.addContactSaveOperation_closure(id))), contact);
   } else {
     for (t2 = $.getInterceptor$ax(contactsList), t3 = t2.get$iterator(contactsList), id = 0; t3.moveNext$0() === true;) {
       item = t3.get$current();
@@ -18440,17 +18493,16 @@ $.addContactSaveOperation = function(e, caller, id) {
       if ($.$gt$n(t4.$index(item, "_id"), id) === true)
         id = t4.$index(item, "_id");
     }
-    t3 = $.getInterceptor(id);
-    contact.$indexSet(contact, "_id", t3.$eq(id, 0) ? 0 : t3.$add(id, 1));
+    contact.$indexSet(contact, "_id", $.$add$ns(id, 1));
     t2.add$1(contactsList, contact);
   }
-  $.sort$1$ax(contactsList, new $.addContactSaveOperation_closure());
+  $.sort$1$ax(contactsList, new $.addContactSaveOperation_closure0());
   requestData.$indexSet(requestData, "contactsList", contactsList);
   t2 = $.get$contactsBook();
   t2.$indexSet(t2, t1.get$value(groupInput), contactsList);
   request = new XMLHttpRequest();
   t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
-  $._EventStreamSubscription$(t1._target, t1._eventType, new $.addContactSaveOperation_closure0(request), t1._useCapture);
+  $._EventStreamSubscription$(t1._target, t1._eventType, new $.addContactSaveOperation_closure1(request), t1._useCapture);
   $.HttpRequest_methods.open$3$async(request, "POST", $.JSString_methods.$add($.baseURL, "addSingleContact"), false);
   output = $.StringBuffer$("");
   $._JsonStringifier$(output).stringifyValue$1(requestData);
@@ -18481,18 +18533,22 @@ $.populateGeneralDialogFooterAddGroup = function() {
 };
 
 $.deleteContact = function(groupName, index) {
-  var t1, contactsList, requestData, request, output;
+  var t1, contactsList, contact, t2, t3, message, requestData, request, output;
   t1 = $.get$contactsBook()._objectData;
   contactsList = $.toList$0$ax(t1.$index(t1, groupName));
   t1 = $.getInterceptor$ax(contactsList);
-  if (window.confirm($.$add$ns($.$add$ns($.$add$ns($.$add$ns($.getPropertyValue("contactDelMsg"), "\n"), $.$index$asx(t1.firstWhere$1(contactsList, new $.deleteContact_closure(index)), "name")), "\n"), $.$index$asx(t1.firstWhere$1(contactsList, new $.deleteContact_closure0(index)), "comments"))) === true) {
-    t1.removeWhere$1(contactsList, new $.deleteContact_closure1(index));
+  contact = t1.firstWhere$1(contactsList, new $.deleteContact_closure(index));
+  t2 = $.getInterceptor$asx(contact);
+  t3 = $.JSString_methods.$add($.JSString_methods.$add("\n", t2.$index(contact, "name")), "\n");
+  message = $.JSString_methods.$add(t3, t2.$index(contact, "comments") == null ? "" : t2.$index(contact, "comments"));
+  if (window.confirm($.$add$ns($.getPropertyValue("contactDelMsg"), message)) === true) {
+    t1.removeWhere$1(contactsList, new $.deleteContact_closure0(index));
     requestData = $.JsonObject$(null);
     requestData.$indexSet(requestData, "groupName", groupName);
     requestData.$indexSet(requestData, "contactsList", contactsList);
     request = new XMLHttpRequest();
     t1 = $.EventStreamProvider_readystatechange.forTarget$1(request);
-    $._EventStreamSubscription$(t1._target, t1._eventType, new $.deleteContact_closure2(groupName, contactsList, request), t1._useCapture);
+    $._EventStreamSubscription$(t1._target, t1._eventType, new $.deleteContact_closure1(groupName, contactsList, request), t1._useCapture);
     $.HttpRequest_methods.open$3$async(request, "POST", $.JSString_methods.$add($.baseURL, "addSingleContact"), true);
     output = $.StringBuffer$("");
     $._JsonStringifier$(output).stringifyValue$1(requestData);
